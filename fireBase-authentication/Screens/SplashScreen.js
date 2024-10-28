@@ -22,9 +22,11 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   text: {
-    fontSize: 20,
+    fontSize: 25,
     fontStyle:"serif",
     marginTop: 20,
+    fontWeight: 'bold',
+
   },
 });
 
