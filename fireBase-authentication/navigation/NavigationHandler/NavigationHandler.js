@@ -5,7 +5,6 @@ import { AuthenticationContext } from '../../contextApis/authentication/authenti
 
 const NavigationHandler = () => {
     const { isAuthenticated } = useContext(AuthenticationContext);
-
     return (
         <>
             {isAuthenticated ? <ScreensNavigation /> : <LoginNavigater />}

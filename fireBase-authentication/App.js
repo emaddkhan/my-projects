@@ -1,31 +1,43 @@
-import { NavigationContainer, ThemeProvider } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, { useState, useEffect } from 'react';
+import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import HomeScreen from "./Screens/HomeScreen";
-import AccountScreen from "./Screens/AccountScreen";
-import styled from "styled-components";
-import RegisterScreen from "./Screens/RegisterScreen";
-import "./config/firebaseConfig";
+import styled, { ThemeProvider } from "styled-components/native";
 import AuthenticationContextProvider from "./contextApis/authentication/authentication.context";
 import Toast from "react-native-toast-message";
 import NavigationHandler from "./navigation/NavigationHandler/NavigationHandler";
+import SplashScreen from "./Screens/SplashScreen";
+import "./config/firebaseConfig";
 
-const Stack = createNativeStackNavigator();
+const theme = {
+  colors: {
+    primary: '#0782F9',
+    background: '#fff',
+    text: '#000',
+  },
+};
 
 const CustomSafeAreaView = styled(SafeAreaView)`
   flex: 1;
-  margin-top: ${StatusBar.currentHeight}px;
+  margin-top: ${(StatusBar.currentHeight || 20)}px;
 `;
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true); 
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); 
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <NavigationContainer>
         <AuthenticationContextProvider>
           <CustomSafeAreaView>
-            <NavigationHandler />
+            {isLoading ? <SplashScreen /> : <NavigationHandler />}
           </CustomSafeAreaView>
         </AuthenticationContextProvider>
       </NavigationContainer>
@@ -33,12 +45,3 @@ export default function App() {
     </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

@@ -12,7 +12,7 @@ const LoginNavigater = () => {
         headerShown: false,
       }}
     >
-      <Stack.Screen  options={{ headerShown: false }}  name='AccountScreen' component={AccountScreen}/>
+      <Stack.Screen options={{ headerShown: false }} name='AccountScreen' component={AccountScreen} />
       <Stack.Screen  options={{ headerShown: false }}  name='RegisterScreen' component={RegisterScreen}/>
     </Stack.Navigator>
   )

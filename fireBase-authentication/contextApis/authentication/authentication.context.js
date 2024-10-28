@@ -3,7 +3,6 @@ import { loginFirebaseRequest, registerFirebaseRequest } from './authentication.
 import { useNavigation } from '@react-navigation/native'
 import Toast from 'react-native-toast-message'
 
-// Create the AuthenticationContext
 export const AuthenticationContext = createContext()
 
 const AuthenticationContextProvider = ({ children }) => {
@@ -15,41 +14,32 @@ const AuthenticationContextProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     const onRegister = async (param) => {
-        const {email, password, confirmPassword} = param;
+        const { email, password, confirmPassword } = param
         if (password !== confirmPassword) {
             setError("Error: Passwords do not match")
             return
         }
-
         setLoading(true)
-        setError(null)  // Clear any existing errors
-
+        setError(null)  
         try {
             const userInformation = await registerFirebaseRequest(email, password)
-            setIsAuthenticated(true)
             setUser(userInformation)
             Toast.show({
               type: 'success',
               text1: 'Registration Successful',
-              
-            });
+            })
             navigation.navigate('AccountScreen')
-            console.log("user is registered ", userInformation);
+            console.log("user is registered ", userInformation)
         } catch (err) {
             setError(err?.message?.toString())
         } finally {
-            setLoading(false)  // Ensure loading is false regardless of success/failure
+            setLoading(false)  
         }
     }
-
-
     const onLogin = async (param) => {
-        const {email, password} = param;
-        
-
+        const { email, password } = param
         setLoading(true)
-        setError(null)  // Clear any existing errors
-
+        setError(null)  
         try {
             const userInformation = await loginFirebaseRequest(email, password)
             setIsAuthenticated(true)
@@ -57,27 +47,25 @@ const AuthenticationContextProvider = ({ children }) => {
             Toast.show({
               type: 'success',
               text1: 'User Is Logged In Successfully',
-              
-            });
+            })
             navigation.navigate('Home')
-            console.log("user is  logged in", userInformation);
+            console.log("user is logged in", userInformation)
         } catch (err) {
             setError(err?.message?.toString())
         } finally {
-            setLoading(false)  // Ensure loading is false regardless of success/failure
+            setLoading(false)
         }
     }
-    const onLogout = ()=>{
+    const onLogout = () => {
         setIsAuthenticated(false)
         setUser(null)
         Toast.show({
             type: 'success',
             text1: 'User Logged Out Successfully',
-        });
-        navigation.navigate('AccountScreen');
+        })
+        navigation.navigate('AccountScreen')
         console.log("User is logout")
     }
-
     return (
         <AuthenticationContext.Provider value={{ 
             user,
@@ -95,3 +83,4 @@ const AuthenticationContextProvider = ({ children }) => {
 }
 
 export default AuthenticationContextProvider
+

@@ -11,22 +11,18 @@ import {
 } from "react-native";
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { AuthenticationContext } from "../contextApis/authentication/authentication.context";
+import { useNavigation } from "@react-navigation/native";
 
-const RegisterScreen = ({ navigation }) => {
+const RegisterScreen = () => {
+  const navigation = useNavigation();
   const [registerInfo, setRegisterInfo] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-
-  // Correctly using AuthenticationContext
   const { loading, error, onRegister } = useContext(AuthenticationContext);
-
-  // Create Animated value for shake
   const shakeAnimation = useRef(new Animated.Value(0)).current;
-
-  // Trigger shake animation on error
   useEffect(() => {
     if (error) {
       Animated.sequence([
@@ -48,16 +44,14 @@ const RegisterScreen = ({ navigation }) => {
       ]).start();
     }
   }, [error]);
-
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View>
         <Image
-          source={require("../assets/blue-logo.png")} // Path to the image file
+          source={require("../assets/blue-logo.png")} 
           style={styles.image}
         />
       </View>
-
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -70,7 +64,6 @@ const RegisterScreen = ({ navigation }) => {
           }
           style={styles.input}
         />
-
         <View style={styles.passwordContainer}>
           <TextInput
             placeholder="Password"
@@ -91,7 +84,6 @@ const RegisterScreen = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-
         <TextInput
           placeholder="Confirm password"
           value={registerInfo.confirmPassword}
@@ -103,26 +95,21 @@ const RegisterScreen = ({ navigation }) => {
           secureTextEntry={!showPassword}
         />
       </View>
-
-      {/* Display error message from context */}
       {error && <Text style={styles.errorText}>{error}</Text>}
-
       <View style={styles.BtnContainer}>
-        {/* Apply the shake animation to the Register button */}
         <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
           <TouchableOpacity
             onPress={() => onRegister(registerInfo)}
             style={styles.button}
-            disabled={loading} // Disable button while loading
+            disabled={loading}
           >
             <Text style={styles.buttonText}>
               {loading ? "Registering..." : "Register"}
             </Text>
           </TouchableOpacity>
         </Animated.View>
-
         <TouchableOpacity
-          onPress={() => navigation.navigate("AccountScreen")}
+          onPress={() =>navigation.navigate('AccountScreen')}
           style={[styles.button, styles.buttonOutlined]}
         >
           <Text style={styles.buttonOutlinedText}>Login</Text>
@@ -131,7 +118,6 @@ const RegisterScreen = ({ navigation }) => {
     </KeyboardAvoidingView>
   );
 };
-
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
