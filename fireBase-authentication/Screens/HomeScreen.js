@@ -1,12 +1,20 @@
 import { View, Text,StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useContext } from 'react'
 import { AuthenticationContext } from '../contextApis/authentication/authentication.context';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const {onLogout } = useContext(AuthenticationContext);
+  const navigation = useNavigation();
   return (
     <View style={styles.container} >
       <Text style={styles.welcomeText}>Welcome to Emilog!</Text>
+      <TouchableOpacity style={styles.BtnContainer}
+      onPress={() => navigation.navigate('Resume')}>
+        <View style={styles.button}>
+          <Text style={styles.buttonText} >Resume Builder</Text>
+        </View>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.BtnContainer}
       onPress={()=>onLogout()}>
         <View style={styles.button}>
