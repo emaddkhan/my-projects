@@ -14,7 +14,11 @@ const ScreensNavigation = () => {
       }}
     >
      <Stack.Screen  options={{ headerShown: false }}  name='Home' component={HomeScreen}/>
-     <Stack.Screen  options={{ headerShown: false }}  name='Resume' component={ResumeBuilder}/>
+     <Stack.Screen 
+        name="Resume" 
+        component={ResumeBuilder} 
+        options={{ title: 'Resume Builder' }}
+      />
 
     </Stack.Navigator>
   )
