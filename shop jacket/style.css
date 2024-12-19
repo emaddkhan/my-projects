@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+.main{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(222, 221, 221);
+
+}
+nav{
+    height: 60px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+nav h4{
+    font-size: 20px;
+    font-weight: 600;
+    
+}
+nav i{
+    font-size: 20px;
+    color: white;
+    background-color:black;
+    padding: 10px;
+    font-weight: 500;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#center{
+    padding: 50px 5%;
+}
+#center h1{
+    font-size: 80px;
+    line-height: 85px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+}
+#center-in{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+#center-in p{
+    width: 40%;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 25px;
+}
+.right{
+    width: 20%;
+    margin-top: 40px;
+}
+.right a{
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+}
+.elem{
+    padding: 15px 10px;
+    border-top: 2px solid rgb(38, 36, 36);
+    display: flex;
+    justify-content: space-between;
+}
+.elem i{
+    font-size: 20px;
+    opacity: 0;
+}
+.elem:hover i{
+    opacity: 1;
+}
+.elem:hover a{
+    text-decoration: underline;
+}
+.elem:hover{
+    background-color:rgb(243, 237, 237);
+}
+#bottom{
+    height: 29%;
+    width: 100%;
+    margin-top: 3px;
+    position: relative;
+    
+     
+  }
+  #bottom img {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom; 
+    position: absolute;
+    top: 4px;
+    
+}
