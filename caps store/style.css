@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Work Sans';
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+#main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0px 80px;
+    justify-content: space-between;
+    align-items: end;
+}
+#left{
+    width: 48%;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    padding: 50px 0;
+    justify-content: space-between;
+}
+#left-top{
+    padding-top: 100px;
+}
+#left-top h1{
+    font-size: 150px;
+    font-weight:400;
+    line-height: 147px;
+}
+#color{
+    display: flex;
+    align-items: center;
+    padding: 6px 9px;
+    border: 3px solid black;
+    width: fit-content;
+    border-radius: 50px;
+}
+#color h5{
+    font-size: 17px;
+    font-weight: 300;
+    margin-right: 10px;
+}
+#color1{
+    background-color: burlywood;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+#color2{
+    background-color: rgb(14, 149, 232);
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+#bottom-left h4{
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 50px;
+}
+#bottom-left p{
+    width: 60%;
+    margin-top: 10px;
+    color: hsl(0, 0%, 19%);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+#right{
+    width: 31%;
+    height: 82%;
+    margin-right: 18%;
+    position: relative;
+    overflow: hidden;
+}
+#top-right{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    align-items: center;
+    margin-top: 30px;
+}
+#top-right h4{
+    font-size: 25px;
+    font-weight: 600;
+}
+#top-right h5{
+    font-size: 20px;
+}
+#top-right i{
+    color: goldenrod;
+}
+#rating{
+    padding-right: 23px;
+}
+#right img{
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
+}
+#cart-button{
+    height: 200px;
+    position: absolute;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 50%;
+    background-color: hsl(0deg 0% 13.33%);
+    top: 40%;
+    right: 15%;
+}
+#cart-button h2{
+    font-size: 30px;
+    font-weight: 400;
+}
+#rotated-text{
+    transform: rotate(-90deg);
+    font-size: 30px;
+    position: absolute;
+    top: 20%;
+    font-weight: 600;
+    left: 42%;
+    top: 79%;
+
+}
