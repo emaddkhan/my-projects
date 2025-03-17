@@ -17,7 +17,8 @@ gsap.to(".fleftelem", {
 })
 let sections = document.querySelectorAll(".fleftelem")
 Shery.imageEffect(".images", {
-    style: 5,
+    style: 4,
+    config:{onMouse:{value:1}},
     slideStyle: (setScroll) => {
       sections.forEach(function(section, index){
         ScrollTrigger.create({
@@ -31,3 +32,22 @@ Shery.imageEffect(".images", {
       })
     },
   }) ;
+
+  document.querySelector(".tell").addEventListener("mouseenter", () => {
+    gsap.to("#footer video", {
+        scaleY: 1.8, 
+        filter: "blur(10px)", 
+        duration: 0.5,
+        ease: "power1.inOut"
+    });
+});
+
+document.querySelector(".tell").addEventListener("mouseleave", () => {
+    gsap.to("#footer video", {
+        scaleY: 1, 
+        filter: "blur(0px)",
+        duration: 0.5,
+        ease: "power1.inOut"
+    });
+});
+
