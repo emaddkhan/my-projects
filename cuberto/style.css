@@ -711,6 +711,9 @@ html, body{
     #homelast {
         padding: 0vw 10vw;
     }
+    #featured {
+        padding: 10vw 7vw;
+    }
     .elem-mb {
         height: 95vh;
         flex-direction: column-reverse;
@@ -743,5 +746,80 @@ html, body{
     }
     #dev h1 {
         font-size: 4vh;
+        width: 80%;
+    }
+    #dev p {
+        width: 100%;
+        font-size: 1.9vh;
+    }
+    #dev h1 {
+        font-size: 5vh;
+        width: 80%;
+    }
+    #slides {
+        padding: 3vw 6vw;
+        flex-direction: column;
+    }
+    .slide{
+        width: 100%;
+        margin: 2vh 0;
+    }
+    .slide h3 {
+        font-size: 1.9vh;
+        margin: 0 0 0 1.5vw;
+    }
+    .slide .tag {
+        padding: 8px 20px;
+        margin: 9px 0;
+    }
+    #product{
+        padding: 2vh 0
+    }
+    .productcontainer {
+        height: 100%;
+        flex-direction: column;
+        width: 90%;
+        margin: 0 auto;
+
+    }
+    .pcLeft {
+        width: 100%;;
+    }
+    .pcLeft video {
+        height: 100%;
+    }
+    .pcright {
+        width: 100%;
+        height: 50%;
+        padding: 5vw 1vw;
+    }
+    .pcright p {
+        font-size: 2.4vh;
+        margin: 2vh 0;
+        text-align: left;
+    }
+    .what {
+        font-size: 6.5vh;
+        margin-top: 0vw;
+        margin-left: 2.5vh;
+    }
+    #footer{
+        height: 50vh;
+    }
+    .ftbottom {
+        width: 95%;
+    }
+    .foobtn {
+        font-size: 1.2vh;
+    }
+    .ftbottom h3 {
+        font-size: 1.2vh;
+    }
+    .ftupcontent h1 {
+        font-size: 9vh;
+    }
+    .tell {
+        font-size: 5vh;
+        padding: 1vw 10vw;
     }
 }
