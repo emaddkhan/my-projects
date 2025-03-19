@@ -337,10 +337,12 @@ html, body{
     width: 100%;
     height: 100%;
 }
-
+.elem-mb{
+    display: none;
+}
 .ftup{
     width: 100%;
-    height: 90vh;
+    height: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -397,7 +399,7 @@ html, body{
 
 .ftbottom{
     padding: 0 5vh;
-    height: 10vh;
+    height: 10%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -550,5 +552,196 @@ html, body{
     }
      #featured {
         padding: 10vw 10vw;
+    }
+    #fimages{
+        display: none;
+    }
+    .elem-mb{
+        display: flex;
+        height: 50vh;
+        margin: 5vh 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .elem-mb:nth-child(2n){
+        flex-direction: row-reverse;
+    }
+    .elem-mb-left{
+        width: 47%;
+        height: 100%;
+        padding: 0 2vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .elem-mb-left h3{
+        font-size: 2.5vw;
+        font-weight: 400;
+    }
+    .elem-mb-left h1{
+        margin: 2vw 0;
+        font-size: 2.5vw;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+    .elem-mb-left h4{
+        opacity: .8;
+        font-size: 1.5vw;
+    }
+    .elem-mb-right{
+        width: 47%;
+        height: 100%;
+    }
+    .elem-mb-right img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    .btndiv button {
+        font-size: 2vw;
+    }
+
+
+
+    #dev{
+        width: 100%;
+        padding: 2vw 10vw;
+    }
+    #dev h1{
+        width: 64%;
+        font-size: 5.2vw;
+    }
+    #dev p{
+        width: 64%;
+        font-size: 1.8vw;
+    }
+    .slide .img {
+        height: 210px;
+        width: 100%;
+    }
+    .slide .tag {
+        padding: 8px 10px;
+        margin: 9px 0;
+    }
+    .slide h3 {
+        font-size: 1.6vw;
+        margin: 0 0 0 .5vw;
+    }
+    #product {
+        height: 50vh;
+    }
+    #footer{
+        height: 70vh;
+    }
+}
+@media (max-width:736px) {
+    .elem-mb{
+        height: 95vh;
+    }
+    #product{
+        height: 100vh;
+    }
+    .pcLeft{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .pcLeft video {
+        height: 110%;
+    }
+    .pcright p {
+        font-size: 2.3vw;
+        margin: 3vw 0;
+    }
+    .what {
+        font-size: 3vw;
+        margin-top: 0vw;
+    }
+    #footer{
+        height: 100vh;
+    }
+    .ftupcontent h1 {
+        font-size: 9vw;
+    }
+    .tell {
+        font-size: 5vw;
+    }
+    .foobtn {
+        font-size: 1.7vw;
+    }
+    .ftbottom {
+        width: 62%;
+    }
+    .ftbottom h3 {
+        font-size: 1.5vw;
+    }
+}
+@media (max-width:667px) {
+    #nav a {
+        font-size: 2.4vw;
+    }
+}
+@media (max-width:414px) {
+    #nav {
+        padding: 5px 10px;
+    }
+    #nav a {
+        display: none;
+    }
+    #home {
+        min-height: 66vh;
+    }
+    #homemain h1 {
+        font-size: 2.5vh;
+    }
+    #homemain .headings {
+        gap: 2px;
+        flex-wrap: wrap;
+    }
+    #homemain .headings h1 {
+        font-size: 11vh;
+        letter-spacing: .5px;
+    }
+    #homelast p {
+        font-size: 2vh;
+        width: 100%;
+    }
+    #homelast {
+        padding: 0vw 10vw;
+    }
+    .elem-mb {
+        height: 95vh;
+        flex-direction: column-reverse;
+    }
+    .elem-mb-left {
+        width: 100%;
+        height: 100%;
+    }
+    .elem-mb-right {
+        width: 100%;
+        height: 100%;
+    }
+    .elem-mb-left h3 {
+        font-size: 2.5vh;
+    }
+    .elem-mb-left h1 {
+        font-size: 2.8vh;
+    }
+    .elem-mb-left h4 {
+        font-size: 1.6vh;
+    }
+    .elem-mb:nth-child(2n){
+        flex-direction: column-reverse;
+    }
+    .btndiv button {
+        font-size: 2.3vh;
+    }
+    #dev {
+        padding: 2vw 7vw;
+    }
+    #dev h1 {
+        font-size: 4vh;
     }
 }
