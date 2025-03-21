@@ -1,0 +1,144 @@
+
+
+/* responsive of 1072px */
+@media (max-width: 1072px) {
+    #nav-btn {
+      width: 11%;
+    }
+    #icon-btn i {
+      font-size: 4vh;
+    }
+  
+    #hd-left {
+      display: none;
+    }
+    #hd-right {
+      display: none;
+    }
+    #hd-mid {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #mid-left{
+      width: 72%;
+    }
+    #mid-right{
+      width: 28%;
+    }
+    #mid-right img {
+      width: 100%;
+      height: 70%;
+    }
+    #md-up {
+      margin-top: 10%;
+    }
+    #about {
+      padding: 10px 0 0 0;
+    }
+    .about-container {
+      width: 80%;
+      height: 100%;
+      margin: 0 auto;
+    }
+    #ab-upper img {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+    }
+    #ab-upper h3 {
+      font-size: 3.8vh;
+      line-height: 4.9vh;
+      font-family: kanit;
+      font-weight: 700;
+    }
+    .ab-nav-container {
+      width: 59%;
+    }
+    .container {
+      width: 90%;
+    }
+    .work-container {
+      width: 90%;
+    }
+    .services-card-container {
+      width: 90%;
+    }
+    .contact-container {
+      width: 90%;
+    }
+    .contact-heading h1 {
+      font-size: 21vh;
+    }
+  }
+  /* // responsive of 768px */
+  @media (max-width: 768px) {
+    main {
+    background-image: url(./images/banner.png);
+    width: 100%;
+    height: 70%;
+}
+    nav{
+      position: relative;
+    }
+    header {
+      position: relative;
+      height: 80vh;
+    }
+    #nav-tags{
+      display: none;
+    }
+    #logo{
+      width: 24%;
+      border-right: none;
+    }
+    .menubtn{
+      display: flex;
+      width: 100%;
+      height: 80%;
+      margin: 0;
+    }
+    #icon-btn{
+      display: none;
+    }
+    #nav-btn{
+      width: 14%;
+      border-left: none;
+    }
+    
+    #md-up hr{
+      width: 56%;
+    }
+    #md-down {
+      height: 40%;
+      margin-top: 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+    }
+    #mid-left{
+      width: 100%;
+      height: 70%;
+      position: relative;
+    }
+    #mid-right {
+      position: absolute;
+      height: 65%;
+      bottom: 0;
+      width: 40%;
+      right: 0;
+    }
+    #md-down h1{
+      font-size: 8.4vh;
+      line-height: 8.6vh;
+      font-family: kanit;
+      font-weight: 800;
+    }
+  
+  }
+  
+  
+  
