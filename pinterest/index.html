@@ -7,10 +7,32 @@
     <title>pinterest</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 
 <body>
+    <div class="fullImage">
+        <button class="previous"><i class="ri-arrow-left-line"></i></button>
+        <img id="fimg" src="" alt="">
+        <button class="next"><i class="ri-arrow-right-line"></i></button>
+        <div class="dotsContainer"></div>
+    </div>
+    
+   <div id="popup" class="hidden fixed inset-0 flex items-center justify-center bg-black/50">
+       <div class="bg-white p-5 rounded-lg shadow-lg w-96">
+           <h2 class="text-xl font-semibold mb-3">Upload Image</h2>
+              <input type="file" id="imageUpload" class="w-full mb-3">
+              <input type="text" id="imageName" placeholder="Enter image name" class="w-full p-2 border rounded mb-3">
+            <div class="flex justify-end gap-2">
+              <button id="closePopup" class="bg-gray-400 text-white px-4 py-2 rounded">Cancel</button>
+              <button id="submitImage" class="bg-red-500 text-white px-4 py-2 rounded">Submit</button>
+            </div>
+       </div>
+   </div>
+
     <div class="w-full min-h-screen">
         <div class="navigation relative z-[333] w-full px-5 py-5 flex items-center gap-5 font-['Gilroy']">
             <div class="logo">
@@ -23,9 +45,8 @@
             </div>
             <div class="links flex gap-5">
                 <a id="home" class="whitespace-nowrap font-semibold" href="#">Home</a>
-                <a class="whitespace-nowrap font-semibold"
-                    href="#">Explore</a><a class="whitespace-nowrap font-semibold" href="#">Create <i
-                        class="ri-arrow-down-s-line"></i></a>
+                <a id="createBtn" class="whitespace-nowrap font-semibold cursor-pointer">Create <i class="ri-arrow-down-s-line"></i></a>
+
             </div>
             <div class="inputcontainer flex w-full rounded-full bg-zinc-200">
                 <div class="input w-full relative group">
