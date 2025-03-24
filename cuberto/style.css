@@ -94,7 +94,7 @@ html, body{
 }
 #fimages{
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     margin-top: 5vw;
     display: flex;
     justify-content: space-between;
@@ -116,7 +116,7 @@ html, body{
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: inherit;
 }
 .fleftelem h3{
     font-size: 1.3vw;
