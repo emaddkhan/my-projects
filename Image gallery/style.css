@@ -1,0 +1,269 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background: linear-gradient(45deg, rgba(255, 0, 150, 0.7), rgba(0, 150, 255, 0.7));
+    animation: movingGradient 6s infinite linear;
+    background-size: 300% 300%;
+}
+#introScreen{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    transition: all 0.3 ease;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    background: linear-gradient(45deg, rgba(255, 0, 150, 0.7), rgba(0, 150, 255, 0.7));
+    animation: movingGradient 6s infinite linear;
+    background-size: 300% 300%;
+}
+#logo{
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 1.6%;
+   left: 10%;
+   padding-left: 1vh;
+}
+#logo img{
+    width: 100%;
+    height: 100%;
+}
+#upload{
+    position: absolute;
+    top:4.5%;
+    padding-right: 1vh;
+    
+    right:10%;
+}
+#upload label{
+    padding: 1vh 2vh;
+    background-color: cyan;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#upload label i{
+    margin-right: 5px;
+}
+#upload input{
+    display: none;
+}
+.gridContainer{
+    display: flex;
+    position: absolute;
+    top:4.5%;
+    padding-left: 1vh;
+    right:10%;
+}
+
+.image-gallery{
+    
+    width: 80%;
+    margin: 87px auto 46px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 30px;
+}
+.image-gallery:nth-child(3n){
+    height: 150%;
+}
+.image-gallery img{
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    border-radius: 10px;
+    height: 100%;
+}
+.full-image{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+.full-image img{
+    width: 50%;
+    height: 80vh;
+    border-radius: 25px;
+    object-fit: cover;
+}
+.full-image span{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+.full-image span i{
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+}
+.dots-container{
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    
+}
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: white;
+    transform: scale(1.3);
+}
+#leftKey{
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    padding: 1.2vh;
+    border-radius: 50%;
+    background-color: orange;
+    cursor: pointer;
+
+}
+#leftKey i{
+    color: white;
+    font-size: 40px;
+    font-weight: 500;
+}
+#rightKey{
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    padding: 1.2vh;
+    border-radius: 50%;
+    background-color: orange;
+    cursor: pointer;
+
+}
+#rightKey i{
+    color: white;
+    font-size: 40px;
+    font-weight: 500;
+}
+@keyframes movingGradient {
+    0%{
+        background-position: top right;
+    }
+    50%{
+        background-position: center;
+    }
+    100%{
+        background-position: bottom left;
+    }
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+.overflow-hidden:hover {
+    box-shadow: 1px 1px 15px 0 #00000061;
+    border-radius: 7px;
+}
+.overflow-hidden:hover img {
+    transform: scale(1.2);
+}
+
+
+
+@media (max-width:600px){
+    #logo{
+        position: absolute;
+        width: 125px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 2%;
+       left: 10%;
+       padding-left: 1vh;
+    }
+    #upload label{
+        padding: 1vh 1vh;
+        background-color: cyan;
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #upload label i{
+        margin-right: 2px;
+    }
+    #introScreen img{
+        width: 200px;
+    }
+    .image-gallery{
+    
+        width: 80%;
+        margin: 75px auto 46px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+        gap: 30px;
+    }
+    .full-image img{
+        width: 80%;
+        height: 60vh;
+        border-radius: 25px;
+        object-fit: cover;
+    }
+    #leftKey{
+        position: absolute;
+        top: 47%;
+        left: 3%;
+        padding: 1.2vh;
+        border-radius: 50%;
+        background-color: orange;
+        cursor: pointer;
+        display: none;
+    }
+    #leftKey i{
+        color: white;
+        font-size: 23px;
+        font-weight: 500;
+    }
+    #rightKey{
+        position: absolute;
+        top: 47%;
+        right: 3%;
+        padding: 1.2vh;
+        border-radius: 50%;
+        background-color: orange;
+        cursor: pointer;
+        display: none;
+    
+    }
+    #rightKey i{
+        color: white;
+        font-size: 23px;
+        font-weight: 500;
+        
+    }
+    .dots-container{
+        display: none;  
+    }
+}

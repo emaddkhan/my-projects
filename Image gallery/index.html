@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+</head>
+<body>
+    <div id="introScreen">
+        <img src="./images/Untitled-5.png" alt="">
+    </div>
+    <div class="full-image" id="fullimgBox">
+        <img src="./images/1.jpg" id="fullimg">
+        <span onclick="closeFullImage()"><i class="ri-close-large-line"></i></span>
+        <div id="leftKey" onclick="showPreviousImage()"><i class="ri-arrow-left-line"></i></div>
+        <div id="rightKey"  onclick="showNextImage()"><i class="ri-arrow-right-line"></i></div>
+        <div class="dots-container" id="dotsContainer"></div>
+    </div>
+    <div id="upload">
+        <label for="fileInput"><i class="ri-function-add-fill"></i> Upload Image</label>
+        <input type="file" accept="image/jpeg, image/jpg, image/png " id="fileInput" />
+    </div>
+    <div id="logo">
+        <img src="./images/Untitled-5.png" alt="">
+    </div>
+    <div class="image-gallery">
+        <div class="overflow-hidden">
+            <img src="./images/1.jpg" onclick="openFullImage(this.src)">
+        </div>
+        <div class="overflow-hidden">
+            <img src="./images/2.jpg" onclick="openFullImage(this.src)">
+        </div><div class="overflow-hidden">
+            <img src="./images/3.jpg" onclick="openFullImage(this.src)">
+        </div><div class="overflow-hidden">
+            <img src="./images/4.jpg" onclick="openFullImage(this.src)">
+        </div><div class="overflow-hidden">
+            <img src="./images/5.jpg" onclick="openFullImage(this.src)">
+        </div><div class="overflow-hidden">
+            <img src="./images/6.jpg" onclick="openFullImage(this.src)">
+        </div><div class="overflow-hidden">
+            <img src="./images/7.jpg" onclick="openFullImage(this.src)">
+        </div><div class="overflow-hidden">
+            <img src="./images/8.jpg" onclick="openFullImage(this.src)">
+        </div><div class="overflow-hidden">
+            <img src="./images/9.jpg" onclick="openFullImage(this.src)">
+        </div><div class="overflow-hidden">
+            <img src="./images/10.jpg" onclick="openFullImage(this.src)">
+        </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+</html>

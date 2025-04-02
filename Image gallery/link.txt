@@ -1,0 +1,13 @@
+https://unrivaled-stardust-c10935.netlify.app/
+
+
+.container{
+	max-width: 1240px;
+	width: 100%;
+	margin: 0 auto;	
+}
+
+<section>
+	container
+</section>
+	
