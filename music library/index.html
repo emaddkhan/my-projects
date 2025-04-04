@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+</head>
+<body>
+    <audio src="" id="audio"></audio>
+    <div class="music-player">
+        <div class="music-name">song one</div>
+        <p class="artist-name">artist</p>
+        <div class="disk"></div>
+        <div class="song-slider">
+            <input type="range" value="0" class="seek-bar">
+            <span class="current-time">00:00</span>
+            <span class="song-duration">00:00</span>
+        </div>
+        <div class="volume-slider">
+            <div class="volume-icon">
+                <span><i class="ri-volume-up-line"></i></span>
+            </div>
+            <div class="range-slider">
+                <input type="range" min="0" max="100" value="50" class="seek-bar">
+                <div class=".vol-progress">
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="btn backward-btn">
+                <img src="./images/pre.png" alt="pre">
+            </button>
+            <button class="play-btn">
+                <span></span>
+                <span></span>
+            </button>
+            <button class="btn forward-btn">
+                <img src="./images/nxt.png" alt="next">
+            </button>
+        </div>
+    </div>
+   
+    <script src="./app.js"></script>
+</body>
+</html>
