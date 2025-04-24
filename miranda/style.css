@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+#page1{
+    height: 100vh;
+    width: 100vw;
+    background-color: #C6BEB5;
+    position: relative;
+}
+nav{
+    height: 100px;
+    overflow-x: hidden;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+    border-bottom: 1px solid black;
+}
+nav img{
+    height: 2.85vh;
+    margin-right: 4.9vw;
+}
+nav h5{
+    font-size: .9vw;
+    font-weight: 500;
+}
+#icon{
+    height: 8%;
+    width: 1.8vw;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+#elems{
+    height: 23.3vw;
+    padding: 4.1vh 2vw;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#elem1{
+    width: 30%;
+    height: 100%;
+    background-color: aqua;
+}
+#elem1 .img-div{
+    height: 57%;
+    width: 100%;
+    overflow: hidden;
+}
+.img-div img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: all ease 0.5s;
+}
+.img-div:hover img{
+    transform: scale(1.1);
+}
+#elem2{
+    width: 25%;
+    height: 100%;
+    background-color: aqua;
+}
+#elem3{
+    width: 30%;
+    height: 100%;
+    background-color: aqua;
+}
+#elem3 .img-div{
+    height: 57%;
+    width: 100%;
+    overflow: hidden;
+}
