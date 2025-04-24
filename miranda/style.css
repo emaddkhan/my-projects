@@ -1,3 +1,16 @@
+@font-face {
+    font-family: Canopee;
+    src: url(./fonts/616fd1dd00cf6c70f978fc69_Canopee.ttf);
+}
+@font-face {
+    font-family:domain ;
+    src: url(./fonts/5f242a69b1577e63266b4d72_DomaineDispCondMedium.ttf);
+}
+@font-face {
+    font-family: editorial;
+    src: url(./fonts/5f242a694256f02b944d5767_EditorialNew-Light.ttf);
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -40,20 +53,20 @@ nav h5{
 #elems{
     height: 23.3vw;
     padding: 4.1vh 2vw;
-    background-color: red;
+    /* background-color: red; */
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 #elem1{
-    width: 30%;
+    width: 29%;
     height: 100%;
-    background-color: aqua;
 }
 #elem1 .img-div{
     height: 57%;
     width: 100%;
     overflow: hidden;
+    border: 1px solid black;
 }
 .img-div img{
     height: 100%;
@@ -64,18 +77,94 @@ nav h5{
 .img-div:hover img{
     transform: scale(1.1);
 }
-#elem2{
-    width: 25%;
+/* #elem1 h4{
+    font-size: 1.4vw;
+    color: #1C1C1A;
+    font-family: canopee;
+    margin: 1.65vh 0;
+    display: flex;
+    gap: .6vw;
+    align-items: center;
+}
+#elem1 h4 span{
+    font-size: 1.2vw;
+    padding: .2vw;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: white;
+    border-radius: 3px;
+    background-color: #B93C12;
+    font-family: canopee;
+} */
+ .itemDiv{
+    height: 1.5vw;
+    width: 100%;
+    margin: 1vw 0;
+    display: flex;
+    align-items: center;
+    gap: .2vw;
+ }
+ .itemDiv img{
     height: 100%;
-    background-color: aqua;
+ }
+ .tagWrap{
+    font-size: Canopee;
+    background-color:#B93C12 ;
+    font-size: 1.1vw;
+    line-height: 1.5vw;
+    color: #C5BDB4;
+    padding:.1vw .25vw 0;
+    border-radius: .2vw;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing:-.12vw;
+    transform: scale(0.85);
+ }
+ #elem1 p{
+    max-width: 100%;
+    color: #1C1C19;
+    letter-spacing: -.01em;
+    margin-top: 1vw;
+    font-family: editorial, sans-serif;
+    font-size: 1.2vw;
+    font-weight: 300;
+    line-height: 1.5vw
+ }
+#elem2 {
+    width: 29%;
+    height: 100%;
+    padding: .95vh 5vw;
+    text-align: center;
+    border-left: 2px solid #706D67;
+    border-right: 2px solid #706D67;
+}
+#elem2 h2{
+    font-size: 3.8vw;
+    color: #1C1B19;
+    letter-spacing: -.05em;
+    text-transform: uppercase;
+    font-family: Canopee, sans-serif;
+    font-size: 4.5vw;
+    font-weight: 400;
+    line-height: 4.5vw;
 }
 #elem3{
-    width: 30%;
+    width: 29%;
     height: 100%;
-    background-color: aqua;
 }
 #elem3 .img-div{
     height: 57%;
     width: 100%;
     overflow: hidden;
+    border: 1px solid black;
 }
+#elem3 p{
+    max-width: 100%;
+    color: #1C1C19;
+    letter-spacing: -.01em;
+    margin-top: 1vw;
+    font-family: editorial, sans-serif;
+    font-size: 1.2vw;
+    font-weight: 300;
+    line-height: 1.5vw;
+ }
