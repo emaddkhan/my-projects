@@ -20,11 +20,19 @@ html,body{
     height: 100%;
     width: 100%;
 }
+body{
+    background-color: #C6BEB5;
+}
+#main{
+    background-color: #1C1C19;
+    overflow-x: hidden;
+}
 #page1{
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     background-color: #C6BEB5;
     position: relative;
+    overflow-x: hidden;
 }
 nav{
     height: 100px;
@@ -131,9 +139,9 @@ nav h5{
     line-height: 1.5vw
  }
 #elem2 {
-    width: 29%;
+    width:29%;
     height: 100%;
-    padding: .95vh 5vw;
+    padding: .95vh 0;
     text-align: center;
     border-left: 2px solid #706D67;
     border-right: 2px solid #706D67;
@@ -148,10 +156,36 @@ nav h5{
     font-weight: 400;
     line-height: 4.5vw;
 }
+#elem2 h3{
+    font-size: 2.75vw;
+    color: #1C1C19;
+    line-height: 3vw;
+    letter-spacing: -1px;
+    font-weight: 100;
+    font-family: domain;
+    margin-top: 1vw;
+}
+#elem2 h5{
+    font-size: 1.2vw;
+    color: #1c1c19b7;
+    line-height: 3vw;
+    letter-spacing: -1px;
+    font-weight: 100;
+    /* font-family: domain; */
+    margin-top: 1.5vw;
+}
+#elem2 h5 span{
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #1C1C1A;
+    margin-right: .2vw;
+
+}
 #elem3{
     width: 29%;
     height: 100%;
 }
+
 #elem3 .img-div{
     height: 57%;
     width: 100%;
@@ -167,4 +201,22 @@ nav h5{
     font-size: 1.2vw;
     font-weight: 300;
     line-height: 1.5vw;
+ }
+ .mirandaDiv{
+    width: 96%;
+    margin: 0 auto;
+    background-color: #1C1C1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .miranda{
+    font-size: 36vw;
+    text-align: center;
+    letter-spacing: -1.3vw;
+    color: #C1B9B0;
+    font-family: canopee;
+    line-height: .8;
+    padding-top: 1vw;
+    font-weight: 100;
  }
