@@ -32,7 +32,7 @@ body{
     width: 100vw;
     background-color: #C6BEB5;
     position: relative;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 nav{
     height: 100px;
@@ -220,3 +220,17 @@ nav h5{
     padding-top: 1vw;
     font-weight: 100;
  }
+ #page2{
+    min-height: 150vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #C1B9B0;
+}
+.left{
+    height: 100%;
+}
+.right{
+    height: 100%;
+}
