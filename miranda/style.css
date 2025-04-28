@@ -295,7 +295,7 @@ nav h5{
     object-fit: cover;
     border: 1px solid black;
 }
-/* #page3{
+#page3{
     min-height: 150vh;
     width: 100%;
     background-color: red;
@@ -363,4 +363,4 @@ nav h5{
 .upper-right{
     width: 47.5%;
     height: fit-content;
-} */
+}
