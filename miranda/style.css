@@ -296,9 +296,9 @@ nav h5{
     border: 1px solid black;
 }
 #page3{
-    min-height: 150vh;
+    min-height: 100vh;
     width: 100%;
-    background-color: red;
+    background-color: #C1B9B0;
 }
 .upper-content{
     padding: 1vw 2vw;
@@ -323,27 +323,27 @@ nav h5{
 }
 .lower-content{
     padding: 3vw 2vw;
-    background-color: aqua;
+    display: flex;
 }
 .page3-left{
     height: 100%;
     padding-right: 3vw;
-    width: 66.5%;
+    width: 65%;
     border-right: 1px solid #1C1B19;
 }
 .lt-upper{
-    background-color: burlywood;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    gap: 2.8vw;
 }
 .upper-left{
-    width: 47.5%;
+    width: 42.5%;
     padding-right: 2.5vw;
     border-right: 1px solid #1d1d1b;
     height: fit-content;
 }
 .upper-left h2{
-    font-size: 4.5vw;
+    font-size: 4.2vw;
     font-weight: 400;
     letter-spacing: -5px;
     line-height: 4.5vw;
@@ -360,7 +360,90 @@ nav h5{
     font-family: domain,sans-serif;
     font-weight: 100;
 }
+.upper-left h5{
+    font-size: 1.2vw;
+    font-weight: 100;
+    padding: 1.7vw 0;
+    color: #1c1b19d6;
+    letter-spacing: -1px;
+}
+.upper-left h5 span{
+    font-size: 1.4vw;
+    font-family: canopee;
+    color: #1C1C19;
+    font-weight: 100;
+}
 .upper-right{
-    width: 47.5%;
+    width: 49%;
     height: fit-content;
+    padding: 1.3vw 1vw .8vw 0;
+}
+.upper-right-imgDiv{
+    width: 100%;
+    overflow: hidden;
+}
+.upper-right-imgDiv:hover img{
+    transform: scale(1.1);
+}
+.upper-right-imgDiv img{
+    width: 100%;
+    transition: all 0.3s ease;
+}
+.upper-right h3{
+    font-size: 1.9vw;
+    font-family: canopee,sans-serif;
+    padding: .5vw 0;
+    font-weight: 500;
+}
+.upper-right p{
+    font-size: 1.3vw;
+    font-family: domain;
+    font-weight: 100;
+    color: #1C1C1A;
+}
+#page3-img{
+    width: 100%;
+    padding-top: 2.2vw;
+}
+#page3-img img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.page3-right{
+    padding-left: 2.5vw;
+    height: 100%;
+    width: 35%;
+    /* background-color: aqua; */
+}
+.page3-right h1{
+    font-size: 6.5vw;
+    letter-spacing: -.3vw;
+    line-height: 8.5vw;
+    font-family: canopee,sans-serif;
+    font-weight: 100;
+    color: #1C1C1A;
+}
+.page3-right h1 span{
+    font-size: 14.2vw;
+}
+.page3-right h5{
+    font-size: 2.25vw;
+    font-family: domain,sans-serif;
+    font-weight: 100;
+    line-height: 2.7vw;
+    color: #1C1C19;
+    text-align: left;
+    padding-top: 2.27vw;
+}
+.page3-right h5::first-letter{
+    font-size: 7vw;
+    line-height: 5vw;
+    font-family: canopee, sans-serif;
+    font-feature-settings: "ss03";
+    float: left;
+    margin: .7vw 1vw 1vw 0;
+    background-color: #1d1d1b;
+    color: #cdc6bf;
+    padding: .75vw .4vw .5vw .5vw;
 }
