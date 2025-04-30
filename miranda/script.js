@@ -1,3 +1,7 @@
+const card1 = document.querySelector("#card1")
+const card2 = document.querySelector("#card2")
+const card3 = document.querySelector("#card3")
+const card4 = document.querySelector("#card4")
 const scroll = new LocomotiveScroll({
     el: document.querySelector('#main'),
     smooth: true
@@ -23,3 +27,38 @@ tl.to("#page1",{
     scale:1,
     duration:0.7
 })
+function cardsAnimation() {
+    function card1Animation(){
+        card1.addEventListener("mouseenter", () => {
+            gsap.to(card2, {
+                left: "39%",
+                duration: 0.8,
+            });
+            gsap.to(card3, {
+                left: "55%",
+                duration: 0.8,
+            });
+            gsap.to(card4, {
+                left: "70%",
+                duration: 0.8,
+            });
+        });
+        card1.addEventListener("mouseleave", () => {
+            gsap.to(card2, {
+                left: "19%",
+                duration: 0.8,
+            });
+            gsap.to(card3, {
+                left: "39%",
+                duration: 0.8,
+            });
+            gsap.to(card4, {
+                left: "55%",
+                duration: 0.8,
+            });
+        });
+    }
+    card1Animation();
+}
+
+cardsAnimation();

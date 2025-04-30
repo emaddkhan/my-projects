@@ -656,3 +656,120 @@ nav h5 {
     line-height: 6.5vw;
     color: #1d1d1b;
 }
+.cards{
+    height: 60vh;
+    width: 100%;
+    background-color: #C1B9B0;
+    padding: 5vh 0;
+}
+.cardsContainer{
+    height: 100%;
+    width: 96%;
+    margin: 0 auto;
+    /* padding: 1vw 0; */
+    display: flex;
+    position: relative;
+}
+#card1{
+    height: 100%;
+    width: 45%;
+    padding: .8vw;
+    background-color: #C1B9B0;
+    border: 2px solid #000;
+    border-radius: 15px;
+    box-shadow: -4px 4px 6px rgba(29, 29, 27, .2);
+}
+.innerCard{
+    height: 100%;
+    padding: 1.5vw;
+    width: 100%;
+    /* background-color: burlywood; */
+    border: 2px dashed #1d1d1b;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;   
+}
+.innerCard h5{
+    font-size: 2.2vw;
+    font-weight: 100;
+    text-decoration: underline;
+    text-underline-offset: .3vw;
+    text-decoration-thickness: .5px;
+    text-decoration-color: #0000007a;
+    line-height: 3vw;
+    font-family: editorial,sans-serif;
+    color: #1d1d1b;
+}
+.cardProfile{
+    height: 25%;
+    width: 60%;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    gap: .6vw;
+}
+.proLeft{
+    width: 14%;
+    height: 70%;
+    padding-bottom:.2vw ;
+}
+.proLeft img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #000;
+}
+.proRight h1{
+    font-size: 2.2vw;
+    color: #1d1d1b;
+    line-height: 1.8vw;
+    font-family: canopee,sans-serif;
+    font-weight: 100;
+}
+.proRight h3{
+    text-transform: capitalize;
+    font-family: editorial,sans-serif;
+    font-size: 1.4vw;
+    font-weight: 300;
+
+}
+#card2{
+    position: absolute;
+    height: 100%;
+    width: 45%;
+    padding: .8vw;
+    background-color: #C1B9B0;
+    border: 2px solid #000;
+    border-radius: 15px;
+    box-shadow: -4px 4px 6px rgba(29, 29, 27, .2);
+    left: 19%;
+}
+#card3{
+    position: absolute;
+    left: 39%;
+    height: 100%;
+    width: 45%;
+    padding: .8vw;
+    background-color: #C1B9B0;
+    border: 2px solid #000;
+    border-radius: 15px;
+    box-shadow: -4px 4px 6px rgba(29, 29, 27, .2);
+}
+#card4{
+    position: absolute;
+    left: 55%;
+    height: 100%;
+    width: 45%;
+    padding: .8vw;
+    background-color: #C1B9B0;
+    border: 2px solid #000;
+    border-radius: 15px;
+    box-shadow: -4px 4px 6px rgba(29, 29, 27, .2);
+}
+#page5{
+    height: 100vh;
+    width: 100%;
+    background-color: red;
+} 
