@@ -58,7 +58,61 @@ function cardsAnimation() {
             });
         });
     }
+    function card2Animation(){
+        card2.addEventListener("mouseenter", () => {
+            gsap.to(card3, {
+                left: "58%",
+                duration: 0.8,
+            });
+            gsap.to(card4, {
+                left: "70%",
+                duration: 0.8,
+            });
+        });
+        card2.addEventListener("mouseleave", () => {
+            gsap.to(card3, {
+                left: "39%",
+                duration: 0.8,
+            });
+            gsap.to(card4, {
+                left: "55%",
+                duration: 0.8,
+            });
+        });
+    }
+    function card3Animation(){
+        card3.addEventListener("mouseenter", () => {
+            gsap.to(card2, {
+                left: "12%",
+                duration: 0.8,
+            });
+            gsap.to(card3, {
+                left: "29%",
+                duration: 0.8,
+            });
+            gsap.to(card4, {
+                left: "68%",
+                duration: 0.8,
+            });
+        });
+        card3.addEventListener("mouseleave", () => {
+            gsap.to(card2, {
+                left: "19%",
+                duration: 0.8,
+            });
+            gsap.to(card3, {
+                left: "39%",
+                duration: 0.8,
+            });
+            gsap.to(card4, {
+                left: "55%",
+                duration: 0.8,
+            });
+        });
+    }
     card1Animation();
+    card2Animation();
+    card3Animation();
 }
 
 cardsAnimation();

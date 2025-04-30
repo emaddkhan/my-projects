@@ -674,7 +674,7 @@ nav h5 {
     height: 100%;
     width: 45%;
     padding: .8vw;
-    background-color: #C1B9B0;
+    /* background-color: #C1B9B0; */
     border: 2px solid #000;
     border-radius: 15px;
     box-shadow: -4px 4px 6px rgba(29, 29, 27, .2);
@@ -735,12 +735,18 @@ nav h5 {
     font-weight: 300;
 
 }
+.card{
+    background-color: #C1B9B0;
+}
+.card:hover{
+    background-color: #B5ACA1;
+}
 #card2{
     position: absolute;
     height: 100%;
     width: 45%;
     padding: .8vw;
-    background-color: #C1B9B0;
+    /* background-color: #C1B9B0; */
     border: 2px solid #000;
     border-radius: 15px;
     box-shadow: -4px 4px 6px rgba(29, 29, 27, .2);
@@ -752,7 +758,7 @@ nav h5 {
     height: 100%;
     width: 45%;
     padding: .8vw;
-    background-color: #C1B9B0;
+    /* background-color: #C1B9B0; */
     border: 2px solid #000;
     border-radius: 15px;
     box-shadow: -4px 4px 6px rgba(29, 29, 27, .2);
@@ -763,7 +769,7 @@ nav h5 {
     height: 100%;
     width: 45%;
     padding: .8vw;
-    background-color: #C1B9B0;
+    /* background-color: #C1B9B0; */
     border: 2px solid #000;
     border-radius: 15px;
     box-shadow: -4px 4px 6px rgba(29, 29, 27, .2);
