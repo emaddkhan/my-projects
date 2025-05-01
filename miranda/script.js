@@ -11,22 +11,24 @@ const scroll = new LocomotiveScroll({
 
 var tl = gsap.timeline()
 
-tl.to("#page1",{
-    y:"100vh",
-    scale:0.6,
-    duration:0
-})
-tl.to("#page1",{
-    y:"30vh",
-    duration:1,
-    delay:1
-})
-tl.to("#page1",{
-    y:"0vh",
-    rotate:360,
-    scale:1,
-    duration:0.7
-})
+function loaderAnimation(){
+    tl.to("#page1",{
+        y:"100vh",
+        scale:0.6,
+        duration:0
+    })
+    tl.to("#page1",{
+        y:"30vh",
+        duration:1,
+        delay:1
+    })
+    tl.to("#page1",{
+        y:"0vh",
+        rotate:360,
+        scale:1,
+        duration:0.7
+    })
+}
 function cardsAnimation() {
     function card1Animation(){
         card1.addEventListener("mouseenter", () => {
@@ -61,7 +63,7 @@ function cardsAnimation() {
     function card2Animation(){
         card2.addEventListener("mouseenter", () => {
             gsap.to(card3, {
-                left: "58%",
+                left: "58.3%",
                 duration: 0.8,
             });
             gsap.to(card4, {
@@ -91,7 +93,7 @@ function cardsAnimation() {
                 duration: 0.8,
             });
             gsap.to(card4, {
-                left: "68%",
+                left: "68.5%",
                 duration: 0.8,
             });
         });
@@ -115,5 +117,5 @@ function cardsAnimation() {
     card3Animation();
 
 }
-
+loaderAnimation();
 cardsAnimation();
