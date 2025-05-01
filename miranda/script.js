@@ -113,6 +113,7 @@ function cardsAnimation() {
     card1Animation();
     card2Animation();
     card3Animation();
+
 }
 
 cardsAnimation();

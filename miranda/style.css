@@ -15,6 +15,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 html,
 body {
@@ -23,11 +24,16 @@ body {
 }
 body {
   background-color: #c6beb5;
+  user-select: none;
+  -webkit-user-select: none; 
+  -moz-user-select: none;    
+  -ms-user-select: none; 
 }
 #main {
   background-color: #1c1c19;
   overflow-x: hidden;
 }
+
 #page1 {
   min-height: 100vh;
   width: 100vw;
@@ -159,7 +165,7 @@ nav h5 {
 }
 #elem2 h3 {
   font-size: 2.75vw;
-  color: #1c1c19;
+  color: #1d1d1b;
   line-height: 3vw;
   letter-spacing: -1px;
   font-weight: 100;
@@ -395,11 +401,15 @@ nav h5 {
   padding: 0.5vw 0;
   font-weight: 500;
 }
+#upperImg{
+  height: 1.5vw;
+  margin: .8vw 0 .5vw 0;
+}
 .upper-right p {
   font-size: 1.3vw;
   font-family: domain;
   font-weight: 100;
-  color: #1c1c1a;
+  color: #1d1d1b;
 }
 #page3-img {
   width: 100%;
@@ -755,6 +765,7 @@ nav h5 {
     border-radius: 15px;
     box-shadow: -4px 4px 6px rgba(29, 29, 27, .2);
     left: 19%;
+    scale: 1.01;
 }
 #card3{
     position: absolute;
@@ -766,6 +777,8 @@ nav h5 {
     border: 2px solid #000;
     border-radius: 15px;
     box-shadow: -4px 4px 6px rgba(29, 29, 27, .2);
+    scale: 1.02;
+
 }
 #card4{
     position: absolute;
@@ -777,6 +790,8 @@ nav h5 {
     border: 2px solid #000;
     border-radius: 15px;
     box-shadow: -4px 4px 6px rgba(29, 29, 27, .2);
+    scale: 1.03;
+
 }
 #page5{
     height: fit-content;
