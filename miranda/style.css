@@ -733,7 +733,10 @@ nav h5 {
     font-family: editorial,sans-serif;
     font-size: 1.4vw;
     font-weight: 300;
-
+}
+.proRight h3 span{
+  text-decoration: underline;
+  text-decoration-color: #1d1d1b;
 }
 .card{
     background-color: #C1B9B0;
