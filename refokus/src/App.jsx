@@ -5,6 +5,7 @@ import Stripes from './components/Stripes'
 import Products from './components/Products'
 import Marques from './components/Marques'
 import Cards from './components/Cards'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Products/>
       <Marques/>
       <Cards/>
+      <Footer/>
     </div>
   )
 }
