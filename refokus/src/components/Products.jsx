@@ -40,7 +40,7 @@ function Products() {
     },
   ];
   return (
-    <div className='py-20' >
+    <div className='py-20 mt-24' >
       {products.map((e,i)=>{
         return <Product key={i} val={e}/>
       })}
