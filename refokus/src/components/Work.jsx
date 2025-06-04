@@ -1,4 +1,6 @@
 import React from "react";
+import { motion, useScroll } from "motion/react"
+
 
 function Work() {
   var images = [
@@ -39,6 +41,11 @@ function Work() {
       isActive: false,
     },
   ];
+  const { scrollY } = useScroll()
+
+useMotionValueEvent(scrollY, "change", (latest) => {
+  console.log("Page scroll: ", latest)
+})
   return (
     <div className="w-full mt-10">
       <div className="relative max-w-screen-xl text-center  mx-auto">
