@@ -29,7 +29,7 @@ function Marques() {
   ];
   return (
     <div className='py-20'>
-      {images.map((e,i)=><Marquue images={e}/>)}
+      {images.map((e,i)=><Marquue key={i} images={e}/>)}
     </div>
   )
 }
