@@ -1,5 +1,6 @@
-import React from 'react'
-import Product from './Product'
+import React, { useState } from "react";
+import Product from "./Product";
+import { motion } from "motion/react";
 
 function Products() {
   var products = [
@@ -39,13 +40,74 @@ function Products() {
       case: true,
     },
   ];
+
+  const [pos, setPos] = useState(0);
+  const mover = (val) => {
+    setPos(val * 23);
+  };
   return (
-    <div className='py-20 mt-24' >
-      {products.map((e,i)=>{
-        return <Product key={i} val={e}/>
+    <div className="relative py-20 mt-24">
+      {products.map((e, i) => {
+        return <Product key={i} index={i} val={e} mover={mover} />;
       })}
+      <div className="absolute h-full w-full top-0  pointer-events-none">
+        <motion.div
+          transition={{ ease: [0.76, 0, 0.24, 1],duration:.6 }}
+          initial={{ y: pos, x: "-50%" }}
+          animate={{ y: pos + "rem" }}
+          className="window  overflow-hidden -translate-x-[50%] h-[23rem] absolute w-[32rem] left-[44%]"
+        >
+          <motion.div
+            transition={{ ease: [0.76, 0, 0.24, 1],duration:.5 }}
+            animate={{ y: -pos + "rem" }}
+            className="bg-zinc-200 h-full w-full "
+          >
+            {pos === 0 && (
+                            <video autoPlay muted loop>
+                                <source src={arqitel} type="video/webm" />
+                                Your browser does not support the video tag.
+                            </video>
+                        )}
+          </motion.div>
+          <motion.div
+            transition={{ ease: [0.76, 0, 0.24, 1],duration:.5 }}
+            animate={{ y: -pos + "rem" }}
+            className="bg-zinc-300 h-full w-full "
+          >
+            <video autoPlay muted loop>
+                            <source src={ttr} type="video/webm" />
+                            Your browser does not support the video tag.
+                        </video>
+          </motion.div>
+          <motion.div
+            transition={{ ease: [0.76, 0, 0.24, 1],duration:.5 }}
+            animate={{ y: -pos + "rem" }}
+            className="bg-zinc-400 h-full w-full "
+          >
+             <video autoPlay muted loop>
+                            <source src={yir} type="video/webm" />
+                            Your browser does not support the video tag.
+                        </video>
+          </motion.div>
+          <motion.div
+            transition={{ ease: [0.76, 0, 0.24, 1],duration:.5 }}
+            animate={{ y: -pos + "rem" }}
+            className="bg-zinc-500 h-full w-full "
+          >
+            <video autoPlay muted loop>
+                            <source src={yahoo} type="video/webm" />
+                            Your browser does not support the video tag.
+                        </video>
+          </motion.div>
+          <motion.div
+            transition={{ ease: [0.76, 0, 0.24, 1],duration:.5 }}
+            animate={{ y: -pos + "rem" }}
+            className="bg-zinc-600 h-full w-full "
+          ></motion.div>
+        </motion.div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Products
+export default Products;
