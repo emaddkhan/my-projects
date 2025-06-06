@@ -29,7 +29,7 @@ function Marques() {
   ];
   return (
     <div className='py-20 w-full relative overflow-hidden'>
-      {images.map((e,index)=><Marquue key={index} images={e}/>)}
+      {images.map((e,index)=><Marquue key={index} direction={index===0 ?"left":"right"} images={e}/>)}
     </div>
   )
 }
