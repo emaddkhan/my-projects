@@ -1,15 +1,17 @@
+import { motion } from "framer-motion";
 import React from "react";
 import { GoArrowRight } from "react-icons/go";
-
-function Card({ width, start, para ,hover}) {
+function Card({ width, start, para ,hover=false}) {
   return (
-    <div className={` bg-zinc-800 p-5 rounded-xl ${width} ${hover}  min-h-[30rem] flex flex-col justify-between `}>
+    <motion.div whileHover={hover?{backgroundColor:"#7443ff",padding:"25px"}:{padding:"25px"}} className={` bg-zinc-800 p-5 rounded-xl ${width}   min-h-[30rem] flex flex-col justify-between `}>
       <div className="w-full">
         <div className="w-full flex justify-between items-center">
-          <h3>heading</h3>
+          <h3>{para?"Up Next: Culture":"Get In Touch"}</h3>
           <GoArrowRight />
         </div>
-        <h1 className="text-3xl font-medium mt-10">whatever</h1>
+        <h1  className={`text-3xl font-medium mt-10 ${
+            para ? "w-full" : "w-[35%]"
+          }`}>{para?"Who we are":"Let's get to it together."}</h1>
       </div>
       <div className="down w-full ">
         {start && (
@@ -31,7 +33,7 @@ function Card({ width, start, para ,hover}) {
         }
         
       </div>
-    </div>
+    </motion.div>
   );
 }
 
