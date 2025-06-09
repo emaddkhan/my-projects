@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Work from "./components/Work";
 import Stripes from "./components/Stripes";
@@ -8,28 +8,33 @@ import Cards from "./components/Cards";
 import Footer from "./components/Footer";
 import LocomotiveScroll from "locomotive-scroll";
 import IntroScreen from "./components/IntroScreen";
-import { useScroll } from "motion/react";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const locomotiveScroll = new LocomotiveScroll();
-  const [isLoading,setIsLoading]=useState(true)
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isLoading]);
   return (
-    <div className="h-full  w-full bg-[#1C1C1C] text-white">
-      {isLoading?(
-      <IntroScreen setIsLoading={setIsLoading}/>
-
-      ):(
-        <>
+    <div className="h-full w-full bg-[#1C1C1C] text-white relative overflow-hidden">
+      {isLoading && <IntroScreen setIsLoading={setIsLoading} />}
+      <div
+        className={`transition-opacity duration-1000 ease-in-out ${
+          isLoading ? "opacity-0" : "opacity-100"
+        }`}
+      >
         <Navbar />
-      <Work />
-      <Stripes />
-      <Products />
-      <Marques />
-      <Cards />
-      <Footer />
-        </>
-      )}
-      
+        <Work />
+        <Stripes />
+        <Products />
+        <Marques />
+        <Cards />
+        <Footer />
+      </div>
     </div>
   );
 }
