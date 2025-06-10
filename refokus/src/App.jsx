@@ -20,7 +20,7 @@ function App() {
     }
   }, [isLoading]);
   return (
-    <div className="h-full w-full bg-[#1C1C1C] text-white relative overflow-hidden">
+    <div className="h-full w-full bg-[#161618] text-white relative overflow-hidden">
       {isLoading && <IntroScreen setIsLoading={setIsLoading} />}
       <div
         className={`transition-opacity duration-1000 ease-in-out ${

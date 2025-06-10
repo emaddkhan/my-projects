@@ -23,7 +23,7 @@ function IntroScreen({ setIsLoading }) {
 
   return (
     <div
-      className={`w-full h-screen bg-[#1C1C1C] overflow-hidden transition-all duration-700 ease-in-out fixed top-0 left-0 ${
+      className={`w-full h-screen bg-[#161618] overflow-hidden transition-all duration-700 ease-in-out fixed top-0 left-0 ${
         exit ? "opacity-0 translate-y-[-100%]" : "opacity-100"
       }`}
     >

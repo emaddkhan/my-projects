@@ -3,7 +3,7 @@ import React from "react";
 import { GoArrowRight } from "react-icons/go";
 function Card({ width, start, para ,hover=false}) {
   return (
-    <motion.div whileHover={hover?{backgroundColor:"#7443ff",padding:"25px"}:{padding:"25px"}} className={` bg-zinc-800 p-5 rounded-xl ${width}   min-h-[30rem] flex flex-col justify-between `}>
+    <motion.div whileHover={hover?{backgroundColor:"#7443ff",padding:"25px"}:{padding:"25px"}} className={` cursor-pointer select-none bg-zinc-800 p-5 rounded-xl ${width}   min-h-[30rem] flex flex-col justify-between `}>
       <div className="w-full">
         <div className="w-full flex justify-between items-center">
           <h3>{para?"Up Next: Culture":"Get In Touch"}</h3>
