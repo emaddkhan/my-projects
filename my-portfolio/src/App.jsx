@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import LandingPage from './components/LandingPage'
 import AboutMe from './components/AboutMe'
 import Work from './components/Work'
+import Form from './components/Form'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <LandingPage/>
         <AboutMe/>
         <Work/>
+        <Form/>
       </div>
     </div>
   )

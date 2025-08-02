@@ -9,7 +9,7 @@ function LandingPage() {
     <div className="w-full h-[88.4vh] flex justify-center">
       <div className="w-[90%] h-full flex justify-between items-center bg-brand-blue ">
         <div className="absolute left-[8%]"><img src={vectorArrow} alt="" /></div>
-        <div className="w-[28%] lineer absolute left-[0] h-[88.4vh] border-r-2 border-brand-grey "></div>
+        <div className="w-[33%] lineer absolute left-[0] h-[88.4vh] border-r-2 border-brand-grey "></div>
         <div className="w-[55%] relative z-1 h-[80%]  p-40">
           <h1 className="text-8xl leading-none font-bold text-brand-white font-poppins tracking-tight">
             CREATIVE UI <br />
@@ -38,7 +38,7 @@ function LandingPage() {
             </div>
           </div>
         </div>
-        <div className="absolute py-8 left-[25.5%] top-[82%] bg-brand-grey px-9"><img src={downVector} alt="" /></div>
+        <div className="absolute py-8 left-[30.5%] top-[82%] bg-brand-grey px-9"><img src={downVector} alt="" /></div>
       </div>
     </div>
   );
