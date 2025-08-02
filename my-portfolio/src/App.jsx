@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage'
 import AboutMe from './components/AboutMe'
 import Work from './components/Work'
 import Form from './components/Form'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <AboutMe/>
         <Work/>
         <Form/>
+        <Footer/>
       </div>
     </div>
   )

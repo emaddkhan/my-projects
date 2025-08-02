@@ -3,6 +3,8 @@ import man3 from "../assets/Group 2376.png";
 import arrow3 from "../assets/Vector 193.png";
 import bulb from "../assets/lightbulb.png";
 import send from "../assets/send.png"
+import keyboard from "../assets/keyboard.png"
+import mail from "../assets/mail.png"
 
 function Form() {
   return (
@@ -19,7 +21,8 @@ function Form() {
           <img className="absolute top-[46%] left-[10%]" src={arrow3} alt="" />
           <img src={bulb} className="absolute top-[20%] left-[83%]" alt="" />
         </div>
-        <div className="right h-full w-[47%] mr-3 bg-brand-cya">
+        <div className="right relative h-full w-[47%] mr-3 bg-brand-cya">
+          <img src={keyboard} className="absolute -top-[15%] left-[20%]" alt="" />
           <div className="p-3 mt-10 ml-8  w-full flex gap-8 ">
             <div>
               <h3 className="font-poppins font-semibold text-[2vh] text-brand-white">
@@ -53,8 +56,9 @@ function Form() {
               />
             </div>
             <div className="p-3 ml-8 mt-10">
-              <button className="flex items-center gap-3 text-xl font-poppins px-5 py-3 outline-none bg-brand-cyan rounded-full font-semibold text-brand-white">Send Message <img src={send} alt="" /></button>
+              <button className="flex items-center gap-2 tracking-tight text-xl font-poppins px-7 py-3 outline-none bg-brand-cyan rounded-full font-semibold text-brand-white">Send Message <img src={send} alt="" /></button>
             </div>
+            <img src={mail} className="absolute right-[18%]"  alt="" />
         </div>
       </div>
     </div>
