@@ -1,12 +1,12 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import doodle3 from "../assets/Projects Page.png";
 import blog1 from "../assets/blog1.png";
 import blog2 from "../assets/blog2.png"
 import blog3 from "../assets/blog3.png"
 
-function Work() {
+const Work=forwardRef((props,ref)=> {
   return (
-    <div className="w-full h-screen bg-brand-blue">
+    <div ref={ref} className="w-full h-screen bg-brand-blue">
       <div
         className="h-full w-full bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url(${doodle3})` }}
@@ -39,6 +39,6 @@ function Work() {
       </div>
     </div>
   );
-}
+})
 
 export default Work;

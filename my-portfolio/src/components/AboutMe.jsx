@@ -1,13 +1,13 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import man2 from "../assets/Group 2375.png";
 import doodle2 from "../assets/doodle items.png";
 import music from "../assets/Vector 141.png"
 import bulb from "../assets/lightbulb.png"
 import arrow2 from "../assets/Vector 186.png"
 
-function AboutMe() {
+const AboutMe = forwardRef((props,ref)=> {
   return (
-    <div className="w-full h-screen border-b-2 border-brand-grey justify-center flex bg-brand-blue">
+    <div ref={ref} className="w-full h-screen border-b-2 border-brand-grey justify-center flex bg-brand-blue">
       <div className="w-[90%]  h-full flex items-center justify-between">
         <div className="w-[28%] lineer absolute  h-screen border-r-2 border-brand-grey "></div>
         <div className="left w-[40%] relative z-1 h-full flex items-center  ">
@@ -39,6 +39,6 @@ function AboutMe() {
       </div>
     </div>
   );
-}
+})
 
 export default AboutMe;

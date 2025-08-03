@@ -7,38 +7,47 @@ import twitter from "../assets/twitter.png";
 import instagram from "../assets/instagram.png";
 import youtube from "../assets/youtube.png";
 
-function Footer() {
+function Footer({ sectionRefs }) {
+  const handleScroll = (section) => {
+    const sectionRef = sectionRefs[section];
+    if (sectionRef && sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="h-80 flex items-center bg-brand-blue w-full">
-        <div className="w-[33%] lineer absolute  h-80 border-r-2 border-brand-grey "></div>
+      <div className="w-[33%] lineer absolute h-80 border-r-2 border-brand-grey"></div>
       <div className="w-[50%] relative z-1 mx-auto bg-brand-cyn py-2 gap-12 flex flex-col items-center">
-        <div className="flex justify-center  gap-24">
+        {/* Top Nav Links */}
+        <div className="flex justify-center gap-24">
           {[
             { pic: home, name: "Home" },
-            { pic: user, name: "About me" },
+            { pic: user, name: "AboutMe" },
             { pic: phone, name: "Contact" },
-          ].map((item) => {
-            return (
-              <a className="flex cursor-pointer items-center gap-2 font-poppins text-xl  text-brand-white">
-                <img src={item.pic} alt="" />
-                {item.name}
-              </a>
-            );
-          })}
+          ].map((item, idx) => (
+            <button
+              key={idx}
+              onClick={() => handleScroll(item.name)}
+              className="flex cursor-pointer items-center gap-2 font-poppins text-xl text-brand-white"
+            >
+              <img src={item.pic} alt={item.name} />
+              {item.name}
+            </button>
+          ))}
         </div>
+
+        {/* Social Media Icons */}
         <div className="flex justify-center gap-8">
-          {[facebook, instagram, twitter, youtube].map((item, i) => {
-            return (
-              <div
-                key={i}
-                className={`py-5 px-5 ${
-                  i === 0 ? "px-6" || "py-5" : ""
-                } bg-[rgba(217,217,217,0.1)] rounded-full`}
-              >
-                <a href=""><img src={item} alt="" /></a>
-              </div>
-            );
-          })}
+          {[facebook, instagram, twitter, youtube].map((icon, i) => (
+            <a
+              key={i}
+              href="#"
+              className={`py-5 px-5 bg-[rgba(217,217,217,0.1)] rounded-full`}
+            >
+              <img src={icon} alt={`social-${i}`} />
+            </a>
+          ))}
         </div>
       </div>
     </div>
