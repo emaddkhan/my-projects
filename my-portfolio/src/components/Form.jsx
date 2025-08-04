@@ -26,7 +26,7 @@ function Form() {
       <div className="w-[90%] h-[70%] flex justify-between items-center ">
         <div className="w-[28%] lineer absolute  h-screen border-r-2 border-brand-grey "></div>
         <div className="left px-5 h-full  relative z-1 w-[48%]">
-          <h1 className="font-poppins mt-8 ml-4 font-bold text-7xl text-brand-white leading-snug">
+          <h1 className="font-poppins mt-7 ml-4 font-bold text-7xl text-brand-white leading-snug">
             Got a project in <br />
             <span className="text-brand-cyan">mind?</span>
           </h1>
@@ -79,7 +79,7 @@ function Form() {
             />
           </div>
           <div className="p-3 ml-8 ">
-            <button className="flex items-center gap-2 tracking-tight text-xl font-poppins px-7 py-3 outline-none bg-brand-cyan rounded-full font-semibold text-brand-white">
+            <button className="flex animate-glow items-center gap-2 tracking-tight text-xl font-poppins px-7 py-3 outline-none bg-brand-cyan rounded-full font-semibold text-brand-white">
               Send Message <img src={send} alt="" />
             </button>
           </div>
