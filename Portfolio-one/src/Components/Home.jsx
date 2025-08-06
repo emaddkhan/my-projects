@@ -4,8 +4,8 @@ import LandingPage from './LandingPage'
 
 function Home() {
   return (
-    <div className='h-screen w-full'>
-      <div className='w-[90%] mx-auto py-5 px-10 h-full '>
+    <div className='h-screen relative w-full'>
+      <div className='w-[90%]  mx-auto py-5 px-10 h-full '>
         <Navbar/>
         <LandingPage/>
       </div>

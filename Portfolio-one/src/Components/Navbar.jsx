@@ -2,7 +2,7 @@ import React from 'react'
 
 function Navbar() {
   return (
-    <div className='w-full h-[9vh] bg-brand-navGrey flex justify-between items-center rounded-full'>
+    <div className='w-[85.4%] fixed top-5 z-50 h-[9vh] bg-brand-navGrey flex justify-between items-center rounded-full shadow-lg shadow-gray-600/30'>
         <div className='w-[19.5%] flex justify-center items-center'>
             <button className='text-white bg-brand-black font-semibold px-16 py-3 rounded-full'>Download Resume</button>
         </div>

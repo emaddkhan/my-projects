@@ -8,7 +8,7 @@ import profile from "../assets/Ellipse 3.png"
 
 function LandingPage() {
   return (
-    <div className="h-[86vh] p-1 flex justify-between items-center  w-full ">
+    <div className="h-[86vh] mt-20 p-1 flex justify-between items-center  w-full ">
       <div className="left  flex items-center w-[50%] h-full">
         <div className="p-1">
           <div>

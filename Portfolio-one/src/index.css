@@ -1,3 +1,12 @@
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
