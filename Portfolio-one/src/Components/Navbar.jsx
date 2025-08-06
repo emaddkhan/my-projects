@@ -7,9 +7,9 @@ function Navbar() {
             <button className='text-white bg-brand-black font-semibold px-16 py-3 rounded-full'>Download Resume</button>
         </div>
         <div className='w-[29.5%]  flex gap-16 items-center'>
-            {["Home","About","Projects","Contacts"].map((item,index)=>{
+            {[{name:"Home",link:"#home"},{name:"About",link:"#about"},{name:"Projects",link:"#work"},{name:"Contacts",link:"#contact"}].map((item,index)=>{
                 return(
-                    <a className='text-white font-semibold' href="">{item}</a>
+                    <a className='text-white font-semibold' href={item.link}>{item.name}</a>
                 )
             })}
         </div>

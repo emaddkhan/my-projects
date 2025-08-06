@@ -11,7 +11,7 @@ import photoshop from "../assets/photoshop.png"
 
 function About() {
   return (
-    <div className="w-full h-screen">
+    <div id="about" className="w-full h-screen">
       <div className="w-[90%] mx-auto px-10 py-10 h-full ">
         <div className=" w-full h-full">
           <div className="h-[33%] px-3 py-5 w-full bg-brand-navGrey rounded-2xl">
