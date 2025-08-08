@@ -55,7 +55,7 @@ function Work() {
             src={item.img}
             alt={item.name}
           />
-          <h4 className="font-semibold text-white text-center w-full">
+          <h4 className="font-semibold  text-white text-center w-full">
             {item.name}
           </h4>
         </div>

@@ -1,0 +1,32 @@
+@media (max-width:1280px) {
+    .download{
+        width: 26%;
+    }
+    .links{
+        gap: 5vh;
+        width: 33%;
+    }
+    .homeHeading{
+        font-size: 5.3vh;
+    }
+    .homeRight{
+        width: 43%;
+    }
+    .homePara{
+        width: 100%;
+    }
+    .homeBtn{
+        margin-top: 5vh;
+    }
+}
+@media (max-width:1114px) {
+    .download{
+        width: 21.3%;
+    }
+    .downloadBtn{
+        padding:8px 25px;
+    }
+    .links{
+        gap: 4.5vh;
+    }
+}

@@ -5,6 +5,7 @@ import insta from "../assets/Social Icons (1).png";
 import linkedin from "../assets/Social Icons (2).png";
 import github from "../assets/Social Icons (3).png";
 import profile from "../assets/Ellipse 3.png"
+import "../css/home.css"
 
 function LandingPage() {
   return (
@@ -12,16 +13,16 @@ function LandingPage() {
       <div className="left  flex items-center w-[50%] h-full">
         <div className="p-1">
           <div>
-            <h1 className="text-5xl tracking-tight font-bold text-white uppercase">
+            <h1 className="text-5xl homeHeading tracking-tight font-bold text-white uppercase">
               <span className="text-brand-paragrey">Mr.</span> Mokete Tyabekana
             </h1>
-            <p className="text-white w-[82%] mt-8 font-semibold capitalize">
+            <p className="text-white homePara w-[82%] mt-8 font-semibold capitalize">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
               pulvinar eget eros vel ultricies. Curabitur aliquam lacinia enim,
               quis maximus diam malesuada ac. Sed maximus orci malesuada,
             </p>
           </div>
-          <button className="mt-16 font-semibold px-12 rounded py-2 text-white bg-brand-navGrey">
+          <button className="mt-16 homeBtn font-semibold px-12 rounded py-2 text-white bg-brand-navGrey">
             Hire Me
           </button>
           <div className="mt-16 flex gap-16 items-center">
@@ -31,7 +32,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      <div className="w-[48%]  flex justify-center items-center h-full right">
+      <div className="w-[48%]  flex justify-center items-center h-full homeRight right">
         <img className="rounded-full shadow-[0_0_45px_18px_rgba(163,163,163,0.4)]"  src={profile} alt="" />
       </div>
     </div>

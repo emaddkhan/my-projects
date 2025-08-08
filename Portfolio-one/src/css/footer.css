@@ -1,0 +1,24 @@
+@media (max-width:1280px){
+    .footerEmail{
+        width: 41%;
+    }
+    .footerLinks{
+        width: 15%;
+    }
+    .LinksContainer{
+        width: 45%;
+        gap: 30px;
+    }
+}
+@media (max-width:1114px){
+    .footerEmail{
+        width: 51%;
+    }
+    .footerLinks{
+        width: 16%;
+    }
+    .LinksContainer{
+        width: 46%;
+        gap: 20px;
+    }
+}

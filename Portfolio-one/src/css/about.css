@@ -1,0 +1,30 @@
+@media (max-width:1280px){
+    .aboutHeading{
+        margin-top: 0px;
+    }
+    .educationHeading{
+        margin-top: 0;
+    }
+}
+@media (max-width:1114px){
+    .aboutPara{
+        font-size: 2vh;
+        margin-top: 2px;
+    }
+    .eduHeading{
+        margin-top: 0;
+    }
+    .certificationHeading{
+        margin-top: 0;
+    }
+    .adoutList{
+        padding: 3px 0;
+    }
+    .aboutSkills{
+        gap: 10px;
+        margin-top: 12px;
+    }
+    .aboutImgs{
+        width: 8%;
+    }
+}

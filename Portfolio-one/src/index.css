@@ -1,9 +1,9 @@
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
+html{
+  scroll-behavior: smooth
 }
-.scrollbar-hidden {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+::selection {
+  background-color: #A9A9A9; /* grey */
+  color: white; /* optional, change if needed */
 }
 
 

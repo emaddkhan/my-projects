@@ -11,6 +11,7 @@ function App() {
       <About/>
       <Work/>
       <Footer/>
+
     </div>
   )
 }
