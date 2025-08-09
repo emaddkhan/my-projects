@@ -28,3 +28,33 @@
         width: 8%;
     }
 }
+@media (max-width:884px){
+    .aboutPara{
+        font-size: 1.6vh;
+        margin-top: 1.8vh;
+    }
+    .aboutHeading{
+        font-size: 3vh;
+    }
+    .aboutSecDiv{
+        height: 23vh;
+        margin:2vh 0 ;
+    }
+    .aboutImgs{
+        width: 15%;
+        margin-top: 1vh;
+    }
+    .abSkillsContainer{
+        height: 23vh;
+        
+    }
+    .aboutSkills{
+        overflow-x: auto;
+    }
+    .aboutContainer{
+        padding: 0;
+    }
+    .about{
+        padding-top: 10vh;
+    }
+}

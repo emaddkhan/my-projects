@@ -30,3 +30,45 @@
         gap: 4.5vh;
     }
 }
+@media (max-width:884px){
+    .download{
+        width: 27.3%;
+    }
+    .nav{
+        height: 6vh;
+    }
+    .links{
+        gap: 3vh;
+        width: 43%;
+    }
+    .landingPage{
+        flex-direction: column-reverse;
+    }
+    .home{
+        height: 90vh;
+    }
+    .left {
+        width: 100%;
+        text-align: center;
+    }
+    .right {
+        width: 50%;
+        margin-top: 7vh;
+    }
+    .homeHeading{
+        text-align: center;
+    }
+    .homePara{
+        text-align: center;
+        margin-top: 3vh;
+    }
+    .homeBtn{
+        width: 30%;
+        margin-top: 3vh;
+    }
+    .linksTile{
+        justify-content: center;
+        margin-top: 5vh;
+    }
+    
+}

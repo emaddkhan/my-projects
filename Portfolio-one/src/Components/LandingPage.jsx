@@ -9,7 +9,7 @@ import "../css/home.css"
 
 function LandingPage() {
   return (
-    <div className="h-[86vh] mt-20 p-1 flex justify-between items-center  w-full ">
+    <div className="h-[86vh] landingPage mt-20 p-1 flex justify-between items-center  w-full ">
       <div className="left  flex items-center w-[50%] h-full">
         <div className="p-1">
           <div>
@@ -25,7 +25,7 @@ function LandingPage() {
           <button className="mt-16 homeBtn font-semibold px-12 rounded py-2 text-white bg-brand-navGrey">
             Hire Me
           </button>
-          <div className="mt-16 flex gap-16 items-center">
+          <div className="mt-16 linksTile flex gap-16 items-center">
             {[fb, twitter, insta, linkedin, github].map((item, index) => {
               return <img src={item} alt="" />;
             })}

@@ -1,0 +1,14 @@
+@media (max-width:884px){
+    .work{
+        height: 70vh;
+    }
+    .workContainer{
+        padding: 0;
+    }
+    .workContainer2{
+        height: 70vh;
+    }
+    .workHeading{
+        margin-top: 0;
+    }
+}
