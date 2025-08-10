@@ -29,9 +29,22 @@
     }
 }
 @media (max-width:884px){
+    .about{
+        height: 80vh;
+    }
     .aboutPara{
-        font-size: 1.6vh;
-        margin-top: 1.8vh;
+        font-size: 1.4vh;
+        margin-top: 1.2vh;
+    }
+    
+    .eduContainer{
+        padding: 1.5vh 1.5vh;
+    }
+    .certificateContainer{
+        padding: 1.5vh 1.5vh;
+    }
+    .aboutLi{
+        font-size: 1.4vh;
     }
     .aboutHeading{
         font-size: 3vh;
@@ -56,5 +69,10 @@
     }
     .about{
         padding-top: 10vh;
+    }
+}
+@media (max-width:834px) {
+    .aboutParaContainer{
+        height: 38%;
     }
 }

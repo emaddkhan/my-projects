@@ -42,3 +42,9 @@
         height: 3.3vh;
     }
 }
+@media (max-width:834px) {
+     .contact{
+        width: 95%;
+        padding: 0;
+     }
+}

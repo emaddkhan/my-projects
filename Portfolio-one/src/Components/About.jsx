@@ -14,7 +14,7 @@ function About() {
     <div id="about" className="w-full about h-screen">
       <div className="w-[90%] mx-auto aboutContainer px-10 py-10 h-full ">
         <div className=" w-full h-full">
-          <div className="h-[33%] px-3 py-5 w-full bg-brand-navGrey rounded-2xl">
+          <div className="h-[33%] aboutParaContainer px-3 py-5 w-full bg-brand-navGrey rounded-2xl">
             <h3 className="text-white text-3xl mt-8 aboutHeading font-bold">About Me</h3>
             <p className="text-white mt-3 aboutPara font-semibold">
               I’m Mokete Elias Tyabekana, a passionate Frontend Developer &
@@ -33,18 +33,18 @@ function About() {
             </p>
           </div>
           <div className="h-[31%] aboutSecDiv my-[1%] w-full flex items-center justify-between ">
-            <div className="w-[49%] px-5 py-3 h-full bg-brand-navGrey rounded-2xl">
+            <div className="w-[49%] eduContainer px-5 py-3 h-full bg-brand-navGrey rounded-2xl">
               <h4 className="text-white font-bold eduHeading text-2xl mt-2">Education</h4>
               <ul className="list-disc adoutList list-inside text-white py-2">
                 {[
                   "Diploma in Information Technology",
                   "National Senior Certificate [Grade 12/Matric]",
                 ].map((item, i) => {
-                  return <li className="text-sm">{item}</li>;
+                  return <li className="aboutLi text-sm">{item}</li>;
                 })}
               </ul>
             </div>
-            <div className="w-[49%] h-full bg-brand-navGrey px-5 py-3 rounded-2xl">
+            <div className="w-[49%] h-full bg-brand-navGrey certificateContainer px-5 py-3 rounded-2xl">
                 <h4 className="text-white font-bold text-2xl certificationHeading mt-2">Certifications & Courses</h4>
               <ul className="list-disc adoutList list-inside text-white py-2">
                 {[
@@ -55,7 +55,7 @@ function About() {
                   "JavaScript Essentials [Cisco]",
                   "Professional  Foundations [ALX Africa]",
                 ].map((item, i) => {
-                  return <li className="text-sm">{item}</li>;
+                  return <li className="aboutLi text-sm">{item}</li>;
                 })}
               </ul>
             </div>

@@ -72,3 +72,34 @@
     }
     
 }
+@media (max-width:834px) {
+    .download{
+        width: 30%;
+    }
+    .homeContainer{
+        width: 95%;
+    }
+    .nav{
+        height: 5.5vh;
+    }
+    .links{
+        width: 46.5%;
+    }
+    .right{
+        margin-top: 5vh;
+    }
+    .homeRight{
+        width: 65%;
+    }
+    .homeHeading{
+        font-size: 5vh;
+        margin-top: 5vh;
+    }
+    .homePara{
+        font-size: 1.7vh;
+        margin-top: 3vh;
+    }
+    .homeBtn{
+        font-size: 1.8vh;
+    }
+}
