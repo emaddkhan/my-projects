@@ -118,6 +118,24 @@
         width: 70%;
     }
 }
-@media (max-width:768px) {
-    
+@media (max-width:429px) {
+    .links{
+        display: none;
+        
+    }
+    .download{
+        width: 45%;
+    }
+    .nav{
+        height: 6.8vh;
+        width: 90%;
+        transform: translateX(-7.5%);
+    }
+    .downloadBtn{
+        padding: 8px 15px;
+    }
+    .menu{
+        display: flex;
+    }
+
 }
