@@ -76,3 +76,31 @@
         height: 38%;
     }
 }
+@media (max-width:800px) {
+    .aboutParaContainer{
+        height: 40%;
+    }
+    .aboutSecDiv{
+        height: 20vh;
+    }
+    .aboutImgs{
+        width: 18%;
+    
+    }
+    .abSkillsContainer{
+        height: 20vh;
+    }
+    .about{
+        height: 75vh;
+    }
+    
+}
+@media (max-width:769px) {
+    .aboutParaContainer{
+        height: 35%;
+    }
+
+    .abSkillsContainer{
+        height: 25vh;
+    }
+}

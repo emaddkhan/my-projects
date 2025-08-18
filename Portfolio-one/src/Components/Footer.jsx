@@ -8,7 +8,7 @@ import github from "../assets/github.png"
 import "../css/footer.css"
 function Footer() {
   return (
-    <div id='contact' className='w-full h-72 p-1 text-white'>
+    <div id='contact' className='w-full contactMain h-72 p-1 text-white'>
         <div className='w-[90%] contact mx-auto px-10 py-3 h-[72.2%] bg-500'>
             <h3 className='text-3xl  font-bold'>Contact Me</h3>
             <div className='h-[34.5%] contactsContainer flex items-center justify-between my-10 w-full bg-black'>
@@ -30,9 +30,9 @@ function Footer() {
             </div>
         </div>
         <div className='w-full h-20 border-t-2 border-brand-navGrey '>
-            <div className='flex justify-between items-center w-[90%] mx-auto h-full bg-black text-white'>
-                <h4 className='font-semibold'>2025 © All Right Reserved</h4>
-            <h4 className='font-semibold'>Developed By: Emad Khan Yousuf Zai</h4>
+            <div className='flex justify-between items-center footerLowerInner w-[90%] mx-auto h-full bg-black text-white'>
+                <h4 className='font-semibold footerAuthority'>2025 © All Right Reserved</h4>
+            <h4 className='font-semibold footerDeveloped'>Developed By: Emad Khan Yousuf Zai</h4>
             </div>
         </div>
     </div>
