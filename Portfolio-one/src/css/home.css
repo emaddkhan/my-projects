@@ -7,7 +7,7 @@
         width: 33%;
     }
     .homeHeading{
-        font-size: 5.3vh;
+        font-size: 3rem;
     }
     .homeRight{
         width: 43%;
@@ -96,7 +96,7 @@
         margin-top: 5vh;
     }
     .homePara{
-        font-size: 1.7vh;
+        font-size: 1.1rem;
         margin-top: 3vh;
     }
     .homeBtn{
@@ -108,7 +108,7 @@
         width: 49%;
     }
     .homeHeading{
-        font-size: 4.5vh;
+        font-size: 3.6rem;
         margin-top: 4vh;
     }
     .right{
@@ -118,24 +118,53 @@
         width: 70%;
     }
 }
+
 @media (max-width:429px) {
     .links{
         display: none;
         
     }
     .download{
-        width: 45%;
-    }
-    .nav{
-        height: 6.8vh;
-        width: 90%;
-        transform: translateX(-7.5%);
+        width: 43%;
     }
     .downloadBtn{
+        font-size: 0.9rem;
+    }
+    .nav{
+        height: 3rem;
+        width: 90%;
+        transform: translateX(4%);
+    }
+    .nav .downloadBtn{
         padding: 8px 15px;
     }
     .menu{
         display: flex;
+    }
+    .homeRight{
+        width: 70%;
+    }
+    .right{
+        margin-top: 1rem;
+        margin-top: 5rem;
+    }
+    .homeHeading{
+        margin-top: 3rem    ;
+        font-size: 2.4rem;
+    
+    }
+    .homePara{
+        margin-top: 1rem;
+        font-size: .8rem;
+        width: 95%;
+    }
+    .homeContainer{
+        width: 100%;
+        padding-left: .45rem;
+        padding-right: .45rem;
+    }
+    .homeBtn{
+        width: 40%;
     }
 
 }

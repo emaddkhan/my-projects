@@ -14,12 +14,10 @@ function LandingPage() {
         <div className="p-1">
           <div>
             <h1 className="text-5xl homeHeading tracking-tight font-bold text-white uppercase">
-              <span className="text-brand-paragrey">Mr.</span> Mokete Tyabekana
+              <span className="text-brand-paragrey">Mr.</span> Emad Khan
             </h1>
             <p className="text-white homePara w-[82%] mt-8 font-semibold capitalize">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              pulvinar eget eros vel ultricies. Curabitur aliquam lacinia enim,
-              quis maximus diam malesuada ac. Sed maximus orci malesuada,
+              I’m Emad Khan, a curious creator who loves solving problems, building meaningful digital experiences, exploring new ideas, and constantly pushing boundaries to grow personally and professionally.
             </p>
           </div>
           <button className="mt-16 homeBtn font-semibold px-12 rounded py-2 text-white bg-brand-navGrey">
@@ -33,7 +31,7 @@ function LandingPage() {
         </div>
       </div>
       <div className="w-[48%]  flex justify-center items-center h-full homeRight right">
-        <img className="rounded-full shadow-[0_0_45px_18px_rgba(163,163,163,0.4)]"  src={profile} alt="" />
+        <img className="rounded-full homeImg shadow-[0_0_45px_18px_rgba(163,163,163,0.4)]"  src={profile} alt="" />
       </div>
     </div>
   );
