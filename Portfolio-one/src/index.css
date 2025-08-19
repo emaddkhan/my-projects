@@ -1,9 +1,12 @@
 html{
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
 }
 ::selection {
   background-color: #A9A9A9; /* grey */
   color: white; /* optional, change if needed */
+}
+body{
+  cursor: none
 }
 
 

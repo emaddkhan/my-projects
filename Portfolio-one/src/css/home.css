@@ -21,10 +21,11 @@
 }
 @media (max-width:1114px) {
     .download{
-        width: 21.3%;
+        width: 23.3%;
     }
     .downloadBtn{
-        padding:8px 25px;
+                padding: 8px 35px ;
+
     }
     .links{
         gap: 4.5vh;
@@ -32,7 +33,11 @@
 }
 @media (max-width:884px){
     .download{
-        width: 27.3%;
+        width: 30%;
+    }
+    .downloadBtn{
+        padding: 10px 35px ;
+
     }
     .nav{
         height: 6vh;
@@ -74,7 +79,7 @@
 }
 @media (max-width:834px) {
     .download{
-        width: 30%;
+        width: 32%;
     }
     .homeContainer{
         width: 95%;
@@ -107,6 +112,13 @@
     .links{
         width: 49%;
     }
+    .download{
+        width: 35.8%;
+    }
+    .downloadBtn{
+                padding: 10px 40px ;
+
+    }
     .homeHeading{
         font-size: 3.6rem;
         margin-top: 4vh;
@@ -118,6 +130,14 @@
         width: 70%;
     }
 }
+@media (max-width:769px) {
+    .download{
+        width: 35%;
+    }
+    .nav{
+        height: 6vh;
+    }
+}
 
 @media (max-width:429px) {
     .links{
@@ -125,10 +145,12 @@
         
     }
     .download{
-        width: 43%;
+        width: 40%;
     }
     .downloadBtn{
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        padding: 3px 25px ;
+
     }
     .nav{
         height: 3rem;
@@ -165,6 +187,9 @@
     }
     .homeBtn{
         width: 40%;
+    }
+    .home{
+        height: 93vh;
     }
 
 }

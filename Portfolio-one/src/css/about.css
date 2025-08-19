@@ -104,3 +104,15 @@
         height: 25vh;
     }
 }
+@media (max-width:429px) {
+    .aboutParaContainer{
+        height: 38%;
+        padding: .65rem .8rem;
+    }
+    .about{
+        height: 95vh;
+    }
+    .aboutHeading{
+
+    }
+}
