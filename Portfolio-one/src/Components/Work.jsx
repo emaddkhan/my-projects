@@ -15,7 +15,7 @@ function Work() {
         <div className=" w-full flex flex-col justify-center workContainer2 h-full">
           <h3 className="text-3xl mt-3 workHeading font-bold text-white">My Projects</h3>
           <div className="relative w-full h-[50%] bg-brand-navGrey px-4 overflow-hidden mt-7 rounded-2xl">
-            <h3 className="text-white font-semibold py-5 text-2xl mt-2">
+            <h3 className="text-white workContHeading font-semibold py-5 text-2xl mt-2">
               Development Projects
             </h3>
 
@@ -27,7 +27,7 @@ function Work() {
               initial={{ x: "0" }}
               transition={{ ease: "linear", duration: 35, repeat: Infinity }}
               animate={{ x: ["0%", "-50%"] }}
-              className="w-max h-[71%] flex gap-5 whitespace-nowrap py-1"
+              className="w-max workTilesContainer h-[71%] flex gap-5 whitespace-nowrap py-1"
             >
               {[
                 { img: movie, name: "Movie Web App" },
@@ -48,14 +48,14 @@ function Work() {
                 .map((item, i) => (
                   <div
                     key={i}
-                    className="w-[8%] shrink-0 p-1 h-full bg-brand-paragrey rounded-lg"
+                    className="w-[8%] workTiles shrink-0 p-1 h-full bg-brand-paragrey rounded-lg"
                   >
                     <img
-                      className="h-[90%] object-cover object-center rounded-md"
+                      className="h-[90%] tileImg object-cover object-center rounded-md"
                       src={item.img}
                       alt={item.name}
                     />
-                    <h4 className="font-semibold  text-white text-center w-full">
+                    <h4 className="font-semibold tileHeading  text-white text-center w-full">
                       {item.name}
                     </h4>
                   </div>

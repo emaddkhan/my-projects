@@ -98,3 +98,23 @@
         margin-top: 3vh;
     }
 }
+@media (max-width:429px) {
+    .work{
+        height: 62vh;
+    }
+    .footerEmail{
+        width: 75%;
+    }
+    .footerLinks{
+        width: 14%;
+    }
+    .footerAuthority{
+        font-size: .7rem;
+    }
+    .footerDeveloped{
+        font-size: .7rem;
+    }
+}
+@media (max-width:360px) {
+    .footerEmail{width: 77%;}
+}

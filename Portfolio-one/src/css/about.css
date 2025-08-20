@@ -112,7 +112,47 @@
     .about{
         height: 95vh;
     }
-    .aboutHeading{
+    .aboutSecDiv{
+        flex-direction: column;
+        height: 43%;
+    }
+    .eduContainer{
+        width: 100%;
+    }
+    .certificateContainer{
+        width: 100%;
+        margin: .9rem 0;
+    }
+    .abSkillsContainer{
+        height: 25%;
+    }
 
+}
+@media (max-width:390px) {
+    .about{
+        height: 103vh;
+    }
+    .aboutParaContainer{
+        height: 36%;
+    }
+    .eduContainer{
+        height: 35%;
+    }
+    .certificateContainer{
+        margin: .8rem 0;
+    }
+    .abSkillsContainer{
+        height: 23%;
+        padding: .5rem .6rem;
+    }
+
+}
+@media (max-width:376px) {
+    .certificateContainer{
+        margin-bottom: 1.2rem;
+    }
+    .about{
+        height: 105vh;
+        margin-top: 1rem;
     }
 }

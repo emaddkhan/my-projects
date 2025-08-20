@@ -12,3 +12,20 @@
         margin-top: 0;
     }
 }
+@media (max-width:429px) {
+    .workContainer2{
+        height: 72vh;
+    }
+    .workContHeading{
+        padding: .9rem 0;
+    }
+    .workTiles{
+        width: 6%;
+    }
+    .tileImg{
+        height: 88%;
+    }
+    .workTilesContainer{
+        gap: .8rem;
+    }
+}
