@@ -66,7 +66,7 @@ function About() {
           </div>
           <div className="h-[31%] px-5 py-3 abSkillsContainer rounded-2xl w-full bg-brand-navGrey">
             <h4 className="text-white font-bold text-2xl educationHeading mt-2">
-              Education
+              Skills & Technologies
             </h4>
             <div className="mt-5 aboutSkills flex gap-5 items-center">
               {[

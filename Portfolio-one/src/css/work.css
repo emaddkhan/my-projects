@@ -1,3 +1,19 @@
+.marquee {
+  display: flex;
+  animation: scroll 35s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused; /* ✅ freezes exactly where it is */
+}
+@keyframes scroll {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 @media (max-width:884px){
     .work{
         height: 70vh;
