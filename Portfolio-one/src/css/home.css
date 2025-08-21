@@ -237,15 +237,16 @@
         font-size: .7rem;
     }
     .homeRight{
-        width: 49%;
-        margin-top: 0;
+        width: 46%;
+        margin-top: 2rem;
     }
     .homeHeading{
         font-size: 2rem;
-        margin-top: 1.5rem;
+        margin-top: 1rem;
     }
     .homePara{
         font-size: .7rem;
+        margin-top: 0.6rem;
     }
     .homeBtn{
         width: 52%;
@@ -256,5 +257,32 @@
         margin-top: 2rem;
         margin-bottom: 1.3rem;
     }
+    .homeImg {
+    box-shadow: 0 0 30px 0 rgba(163, 163, 163, 0.4);
     
+}.mobileMenuOpen {
+    max-height: 45vh !important; /* or px value */
+  }
+
+    
+}
+@media (max-width:412px) {
+    .homeBtn{
+        font-size: .93rem;
+    }
+    .right{
+        margin-top: 3rem;
+    }
+    .homeRight{
+        width: 80%;
+    }
+
+}
+@media (max-width:393px) {
+    .download{
+        width: 43%;
+    }
+    .homeBtn{
+        font-size: .8rem;
+    }
 }

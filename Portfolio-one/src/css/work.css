@@ -29,3 +29,35 @@
         gap: .8rem;
     }
 }
+@media (max-width:320px) {
+    .work{
+        height: 100vh;
+       
+        margin: 2vh 0 25vh 0;
+    }
+    .workContainer{
+        width: 100% ;
+    }
+    .workHeading{
+        padding: 0 3%;
+    }
+
+    .workContainer2{
+        height:96vh;
+        
+    }
+    .workContHeading{
+        padding: 0.5 0rem;
+        font-size: 1.5rem;
+
+    }
+    .workinner{
+        padding: 0 .5rem .8rem .5rem;
+        border-radius: 5px;
+
+    }
+    
+    .tileShadows{
+        width: .5rem;
+    }
+}

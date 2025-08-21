@@ -54,8 +54,8 @@ function Navbar() {
         </div>
       </div>
       <div
-        className={`absolute top-[120%]  right-0 w-[100%] bg-brand-navGrey rounded-lg overflow-hidden transition-all duration-700 ease-in-out ${
-          open ? "max-h-[25vh] pb-3 pt-3" : "max-h-0"
+        className={`absolute top-[120%]   right-0 w-[100%] bg-brand-navGrey rounded-lg overflow-hidden transition-all duration-700 ease-in-out ${
+          open ? "max-h-[25vh] mobileMenuOpen  pb-3 pt-3" : "max-h-0"
         }`}
       >
         <div className="flex flex-col items-center justify-center h-full gap-4">

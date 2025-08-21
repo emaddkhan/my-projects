@@ -29,7 +29,7 @@ function Footer() {
                 </div>
             </div>
         </div>
-        <div className='w-full h-20 border-t-2 border-brand-navGrey '>
+        <div className='w-full footerLowerPart h-20 border-t-2 border-brand-navGrey '>
             <div className='flex justify-between items-center footerLowerInner w-[90%] mx-auto h-full bg-black text-white'>
                 <h4 className='font-semibold footerAuthority'>2025 © All Right Reserved</h4>
             <h4 className='font-semibold footerDeveloped'>Developed By: Emad Khan Yousuf Zai</h4>

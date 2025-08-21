@@ -118,3 +118,57 @@
 @media (max-width:360px) {
     .footerEmail{width: 77%;}
 }
+@media (max-width:320px) {
+    .contactMain{
+        height: 42vh;
+    }
+    .footerEmail{
+        width: 78%;
+    }
+    .emailImg{
+        width: 8%;
+    }
+    .footerEmailInner{
+        font-size: .8rem;
+    }
+    .LinksContainer{
+        margin-top: .4rem;
+    }
+    .contactsContainer {
+        height: 60%;
+    }
+    .footerLinks{
+        width: 50%;
+        height: 110%;
+        width: 100%;
+    }
+    .footerLkImgs{
+        padding: 0;
+    }
+    .footerAuthority{
+        font-size: .55rem;
+    }
+    .footerDeveloped{
+        font-size: .55rem;
+    }
+    .footerLowerPart{
+        height: 30%;
+        margin-top: .5rem;
+    }
+    .tileHeading{
+        font-size: .8rem;
+        margin-top: .1rem;
+    }
+}
+@media (max-width:412px) {
+    .footerEmail{
+        width: 82%;
+
+    }
+    .LinksContainer{
+        gap: 1.5rem;
+    }
+    .footerLinks{
+        width: 18%;
+    }
+}

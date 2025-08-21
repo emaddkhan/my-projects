@@ -14,14 +14,14 @@ function Work() {
       <div className="w-[90%] workContainer mx-auto py-5 px-10 h-full">
         <div className=" w-full flex flex-col justify-center workContainer2 h-full">
           <h3 className="text-3xl mt-3 workHeading font-bold text-white">My Projects</h3>
-          <div className="relative w-full h-[50%] bg-brand-navGrey px-4 overflow-hidden mt-7 rounded-2xl">
+          <div className="relative w-full workinner h-[50%] bg-brand-navGrey px-4 overflow-hidden mt-7 rounded-2xl">
             <h3 className="text-white workContHeading font-semibold py-5 text-2xl mt-2">
               Development Projects
             </h3>
 
-            <div className="absolute top-0 left-0 w-6  opacity-5 h-full z-10 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+            <div className="absolute tileShadows top-0 left-0 w-6  opacity-5 h-full z-10 bg-gradient-to-r from-white to-transparent pointer-events-none" />
 
-            <div className="absolute top-0 right-0 w-6 opacity-5 h-full z-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+            <div className="absolute tileShadows top-0 right-0 w-6 opacity-5 h-full z-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
 
             <motion.div
               initial={{ x: "0" }}

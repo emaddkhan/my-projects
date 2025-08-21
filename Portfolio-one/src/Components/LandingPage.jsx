@@ -23,7 +23,7 @@ function LandingPage() {
               professionally.
             </p>
           </div>
-          <button className="mt-16 relative homeBtn font-semibold px-12 py-2 text-white bg-brand-navGrey rounded-md overflow-hidden group">
+          <button className="mt-16 relative cursor-none homeBtn font-semibold px-12 py-2 text-white bg-brand-navGrey rounded-md overflow-hidden group">
             <span className="relative z-10">Hire Me</span>
 
             <span className="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 group-hover:left-[100%] transition-all duration-700 ease-in-out"></span>

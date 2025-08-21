@@ -156,3 +156,51 @@
         margin-top: 1rem;
     }
 }
+@media (max-width:320px){
+    .about{
+        height: 120vh;
+    }
+    .aboutHeading{
+     font-size: 1.3rem;   
+
+    }
+    .aboutParaContainer{
+        padding: .3rem .6rem;
+        height: 38%;
+    }
+    .aboutPara{
+        font-size: .6rem;
+        margin-top: 0;
+    }
+    .eduContainer{
+        padding: .3rem .6rem;
+        
+    }
+    .aboutSecDiv{
+        margin: .5rem 0;
+    }
+    .eduHeading{
+     font-size: 1.3rem;
+        
+    }
+    .aboutLi{
+        font-size: .6rem;
+    }
+    .certificationHeading{
+     font-size: 1.3rem;
+
+    }
+    .certificateContainer{
+        margin: 0.5rem 0;
+    }
+    .abSkillsContainer{
+        height: 22%;
+        margin-top: 1.8rem;
+        padding: .3rem .6rem;
+
+    }
+    .aboutImgs{
+        width: 16%;
+    }
+   
+}
