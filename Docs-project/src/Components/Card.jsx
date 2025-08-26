@@ -1,26 +1,37 @@
-import React from 'react'
+import React from "react";
 import { FaRegFileAlt } from "react-icons/fa";
 import { MdOutlineFileDownload } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
+import { motion } from "motion/react"
 
-
-function Card() {
+function Card({ data,reference }) {
   return (
-    <div className='relative w-60 h-72 text-white px-5 py-10 rounded-[45px] bg-zinc-900/90 overflow-hidden'>
-      <FaRegFileAlt/>
-      <p className='mt-5 text-sm leading-tight font-semibold'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo, eligendi?</p>
-      <div className='footer absolute bottom-0 left-0  w-full  '>
-        <div className='flex items-center justify-between py-3 px-8 mb-3'>
-          <h5>.4mb</h5>
-          <span className='flex items-center justify-center w-7 h-7 rounded-full bg-zinc-600'>
-            <MdOutlineFileDownload color='#fff' size=".9em"/>
+    <motion.div drag dragConstraints={reference} whileDrag={{scale:1.1}} dragElastic={.1} dragTransition={{bounceStiffness:100,bounceDamping:30}} className="flex-shrink-0 relative w-60 h-72 text-white px-5 py-10 rounded-[45px] bg-zinc-900/90 overflow-hidden">
+      <FaRegFileAlt />
+      <p className="mt-5 text-sm leading-tight font-semibold">
+        {data.description}
+      </p>
+      <div className="footer absolute bottom-0 left-0  w-full  ">
+        <div className="flex items-center justify-between py-3 px-8 mb-3">
+          <h5>{data.fileSize}</h5>
+          <span className="flex items-center justify-center w-7 h-7 rounded-full bg-zinc-600">
+            {data.close ? (
+              <IoClose color="#fff" size=".9em" />
+            ) : (
+              <MdOutlineFileDownload color="#fff" size=".9em" />
+            )}
           </span>
         </div>
-        <div className='tag w-full py-4 flex justify-center items-center bg-green-400'>
-          <h3 className='text-sm font-semibold'>Downloaded</h3>
+        {
+          data.tag.isOpen&&(
+            <div className={`tag w-full py-4 flex justify-center items-center ${data.tag.tagColor==="blue"?"bg-blue-600":"bg-green-600"}`}>
+          <h3 className="text-sm font-semibold">{data.tag.tagTitle}</h3>
         </div>
+          )
+        }
       </div>
-    </div>
-  )
+    </motion.div>
+  );
 }
 
-export default Card
+export default Card;
