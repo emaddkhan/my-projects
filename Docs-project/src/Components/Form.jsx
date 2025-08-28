@@ -1,147 +1,83 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
+import { GrClose } from "react-icons/gr";
+import { motion } from "motion/react"
 
-function Form({ onSubmit, onClose }) {
-  const [formData, setFormData] = useState({
-    description: "",
-    fileSize: "",
-    close: false,
-    tag: {
-      isOpen: false,
-      tagTitle: "",
-      tagColor: "green"
-    }
-  });
 
-  // Handle change for top-level fields
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+function Form({ formCloseBtnHandeler }) {
+      const ref =useRef(null)
 
-    if (name in formData) {
-      setFormData({
-        ...formData,
-        [name]: type === "checkbox" ? checked : value,
-      });
-    }
-  };
-
-  // Handle change for nested tag fields
-  const handleTagChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      tag: {
-        ...formData.tag,
-        [name]: type === "checkbox" ? checked : value,
-      },
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(formData);
-  };
-
+  
   return (
-    <div className="w-full h-screen bg-zinc-900/90 z-[5] flex-wrap fixed top-0 left-0">
-      <div className="w-full h-screen flex items-center justify-center">
-        <div className="w-[60%] h-[70%] bg-zinc-100 rounded-xl shadow-lg p-8 overflow-y-auto">
-          <h2 className="text-xl font-bold mb-4">Add File Details</h2>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Description */}
-            <div>
-              <label className="block font-medium">Description</label>
-              <textarea
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                className="w-full border rounded p-2"
-              />
-            </div>
-
-            {/* File Size */}
-            <div>
-              <label className="block font-medium">File Size</label>
-              <input
-                type="text"
-                name="fileSize"
-                value={formData.fileSize}
-                onChange={handleChange}
-                placeholder="e.g. 1.5 MB"
-                className="w-full border rounded p-2"
-              />
-            </div>
-
-            {/* Close */}
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="close"
-                checked={formData.close}
-                onChange={handleChange}
-              />
-              <label>Close</label>
-            </div>
-
-            {/* Tag Section */}
-            <div className="border-t pt-4">
-              <h3 className="font-semibold mb-2">Tag</h3>
-
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  name="isOpen"
-                  checked={formData.tag.isOpen}
-                  onChange={handleTagChange}
-                />
-                <label>Is Open</label>
-              </div>
-
-              <div className="mt-2">
-                <label className="block font-medium">Tag Title</label>
+    <div className="h-screen w-full fixed top-0 left-0 bg-zinc-900/80 z-[5]">
+      <div className="w-full py-7 px-16  flex items-center justify-end">
+        <GrClose
+          onClick={formCloseBtnHandeler}
+          className="cursor-pointer text-3xl text-white"
+        />
+      </div>
+      <div ref={ref} className="h-[90%] w-full flex items-center justify-center ">
+        <motion.div   dragElastic={.1} dragTransition={{bounceStiffness:100,bounceDamping:30}} drag dragConstraints={ref} className="h-[90%] shadow-md shadow-white w-[30%] rounded-2xl overflow-hidden bg-zinc-50">
+          <div className="py-5 w-full bg-green-300">
+            <h1 className="text-center text-white text-xl font-semibold">
+              Add User
+            </h1>
+          </div>
+          <div className="w-full py-6 px-10 ">
+            <form action="">
+              <div>
+                <label className="block text-lg font-semibold">Name</label>
                 <input
                   type="text"
-                  name="tagTitle"
-                  value={formData.tag.tagTitle}
-                  onChange={handleTagChange}
-                  className="w-full border rounded p-2"
+                  name=""
+                  placeholder="User name"
+                  className="w-[98%] py-2 outline-none px-4 font-semibold rounded-lg border-2 mt-2"
                 />
               </div>
-
-              <div className="mt-2">
-                <label className="block font-medium">Tag Color</label>
-                <select
-                  name="tagColor"
-                  value={formData.tag.tagColor}
-                  onChange={handleTagChange}
-                  className="w-full border rounded p-2"
-                >
-                  <option value="green">Green</option>
-                  <option value="blue">Blue</option>
-                  <option value="red">Red</option>
-                  <option value="yellow">Yellow</option>
-                </select>
+              <div className="flex mt-2 w-full p-1 justify-between items-center">
+                <div className="w-48%">
+                  <label className="block  font-semibold">Cell number:</label>
+                  <input
+                    type="text"
+                    name=""
+                    placeholder="User cell"
+                    className="w-[98%] py-2 outline-none px-4 font-semibold rounded-lg border-2 mt-1"
+                  />
+                </div>
+                <div className="w-48%">
+                  <label className="block  font-semibold">Phone number:</label>
+                  <input
+                    type="text"
+                    name=""
+                    placeholder="User Phone"
+                    className="w-[98%] py-2 outline-none px-4 font-semibold rounded-lg border-2 mt-1"
+                  />
+                </div>
               </div>
-            </div>
-
-            {/* Buttons */}
-            <div className="flex justify-end gap-4 mt-6">
-              <button
-                type="button"
-                onClick={onClose}
-                className="px-4 py-2 rounded bg-gray-400 text-white"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="px-4 py-2 rounded bg-green-600 text-white"
-              >
-                Save
-              </button>
-            </div>
-          </form>
-        </div>
+              <div className="mt-2">
+                <label className="block text-lg font-semibold">Email:</label>
+                <input
+                  type="email"
+                  name=""
+                  placeholder="User Email"
+                  className="w-[98%] py-2 outline-none px-4 font-semibold rounded-lg border-2 mt-1"
+                />
+              </div>
+              <div className="mt-2">
+                <label className="block text-lg font-semibold">Country:</label>
+                <input
+                  type="text"
+                  name=""
+                  placeholder="User Country"
+                  className="w-[98%] py-2 outline-none px-4 font-semibold rounded-lg border-2 mt-1"
+                />
+              </div>
+              <div className="flex mt-5 justify-between items-center w-full py-3 ">
+                <button type="button" className="px-12 py-2 bg-red-600 text-white font-semibold text-md rounded-full">Clear</button>
+                <button type="submit" className="px-12 py-2 bg-green-600 text-white font-semibold text-md rounded-full">Submit</button>
+              </div>
+            </form>
+          </div>
+        </motion.div>
       </div>
     </div>
   );
