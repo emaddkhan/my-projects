@@ -4,6 +4,8 @@ import Navbar from "./Navbar";
 import axios from "axios";
 import Form from "./Form";
 import { RiDeleteBinLine } from "react-icons/ri";
+import ColorBarPicker from "./ColorBarPicker";
+import SettingPanel from "./SettingPanel";
 
 function Forground({ addBtnHandler }) {
   const [isOverDelete, setIsOverDelete] = useState(false);
@@ -13,6 +15,14 @@ function Forground({ addBtnHandler }) {
   const [users, setUsers] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [activeCardIndex, setActiveCardIndex] = useState(null);
+  const [navColor, setNavColor] = useState("#ffffff"); 
+
+
+  const [showSettings, setShowSettings] = useState(false);
+ 
+  const settingBtnHandler = () => {
+    setShowSettings(!showSettings);
+  };
 
   const ref = useRef(null);
   const deleteRef = useRef(null);
@@ -42,15 +52,21 @@ function Forground({ addBtnHandler }) {
 
   const handleDeleteUser = (indexToDelete) => {
     const updatedUsers = users.filter((_, i) => i !== indexToDelete);
-    setUsers(updatedUsers); 
-    localStorage.setItem("users", JSON.stringify(updatedUsers)); 
+    setUsers(updatedUsers);
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
   };
 
   return (
     <div className="w-full h-screen z-[3] flex-wrap fixed top-0 left-0">
-      <Navbar addBtnHandler={() => setShowForm(true)} />
+      <Navbar
+        showSettings={showSettings}
+        navColor={navColor}
+        settingBtnHandler={settingBtnHandler}
+        addBtnHandler={() => setShowForm(true)}
+      />
+      {/* setting panel */}
+      <SettingPanel setNavColor={setNavColor} navColor={navColor} showSettings={showSettings}/>
 
-     
       <div
         ref={deleteRef}
         className={`h-80 w-80 transition-all duration-300 flex items-center justify-center
@@ -62,7 +78,6 @@ function Forground({ addBtnHandler }) {
         <RiDeleteBinLine className="text-white text-6xl" />
       </div>
 
-      {/* Cards */}
       <div ref={ref} className="flex h-[91%] p-5 gap-10">
         {users.map((item, index) => (
           <Card
@@ -79,7 +94,7 @@ function Forground({ addBtnHandler }) {
             }}
             onDragEnd={() => {
               if (isOverDelete) {
-                handleDeleteUser(index); 
+                handleDeleteUser(index);
               }
               setActiveCardIndex(null);
               setDeleteTop(false);
