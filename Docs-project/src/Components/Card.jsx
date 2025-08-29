@@ -31,7 +31,7 @@ function Card({ data,reference }) {
         }
       </div> */}
       <div className="w-16 h-16 mx-auto  rounded-full overflow-hidden">
-        <img className="h-full w-full" src={data.picture.thumbnail} alt="" />
+        <img className="h-full w-full" src={data.picture.large} alt="" />
       </div>
       <h3 className="text-center text-md font-semibold mt-5">{data.name.title} {data.name.first} {data.name.last}</h3>
       <p className="mt-2">Cell: {data.cell}</p>
