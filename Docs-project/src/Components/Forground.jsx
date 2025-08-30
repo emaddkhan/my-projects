@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 import axios from "axios";
 import Form from "./Form";
 import { RiDeleteBinLine } from "react-icons/ri";
-import ColorBarPicker from "./ColorBarPicker";
 import SettingPanel from "./SettingPanel";
 
 function Forground({ addBtnHandler }) {
@@ -15,11 +14,20 @@ function Forground({ addBtnHandler }) {
   const [users, setUsers] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [activeCardIndex, setActiveCardIndex] = useState(null);
-  const [navColor, setNavColor] = useState("#ffffff"); 
 
+  // Load saved nav colors from localStorage
+  const [navColor, setNavColor] = useState(() => {
+    return localStorage.getItem("navColor") || "#ffffff";
+  });
+  const [navFontColor, setNavFontColor] = useState(() => {
+    return localStorage.getItem("navFontColor") || "#000000";
+  });
+  const [navBtnBgColor, setNavBtnBgColor] = useState(() => {
+    return localStorage.getItem("navBtnBgColor") || "#000000";
+  });
 
   const [showSettings, setShowSettings] = useState(false);
- 
+
   const settingBtnHandler = () => {
     setShowSettings(!showSettings);
   };
@@ -44,6 +52,18 @@ function Forground({ addBtnHandler }) {
     }
   }, []);
 
+  // Save navColor + navFontColor to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("navColor", navColor);
+  }, [navColor]);
+
+  useEffect(() => {
+    localStorage.setItem("navFontColor", navFontColor);
+  }, [navFontColor]);
+  useEffect(() => {
+    localStorage.setItem("navBtnBgColor", navBtnBgColor);
+  }, [navBtnBgColor]);
+
   const handleAddUser = (newUser) => {
     const updated = [...users, newUser];
     setUsers(updated);
@@ -63,10 +83,22 @@ function Forground({ addBtnHandler }) {
         navColor={navColor}
         settingBtnHandler={settingBtnHandler}
         addBtnHandler={() => setShowForm(true)}
+        navFontColor={navFontColor}
+        navBtnBgColor={navBtnBgColor}
       />
-      {/* setting panel */}
-      <SettingPanel setNavColor={setNavColor} navColor={navColor} showSettings={showSettings}/>
 
+      {/* setting panel */}
+      <SettingPanel
+        setNavColor={setNavColor}
+        navColor={navColor}
+        showSettings={showSettings}
+        navFontColor={navFontColor}
+        setNavFontColor={setNavFontColor}
+        navBtnBgColor={navBtnBgColor}
+        setNavBtnBgColor={setNavBtnBgColor}
+      />
+
+      {/* delete zone */}
       <div
         ref={deleteRef}
         className={`h-80 w-80 transition-all duration-300 flex items-center justify-center
@@ -78,6 +110,7 @@ function Forground({ addBtnHandler }) {
         <RiDeleteBinLine className="text-white text-6xl" />
       </div>
 
+      {/* cards */}
       <div ref={ref} className="flex h-[91%] p-5 gap-10">
         {users.map((item, index) => (
           <Card
