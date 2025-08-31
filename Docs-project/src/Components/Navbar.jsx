@@ -1,7 +1,8 @@
+import { color } from "framer-motion";
 import React from "react";
 import { IoSettings } from "react-icons/io5";
 
-function Navbar({ addBtnHandler, navColor,showSettings,navFontColor,navBtnBgColor, settingBtnHandler }) {
+function Navbar({ addBtnHandler, navColor,showSettings,navFontColor,navBtnBgColor, navBtnFontColor,settingBtnHandler }) {
   return (
     <div className="py-4 flex justify-between items-center px-12 rounded-bl-xl rounded-br-xl bg-zinc-100 w-full" style={{backgroundColor:navColor}}>
       <button onClick={settingBtnHandler}>
@@ -16,7 +17,8 @@ function Navbar({ addBtnHandler, navColor,showSettings,navFontColor,navBtnBgColo
       <h5 className="text-xl font-semibold" style={{color:navFontColor}}>Documents</h5>
       <button
         onClick={addBtnHandler}
-        className="px-12 py-3 bg-green-500 rounded-full font-semibold text-white" style={{backgroundColor:navBtnBgColor}}
+        className="px-12 py-3 bg-green-500 rounded-full font-semibold text-white" style={{backgroundColor:navBtnBgColor ,
+          color:navBtnFontColor}}
       >
         Add
       </button>

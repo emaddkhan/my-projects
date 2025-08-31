@@ -25,6 +25,9 @@ function Forground({ addBtnHandler }) {
   const [navBtnBgColor, setNavBtnBgColor] = useState(() => {
     return localStorage.getItem("navBtnBgColor") || "#000000";
   });
+  const [navBtnFontColor, setNavBtnFontColor] = useState(() => {
+    return localStorage.getItem("navBtnBgColor") || "#000000";
+  });
 
   const [showSettings, setShowSettings] = useState(false);
 
@@ -64,6 +67,10 @@ function Forground({ addBtnHandler }) {
     localStorage.setItem("navBtnBgColor", navBtnBgColor);
   }, [navBtnBgColor]);
 
+  useEffect(() => {
+    localStorage.setItem("navBtnFontColor", navBtnFontColor);
+  }, [navBtnFontColor]);
+
   const handleAddUser = (newUser) => {
     const updated = [...users, newUser];
     setUsers(updated);
@@ -85,8 +92,8 @@ function Forground({ addBtnHandler }) {
         addBtnHandler={() => setShowForm(true)}
         navFontColor={navFontColor}
         navBtnBgColor={navBtnBgColor}
+        navBtnFontColor={navBtnFontColor}
       />
-
       {/* setting panel */}
       <SettingPanel
         setNavColor={setNavColor}
@@ -96,6 +103,8 @@ function Forground({ addBtnHandler }) {
         setNavFontColor={setNavFontColor}
         navBtnBgColor={navBtnBgColor}
         setNavBtnBgColor={setNavBtnBgColor}
+        navBtnFontColor={navBtnFontColor}
+        setNavBtnFontColor={setNavBtnFontColor}
       />
 
       {/* delete zone */}

@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import ColorBarPicker from "./ColorBarPicker";
-import { IoMdArrowDropdownCircle } from "react-icons/io";
-import NavbarFontPicker from "./NavbarFontPicker";
-import NavBgPicker from "./NavBgPicker";
 
-function SettingPanel({ showSettings,navBtnBgColor, navColor, setNavColor,navFontColor,setNavBtnBgColor,setNavFontColor }) {
+import { IoMdArrowDropdownCircle } from "react-icons/io";
+import ColorBarPicker from "./color pickers/ColorBarPicker";
+import NavbarFontPicker from "./color pickers/NavbarFontPicker";
+import NavBgPicker from "./color pickers/NavBgPicker";
+import NavBtnFontPicker from "./color pickers/NavBtnFontPicker";
+
+
+function SettingPanel({ showSettings,navBtnBgColor,setNavBtnFontColor,navBtnFontColor, navColor, setNavColor,navFontColor,setNavBtnBgColor,setNavFontColor }) {
   const [showNavTheme, setShowNavTheme] = useState(false);
   const [showMainNav, setShowMainNav] = useState(false);
   const [showNavFont,setShowNavFont] =useState(false)
   const [showNavBtnBg,setShowNavBtnBg]=useState(false)
+  const [showNavBtnFont,setShowNavBtnFont] =useState(false)
   const mainNavbarBtnHandler = () => {
     setShowMainNav(!showMainNav);
   };
@@ -20,6 +24,9 @@ function SettingPanel({ showSettings,navBtnBgColor, navColor, setNavColor,navFon
   };
   const showNavBgBtnHandler=()=>{
     setShowNavBtnBg(!showNavBtnBg)
+  }
+  const showNavBTnFontHandler=()=>{
+    setShowNavBtnFont(!showNavBtnFont)
   }
 
   return (
@@ -97,6 +104,24 @@ function SettingPanel({ showSettings,navBtnBgColor, navColor, setNavColor,navFon
           </button>
         </div>
         <NavBgPicker  setNavBtnBgColor={setNavBtnBgColor} setShowNavBtnBg={setShowNavBtnBg} showNavBtnBg={showNavBtnBg}/>
+
+        
+         <div
+          onClick={showNavBTnFontHandler}
+          className="flex items-center cursor-pointer justify-between"
+        >
+          <h4 className=" font-semibold">Navbar Button Font Color</h4>{" "}
+          <button>
+            <IoMdArrowDropdownCircle
+              className={`text-2xl transition-all duration-300 ${
+                showNavBtnFont? "rotate-180" : ""
+              }`}
+            />
+          </button>
+        </div>
+        <NavBtnFontPicker setShowNavBtnFont={setShowNavBtnFont} setNavBtnFontColor={setNavBtnFontColor} showNavBtnFont={showNavBtnFont}/>
+
+
       </div>
     </div>
   );
