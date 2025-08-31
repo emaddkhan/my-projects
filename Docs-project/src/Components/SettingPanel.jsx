@@ -6,6 +6,7 @@ import NavbarFontPicker from "./color pickers/NavbarFontPicker";
 import NavBgPicker from "./color pickers/NavBgPicker";
 import NavBtnFontPicker from "./color pickers/NavBtnFontPicker";
 import BackGroundColorPicker from "./color pickers/BackGroundColorPicker";
+import BackgroundFontColorPicker from "./color pickers/BackgroundFontColorPicker";
 
 function SettingPanel({
   showSettings,
@@ -17,7 +18,8 @@ function SettingPanel({
   navFontColor,
   setNavBtnBgColor,
   setNavFontColor,
-  setBackgroundMainColor
+  setBackgroundMainColor,
+  setBackgroundMainFontColor,
 }) {
   const [showNavTheme, setShowNavTheme] = useState(false);
   const [showMainNav, setShowMainNav] = useState(false);
@@ -26,6 +28,7 @@ function SettingPanel({
   const [showNavBtnFont, setShowNavBtnFont] = useState(false);
   const [showBackgroundMain, setShowBackgroundMain] = useState(false);
   const [showBgPicker, setShowBgPicker] = useState(false);
+  const [showBgFontColor,setShowBgFontColor]=useState(false)
   const mainNavbarBtnHandler = () => {
     setShowMainNav(!showMainNav);
   };
@@ -47,6 +50,9 @@ function SettingPanel({
   const showBgPickerHandler = () => {
     setShowBgPicker(!showBgPicker);
   };
+  const showBgFontColorHandler=()=>{
+    setShowBgFontColor(!showBgFontColor)
+  }
 
   return (
     <div
@@ -199,6 +205,28 @@ function SettingPanel({
         </div>
         <BackGroundColorPicker setBackgroundMainColor={setBackgroundMainColor} setShowBgPicker={setShowBgPicker} showBgPicker={showBgPicker}/>
         
+      </div>
+
+
+      <div
+        className={`pl-3 mt-2 ${
+          showBackgroundMain ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div
+          onClick={showBgFontColorHandler}
+          className="flex items-center cursor-pointer justify-between"
+        >
+          <h4 className=" font-semibold">Background Font color</h4>{" "}
+          <button>
+            <IoMdArrowDropdownCircle
+              className={`text-2xl transition-transform transform duration-300 ${
+                showBgFontColor ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+        </div>
+        <BackgroundFontColorPicker setBackgroundMainFontColor={setBackgroundMainFontColor} showBgFontColor={showBgFontColor} setShowBgFontColor={setShowBgFontColor}/>        
       </div>
 
       

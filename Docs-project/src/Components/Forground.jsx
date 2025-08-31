@@ -6,7 +6,7 @@ import Form from "./Form";
 import { RiDeleteBinLine } from "react-icons/ri";
 import SettingPanel from "./SettingPanel";
 
-function Forground({backgroundMainColor,setBackgroundMainColor }) {
+function Forground({backgroundMainColor,backgroundMainFontColor,setBackgroundMainFontColor,setBackgroundMainColor }) {
   const [isOverDelete, setIsOverDelete] = useState(false);
   const [deletTop, setDeleteTop] = useState(false);
   const [deletLeft, setDeleteLeft] = useState(false);
@@ -63,7 +63,9 @@ function Forground({backgroundMainColor,setBackgroundMainColor }) {
   localStorage.setItem("navBtnBgColor", navBtnBgColor);
   localStorage.setItem("navBtnFontColor", navBtnFontColor);
   localStorage.setItem("backgroundMainColor", backgroundMainColor);
-}, [navColor, navFontColor, navBtnBgColor, navBtnFontColor, backgroundMainColor]);
+  localStorage.setItem("backgroundMainFontColor", backgroundMainFontColor);
+
+}, [navColor, navFontColor, navBtnBgColor, navBtnFontColor, backgroundMainColor,backgroundMainFontColor]);
 
 
   const handleAddUser = (newUser) => {
@@ -102,6 +104,7 @@ function Forground({backgroundMainColor,setBackgroundMainColor }) {
         navBtnFontColor={navBtnFontColor}
         setNavBtnFontColor={setNavBtnFontColor}
         setBackgroundMainColor={setBackgroundMainColor}
+        setBackgroundMainFontColor={setBackgroundMainFontColor}
       />
 
       {/* delete zone */}

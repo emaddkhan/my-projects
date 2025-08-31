@@ -8,11 +8,14 @@ function App() {
   const [backgroundMainColor, setBackgroundMainColor] = useState(() => {
     return localStorage.getItem("backgroundMainColor") || "#27272A";
   });
+  const [backgroundMainFontColor, setBackgroundMainFontColor] = useState(() => {
+    return localStorage.getItem("backgroundMainFontColor") || "#18181B";
+  });
   const [showForm,setShowForm]=useState(false)
   return (
     <div className='relative  h-screen w-full bg-zinc-800 ' style={{backgroundColor:backgroundMainColor}}>
-      <Background />
-      <Forground backgroundMainColor={backgroundMainColor} setBackgroundMainColor={setBackgroundMainColor}/>
+      <Background backgroundMainFontColor={backgroundMainFontColor} />
+      <Forground backgroundMainColor={backgroundMainColor} backgroundMainFontColor={backgroundMainFontColor} setBackgroundMainFontColor={setBackgroundMainFontColor} setBackgroundMainColor={setBackgroundMainColor}/>
       {showForm&&<Form formCloseBtnHandeler={formCloseBtnHandeler} />}
     </div>
   )
