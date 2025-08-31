@@ -4,17 +4,15 @@ import Forground from './Components/Forground'
 import Form from './Components/Form'
 
 function App() {
-  const addBtnHandler=()=>{
-    setShowForm(!showForm)
-  }
-  const formCloseBtnHandeler=()=>{
-    setShowForm(false)
-  }
+  
+  const [backgroundMainColor, setBackgroundMainColor] = useState(() => {
+    return localStorage.getItem("backgroundMainColor") || "#27272A";
+  });
   const [showForm,setShowForm]=useState(false)
   return (
-    <div className='relative  h-screen w-full bg-zinc-800'>
-      <Background/>
-      <Forground  addBtnHandler={addBtnHandler}/>
+    <div className='relative  h-screen w-full bg-zinc-800 ' style={{backgroundColor:backgroundMainColor}}>
+      <Background />
+      <Forground backgroundMainColor={backgroundMainColor} setBackgroundMainColor={setBackgroundMainColor}/>
       {showForm&&<Form formCloseBtnHandeler={formCloseBtnHandeler} />}
     </div>
   )

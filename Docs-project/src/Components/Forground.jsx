@@ -6,7 +6,7 @@ import Form from "./Form";
 import { RiDeleteBinLine } from "react-icons/ri";
 import SettingPanel from "./SettingPanel";
 
-function Forground({ addBtnHandler }) {
+function Forground({backgroundMainColor,setBackgroundMainColor }) {
   const [isOverDelete, setIsOverDelete] = useState(false);
   const [deletTop, setDeleteTop] = useState(false);
   const [deletLeft, setDeleteLeft] = useState(false);
@@ -26,8 +26,9 @@ function Forground({ addBtnHandler }) {
     return localStorage.getItem("navBtnBgColor") || "#000000";
   });
   const [navBtnFontColor, setNavBtnFontColor] = useState(() => {
-    return localStorage.getItem("navBtnBgColor") || "#000000";
+    return localStorage.getItem("navBtnFontColor") || "#000000";
   });
+  
 
   const [showSettings, setShowSettings] = useState(false);
 
@@ -56,20 +57,14 @@ function Forground({ addBtnHandler }) {
   }, []);
 
   // Save navColor + navFontColor to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem("navColor", navColor);
-  }, [navColor]);
+ useEffect(() => {
+  localStorage.setItem("navColor", navColor);
+  localStorage.setItem("navFontColor", navFontColor);
+  localStorage.setItem("navBtnBgColor", navBtnBgColor);
+  localStorage.setItem("navBtnFontColor", navBtnFontColor);
+  localStorage.setItem("backgroundMainColor", backgroundMainColor);
+}, [navColor, navFontColor, navBtnBgColor, navBtnFontColor, backgroundMainColor]);
 
-  useEffect(() => {
-    localStorage.setItem("navFontColor", navFontColor);
-  }, [navFontColor]);
-  useEffect(() => {
-    localStorage.setItem("navBtnBgColor", navBtnBgColor);
-  }, [navBtnBgColor]);
-
-  useEffect(() => {
-    localStorage.setItem("navBtnFontColor", navBtnFontColor);
-  }, [navBtnFontColor]);
 
   const handleAddUser = (newUser) => {
     const updated = [...users, newUser];
@@ -93,6 +88,7 @@ function Forground({ addBtnHandler }) {
         navFontColor={navFontColor}
         navBtnBgColor={navBtnBgColor}
         navBtnFontColor={navBtnFontColor}
+        backgroundMainColor={backgroundMainColor}
       />
       {/* setting panel */}
       <SettingPanel
@@ -105,6 +101,7 @@ function Forground({ addBtnHandler }) {
         setNavBtnBgColor={setNavBtnBgColor}
         navBtnFontColor={navBtnFontColor}
         setNavBtnFontColor={setNavBtnFontColor}
+        setBackgroundMainColor={setBackgroundMainColor}
       />
 
       {/* delete zone */}
