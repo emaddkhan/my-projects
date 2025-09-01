@@ -73,7 +73,6 @@ function NavbarFontPicker({showNavFont,setShowNavFont,setNavFontColor}) {
           />
         </div>
   
-        {/* Preview */}
         <div className="flex items-center justify-between gap-4">
           <div
             className="h-10 w-20 rounded-lg border shadow"

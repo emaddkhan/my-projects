@@ -62,8 +62,6 @@ const handleImageChange = (e) => {
   existing.push(userObj);
   localStorage.setItem("users", JSON.stringify(existing));
 
-  console.log("✅ User saved", userObj);
-
   
   if (onUserAdd) {
     onUserAdd(userObj);

@@ -6,7 +6,7 @@ import Form from "./Form";
 import { RiDeleteBinLine } from "react-icons/ri";
 import SettingPanel from "./SettingPanel";
 
-function Forground({backgroundMainColor,backgroundMainFontColor,setBackgroundMainFontColor,setBackgroundMainColor }) {
+function Forground({backgroundMainColor,setBgFontValue,bgFontValue,backgroundMainFontColor,setBgNewFontVal,bgNewFontVal,setBackgroundMainFontColor,setBackgroundMainColor }) {
   const [isOverDelete, setIsOverDelete] = useState(false);
   const [deletTop, setDeleteTop] = useState(false);
   const [deletLeft, setDeleteLeft] = useState(false);
@@ -15,7 +15,6 @@ function Forground({backgroundMainColor,backgroundMainFontColor,setBackgroundMai
   const [showForm, setShowForm] = useState(false);
   const [activeCardIndex, setActiveCardIndex] = useState(null);
 
-  // Load saved nav colors from localStorage
   const [navColor, setNavColor] = useState(() => {
     return localStorage.getItem("navColor") || "#ffffff";
   });
@@ -43,7 +42,7 @@ function Forground({backgroundMainColor,backgroundMainFontColor,setBackgroundMai
     const savedUsers = localStorage.getItem("users");
     if (savedUsers) {
       setUsers(JSON.parse(savedUsers));
-    } else {
+    } else  {
       axios
         .get("https://randomuser.me/api/?results=5")
         .then((res) => {
@@ -56,7 +55,6 @@ function Forground({backgroundMainColor,backgroundMainFontColor,setBackgroundMai
     }
   }, []);
 
-  // Save navColor + navFontColor to localStorage whenever they change
  useEffect(() => {
   localStorage.setItem("navColor", navColor);
   localStorage.setItem("navFontColor", navFontColor);
@@ -92,7 +90,6 @@ function Forground({backgroundMainColor,backgroundMainFontColor,setBackgroundMai
         navBtnFontColor={navBtnFontColor}
         backgroundMainColor={backgroundMainColor}
       />
-      {/* setting panel */}
       <SettingPanel
         setNavColor={setNavColor}
         navColor={navColor}
@@ -105,9 +102,13 @@ function Forground({backgroundMainColor,backgroundMainFontColor,setBackgroundMai
         setNavBtnFontColor={setNavBtnFontColor}
         setBackgroundMainColor={setBackgroundMainColor}
         setBackgroundMainFontColor={setBackgroundMainFontColor}
+        setBgNewFontVal={setBgNewFontVal}
+        bgNewFontVal={bgNewFontVal}
+        setBgFontValue={setBgFontValue}
+        bgFontValue={bgFontValue}
+
       />
 
-      {/* delete zone */}
       <div
         ref={deleteRef}
         className={`h-80 w-80 transition-all duration-300 flex items-center justify-center
@@ -119,7 +120,6 @@ function Forground({backgroundMainColor,backgroundMainFontColor,setBackgroundMai
         <RiDeleteBinLine className="text-white text-6xl" />
       </div>
 
-      {/* cards */}
       <div ref={ref} className="flex h-[91%] p-5 gap-10">
         {users.map((item, index) => (
           <Card
