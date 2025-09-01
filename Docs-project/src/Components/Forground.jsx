@@ -6,7 +6,18 @@ import Form from "./Form";
 import { RiDeleteBinLine } from "react-icons/ri";
 import SettingPanel from "./SettingPanel";
 
-function Forground({backgroundMainColor,setBgFontValue,bgFontValue,backgroundMainFontColor,setBgNewFontVal,bgNewFontVal,setBackgroundMainFontColor,setBackgroundMainColor }) {
+function Forground({
+  backgroundMainColor,
+  navBtnBgColor,
+  setNavBtnBgColor,
+  setBgFontValue,
+  bgFontValue,
+  backgroundMainFontColor,
+  setBgNewFontVal,
+  bgNewFontVal,
+  setBackgroundMainFontColor,
+  setBackgroundMainColor,
+}) {
   const [isOverDelete, setIsOverDelete] = useState(false);
   const [deletTop, setDeleteTop] = useState(false);
   const [deletLeft, setDeleteLeft] = useState(false);
@@ -21,13 +32,10 @@ function Forground({backgroundMainColor,setBgFontValue,bgFontValue,backgroundMai
   const [navFontColor, setNavFontColor] = useState(() => {
     return localStorage.getItem("navFontColor") || "#000000";
   });
-  const [navBtnBgColor, setNavBtnBgColor] = useState(() => {
-    return localStorage.getItem("navBtnBgColor") || "#000000";
-  });
+
   const [navBtnFontColor, setNavBtnFontColor] = useState(() => {
     return localStorage.getItem("navBtnFontColor") || "#000000";
   });
-  
 
   const [showSettings, setShowSettings] = useState(false);
 
@@ -42,7 +50,7 @@ function Forground({backgroundMainColor,setBgFontValue,bgFontValue,backgroundMai
     const savedUsers = localStorage.getItem("users");
     if (savedUsers) {
       setUsers(JSON.parse(savedUsers));
-    } else  {
+    } else {
       axios
         .get("https://randomuser.me/api/?results=5")
         .then((res) => {
@@ -55,16 +63,20 @@ function Forground({backgroundMainColor,setBgFontValue,bgFontValue,backgroundMai
     }
   }, []);
 
- useEffect(() => {
-  localStorage.setItem("navColor", navColor);
-  localStorage.setItem("navFontColor", navFontColor);
-  localStorage.setItem("navBtnBgColor", navBtnBgColor);
-  localStorage.setItem("navBtnFontColor", navBtnFontColor);
-  localStorage.setItem("backgroundMainColor", backgroundMainColor);
-  localStorage.setItem("backgroundMainFontColor", backgroundMainFontColor);
-
-}, [navColor, navFontColor, navBtnBgColor, navBtnFontColor, backgroundMainColor,backgroundMainFontColor]);
-
+  useEffect(() => {
+    localStorage.setItem("navColor", navColor);
+    localStorage.setItem("navFontColor", navFontColor);
+    localStorage.setItem("navBtnFontColor", navBtnFontColor);
+    localStorage.setItem("backgroundMainColor", backgroundMainColor);
+    localStorage.setItem("backgroundMainFontColor", backgroundMainFontColor);
+  }, [
+    navColor,
+    navFontColor,
+    navBtnBgColor,
+    navBtnFontColor,
+    backgroundMainColor,
+    backgroundMainFontColor,
+  ]);
 
   const handleAddUser = (newUser) => {
     const updated = [...users, newUser];
@@ -106,7 +118,6 @@ function Forground({backgroundMainColor,setBgFontValue,bgFontValue,backgroundMai
         bgNewFontVal={bgNewFontVal}
         setBgFontValue={setBgFontValue}
         bgFontValue={bgFontValue}
-
       />
 
       <div

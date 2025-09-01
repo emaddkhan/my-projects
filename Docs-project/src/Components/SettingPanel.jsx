@@ -8,6 +8,7 @@ import NavBtnFontPicker from "./color pickers/NavBtnFontPicker";
 import BackGroundColorPicker from "./color pickers/BackGroundColorPicker";
 import BackgroundFontColorPicker from "./color pickers/BackgroundFontColorPicker";
 import { PiCheckFatFill } from "react-icons/pi";
+import { div } from "framer-motion/client";
 
 function SettingPanel({
   showSettings,
@@ -34,6 +35,7 @@ function SettingPanel({
   const [showBgFontColor, setShowBgFontColor] = useState(false);
   const [showBgFontSize, setShowBgFontSize] = useState(false);
   const [fontVal, setFontVal] = useState(bgFontValue);
+  const [showFontStyle,setShowFontStyle]=useState(false)
 
   useEffect(() => {
     setFontVal(bgFontValue);
@@ -45,6 +47,7 @@ function SettingPanel({
     console.log("applied font size:", fontVal, "vw");
   };
 
+  
   return (
     <div
       className={`absolute w-[25%] 
@@ -241,7 +244,7 @@ function SettingPanel({
           />
         </div>
         {showBgFontSize && (
-          <>
+          <div className="px-5">
             <input
               type="range"
               min={0}
@@ -249,9 +252,14 @@ function SettingPanel({
               step={0.5}
               value={fontVal}
               onChange={(e) => setFontVal(parseFloat(e.target.value))}
-              className="w-[90%] mx-auto h-3 cursor-pointer"
+              className="w-full h-4 mt-2 rounded-lg appearance-none cursor-pointer"
+              style={{
+            background:
+              "black",
+              color:"white",
+          }}
             />
-            <div className="flex justify-end px-8">
+            <div className="flex justify-end ">
               <button
                 onClick={setFontSizeHandler}
                 className="p-2 rounded-lg hover:bg-green-100 transition"
@@ -259,9 +267,41 @@ function SettingPanel({
                 <PiCheckFatFill className="text-2xl text-green-600" />
               </button>
             </div>
-          </>
+          </div>
         )}
       </div>
+
+
+
+
+
+      <div
+        className={`pl-3 mt-2 transition-all duration-300 overflow-hidden ${
+          showBackgroundMain ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div
+          onClick={() => setShowFontStyle(!showFontStyle)}
+          className="flex items-center cursor-pointer justify-between"
+        >
+          <h4 className="font-semibold">Font Style</h4>
+          <IoMdArrowDropdownCircle
+            className={`text-2xl transition-all duration-300 ${
+              showFontStyle ? "rotate-180" : ""
+            }`}
+          />
+        </div>
+        {showFontStyle&&(
+          <div className="w-full mt-2 px-5 h-8 flex items-center justify-between">
+            <button className="font-semibold text-xl ">Docs</button>
+            <button className="font-semibold text-xl ">Docs</button>
+            <button className="font-semibold text-xl ">Docs</button>
+            <button className="font-semibold text-xl ">Docs</button>
+          </div>
+        )}
+        
+      </div>
+
     </div>
   );
 }

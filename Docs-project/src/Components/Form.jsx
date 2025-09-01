@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { motion } from "motion/react";
 
-function Form({ formCloseBtnHandeler,onUserAdd }) {
+function Form({ formCloseBtnHandeler,onUserAdd ,navBtnBgColor}) {
   const ref = useRef(null);
 
   const [formData, setFormData] = useState({
@@ -90,7 +90,7 @@ const handleImageChange = (e) => {
           dragConstraints={ref}
           className="h-[90%] shadow-md shadow-white w-[30%] rounded-2xl overflow-hidden bg-zinc-50"
         >
-          <div className="py-5 w-full bg-green-300">
+          <div className="py-5 w-full bg-green-300" style={{backgroundColor:navBtnBgColor}}>
             <h1 className="text-center text-white text-xl font-semibold">
               Add User
             </h1>
