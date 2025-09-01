@@ -17,6 +17,7 @@ function Forground({
   bgNewFontVal,
   setBackgroundMainFontColor,
   setBackgroundMainColor,
+  setFontFamily
 }) {
   const [isOverDelete, setIsOverDelete] = useState(false);
   const [deletTop, setDeleteTop] = useState(false);
@@ -118,6 +119,7 @@ function Forground({
         bgNewFontVal={bgNewFontVal}
         setBgFontValue={setBgFontValue}
         bgFontValue={bgFontValue}
+        setFontFamily={setFontFamily}
       />
 
       <div

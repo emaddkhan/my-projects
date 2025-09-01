@@ -16,14 +16,16 @@ function App() {
   const [navBtnBgColor, setNavBtnBgColor] = useState(() => {
     return localStorage.getItem("navBtnBgColor") || "#000000";
   });
+  const [fontFamily, setFontFamily] = useState(() => {
+    return localStorage.getItem("fontFamily") || "Arial, Helvetica, sans-serif";
+  });
   const [showForm, setShowForm] = useState(false);
   useEffect(() => {
     localStorage.setItem("bgFontValue", bgFontValue);
-  }, [bgFontValue]);
-  useEffect(()=>{
     localStorage.setItem("navBtnBgColor", navBtnBgColor);
-
-  },[navBtnBgColor])
+    localStorage.setItem("fontFamily", fontFamily);
+  }, [bgFontValue,navBtnBgColor,fontFamily]);
+  
 
   return (
     <div
@@ -33,6 +35,7 @@ function App() {
       <Background
         bgFontValue={bgFontValue}
         backgroundMainFontColor={backgroundMainFontColor}
+        fontFamily={fontFamily}
       />
       <Forground
         navBtnBgColor={navBtnBgColor}
@@ -43,6 +46,7 @@ function App() {
         backgroundMainFontColor={backgroundMainFontColor}
         setBackgroundMainFontColor={setBackgroundMainFontColor}
         setBackgroundMainColor={setBackgroundMainColor}
+        setFontFamily={setFontFamily}
       />
       {showForm && (
         <Form

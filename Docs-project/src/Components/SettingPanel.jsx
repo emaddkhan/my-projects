@@ -24,6 +24,7 @@ function SettingPanel({
   setBackgroundMainFontColor,
   setBgFontValue,
   bgFontValue,
+  setFontFamily,
 }) {
   const [showNavTheme, setShowNavTheme] = useState(false);
   const [showMainNav, setShowMainNav] = useState(false);
@@ -35,19 +36,35 @@ function SettingPanel({
   const [showBgFontColor, setShowBgFontColor] = useState(false);
   const [showBgFontSize, setShowBgFontSize] = useState(false);
   const [fontVal, setFontVal] = useState(bgFontValue);
-  const [showFontStyle,setShowFontStyle]=useState(false)
+  const [showFontStyle, setShowFontStyle] = useState(false);
+  const [activeFont, setActiveFont] = useState("");
 
   useEffect(() => {
     setFontVal(bgFontValue);
   }, [bgFontValue]);
 
   const setFontSizeHandler = () => {
-    setBgFontValue(fontVal); 
+    setBgFontValue(fontVal);
     setShowBgFontSize(false);
     console.log("applied font size:", fontVal, "vw");
   };
+  const buttonOneFontHandler = () => {
+    setFontFamily("Arial, Helvetica, sans-serif");
+    setActiveFont("Arial, Helvetica, sans-serif");
+  };
+  const buttonTwoFontHandler = () => {
+    setFontFamily("Times New Roman, Times, serif");
+    setActiveFont("Times New Roman, Times, serif");
+  };
+  const buttonThreeFontHandler = () => {
+    setFontFamily("Courier New, Courier, monospace");
+    setActiveFont("Courier New, Courier, monospace");
+  };
+  const buttonFourFontHandler = () => {
+    setFontFamily("Comic Sans MS, cursive, sans-serif");
+    setActiveFont("Comic Sans MS, cursive, sans-serif");
+  };
 
-  
   return (
     <div
       className={`absolute w-[25%] 
@@ -254,10 +271,9 @@ function SettingPanel({
               onChange={(e) => setFontVal(parseFloat(e.target.value))}
               className="w-full h-4 mt-2 rounded-lg appearance-none cursor-pointer"
               style={{
-            background:
-              "black",
-              color:"white",
-          }}
+                background: "black",
+                color: "white",
+              }}
             />
             <div className="flex justify-end ">
               <button
@@ -271,13 +287,9 @@ function SettingPanel({
         )}
       </div>
 
-
-
-
-
       <div
         className={`pl-3 mt-2 transition-all duration-300 overflow-hidden ${
-          showBackgroundMain ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
+          showBackgroundMain ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div
@@ -291,17 +303,76 @@ function SettingPanel({
             }`}
           />
         </div>
-        {showFontStyle&&(
-          <div className="w-full mt-2 px-5 h-8 flex items-center justify-between">
-            <button className="font-semibold text-xl ">Docs</button>
-            <button className="font-semibold text-xl ">Docs</button>
-            <button className="font-semibold text-xl ">Docs</button>
-            <button className="font-semibold text-xl ">Docs</button>
+        {showFontStyle && (
+          <div className="w-full  px-5 h-16 flex items-center justify-between">
+            <button
+              onClick={buttonOneFontHandler}
+              style={{
+                fontFamily: "Arial, Helvetica, sans-serif",
+                backgroundColor:
+                  activeFont === "Arial, Helvetica, sans-serif"
+                    ? "black"
+                    : "white",
+                color:
+                  activeFont === "Arial, Helvetica, sans-serif"
+                    ? "white"
+                    : "black",
+              }}
+              className="text-xl px-3 py-1 rounded-full"
+            >
+              Docs.
+            </button>
+            <button
+              onClick={buttonTwoFontHandler}
+              style={{ fontFamily: "Times New Roman, Times, serif" ,
+                backgroundColor:
+                  activeFont === "Times New Roman, Times, serif"
+                    ? "black"
+                    : "white",
+                color:
+                  activeFont === "Times New Roman, Times, serif"
+                    ? "white"
+                    : "black",
+              }}
+              className="text-xl px-3 py-1 rounded-full"
+            >
+              Docs.
+            </button>
+            <button
+              onClick={buttonThreeFontHandler}
+              style={{ fontFamily: "Courier New, Courier, monospace" ,
+                backgroundColor:
+                  activeFont === "Courier New, Courier, monospace"
+                    ? "black"
+                    : "white",
+                color:
+                  activeFont === "Courier New, Courier, monospace"
+                    ? "white"
+                    : "black",
+              }}
+              className="text-xl px-3 py-1 rounded-full"
+            >
+              Docs.
+            </button>
+            <button
+              onClick={buttonFourFontHandler}
+              style={{ fontFamily: "Comic Sans MS, cursive, sans-serif",
+                backgroundColor:
+                  activeFont === "Comic Sans MS, cursive, sans-serif"
+                    ? "black"
+                    : "white",
+                color:
+                  activeFont === "Comic Sans MS, cursive, sans-serif"
+                    ? "white"
+                    : "black",
+               }}
+              className="text-xl px-3 py-1 rounded-full"
+            >
+              Docs.
+            </button>
           </div>
         )}
-        
       </div>
-
     </div>
   );
 }
