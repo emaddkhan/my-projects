@@ -1,9 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
+import { CiMenuKebab } from "react-icons/ci";
+import { BiUndo } from "react-icons/bi";
+import { IoMdArrowDropdownCircle } from "react-icons/io";
+import CardBgPicker from "./color pickers/CardBgPicker";
 
-
-function Card({ data, reference, deleteRef, onDragStart, onDragEnd, isActive, setIsOverDelete }) {
+function Card({
+  data,
+  reference,
+  deleteRef,
+  onDragStart,
+  onDragEnd,
+  isActive,
+  setIsOverDelete,
+}) {
   const [overDelete, setOverDelete] = useState(false);
+  const [showCardSetting, setCardSetting] = useState(false);
+  const [showCardBg, setCardBg] = useState(false);
+  const [cardBgColor, setCardBgColor] = useState("rgba(24,24,27,0.9)"); 
+
+  const cardKey = `card-bg-${data.email}`;
+
+  useEffect(() => {
+    const savedColor = localStorage.getItem(cardKey);
+    if (savedColor) {
+      setCardBgColor(savedColor);
+    }
+  }, [cardKey]);
+
+  const handleColorChange = (color) => {
+    setCardBgColor(color);
+    localStorage.setItem(cardKey, color);
+  };
 
   const handleDrag = (event, info) => {
     const deleteEl = deleteRef?.current;
@@ -36,9 +64,44 @@ function Card({ data, reference, deleteRef, onDragStart, onDragEnd, isActive, se
         onDragEnd();
       }}
       onDrag={handleDrag}
-      className={`flex-shrink-0 relative w-60 h-72 text-white px-3 py-10 rounded-[45px] overflow-hidden 
-        ${isActive && overDelete ? "bg-red-600" : "bg-zinc-900/90"}`}
+      style={{
+        background: isActive && overDelete ? "rgb(220,38,38)" : cardBgColor,
+      }}
+      className="flex-shrink-0 relative w-60 h-72 text-white px-3 py-10 rounded-[45px] overflow-hidden"
     >
+      <button className="absolute flex right-3 top-5 justify-end">
+        <CiMenuKebab
+          onClick={() => setCardSetting(!showCardSetting)}
+          className="text-2xl"
+        />
+      </button>
+
+      {showCardSetting && (
+        <div className="w-full h-full top-0 left-0 bg-zinc-800 absolute">
+          <button onClick={() => setCardSetting(!showCardSetting)}>
+            <BiUndo className="top-5 left-5 absolute text-2xl text-white" />
+          </button>
+          <div
+            onClick={() => setCardBg(!showCardBg)}
+            className="px-5 py-1 mt-5 cursor-pointer flex justify-between items-center"
+          >
+            <h3 className="font-semibold">Card Background</h3>
+            <IoMdArrowDropdownCircle
+              className={`text-xl transition-transform duration-300 ${
+                showCardBg ? "rotate-180" : ""
+              }`}
+            />
+          </div>
+          {showCardBg && (
+            <CardBgPicker
+              showCardBg={showCardBg}
+              onColorChange={handleColorChange} 
+              setCardSetting={setCardSetting}
+            />
+          )}
+        </div>
+      )}
+
       <div className="w-16 h-16 mx-auto rounded-full overflow-hidden">
         <img className="h-full w-full" src={data.picture.large} alt="" />
       </div>
@@ -54,4 +117,5 @@ function Card({ data, reference, deleteRef, onDragStart, onDragEnd, isActive, se
     </motion.div>
   );
 }
-export default Card
+
+export default Card;

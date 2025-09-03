@@ -70,7 +70,7 @@ function SettingPanel({
       className={`absolute w-[25%] 
         ${showSettings ? "max-h-[90%] opacity-100" : "max-h-0 opacity-0"} 
         rounded-2xl top-[10%] z-[6] left-[2%] 
-        transition-all duration-500 overflow-hidden p-5`}
+        transition-all duration-500 overflow-y-auto p-5`}
       style={{ backgroundColor: navColor }}
     >
       <h1 className="font-semibold text-lg">Theme:</h1>
@@ -350,7 +350,7 @@ function SettingPanel({
                     ? "white"
                     : "black",
               }}
-              className="text-xl px-3 py-1 rounded-full"
+              className="text-xl font-semibold px-3 py-1 rounded-full"
             >
               Docs.
             </button>
