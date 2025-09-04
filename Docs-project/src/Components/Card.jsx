@@ -4,6 +4,7 @@ import { CiMenuKebab } from "react-icons/ci";
 import { BiUndo } from "react-icons/bi";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 import CardBgPicker from "./color pickers/CardBgPicker";
+import CardFontPicker from "./color pickers/CardFontPicker";
 
 function Card({
   data,
@@ -17,20 +18,29 @@ function Card({
   const [overDelete, setOverDelete] = useState(false);
   const [showCardSetting, setCardSetting] = useState(false);
   const [showCardBg, setCardBg] = useState(false);
-  const [cardBgColor, setCardBgColor] = useState("rgba(24,24,27,0.9)"); 
+  const [cardBgColor, setCardBgColor] = useState("rgba(24,24,27,0.9)");
+  const [showCardFont, setShowCardFont] = useState(false);
+  const [cardFontColor, setCardFontColor] = useState("#ffffff");
 
-  const cardKey = `card-bg-${data.email}`;
+  const bgKey = `card-bg-${data.email}`;
+  const fontKey = `card-font-${data.email}`;
 
   useEffect(() => {
-    const savedColor = localStorage.getItem(cardKey);
-    if (savedColor) {
-      setCardBgColor(savedColor);
-    }
-  }, [cardKey]);
+    const savedBg = localStorage.getItem(bgKey);
+    const savedFont = localStorage.getItem(fontKey);
 
-  const handleColorChange = (color) => {
+    if (savedBg) setCardBgColor(savedBg);
+    if (savedFont) setCardFontColor(savedFont);
+  }, [bgKey, fontKey]);
+
+  const handleBgColorChange = (color) => {
     setCardBgColor(color);
-    localStorage.setItem(cardKey, color);
+    localStorage.setItem(bgKey, color);
+  };
+
+  const handleFontColorChange = (color) => {
+    setCardFontColor(color);
+    localStorage.setItem(fontKey, color);
   };
 
   const handleDrag = (event, info) => {
@@ -66,8 +76,9 @@ function Card({
       onDrag={handleDrag}
       style={{
         background: isActive && overDelete ? "rgb(220,38,38)" : cardBgColor,
+        color: cardFontColor, 
       }}
-      className="flex-shrink-0 relative w-60 h-72 text-white px-3 py-10 rounded-[45px] overflow-hidden"
+      className="flex-shrink-0 relative w-60 h-72 px-3 py-10 rounded-[45px] overflow-hidden"
     >
       <button className="absolute flex right-3 top-5 justify-end">
         <CiMenuKebab
@@ -81,6 +92,7 @@ function Card({
           <button onClick={() => setCardSetting(!showCardSetting)}>
             <BiUndo className="top-5 left-5 absolute text-2xl text-white" />
           </button>
+
           <div
             onClick={() => setCardBg(!showCardBg)}
             className="px-5 py-1 mt-5 cursor-pointer flex justify-between items-center"
@@ -95,7 +107,26 @@ function Card({
           {showCardBg && (
             <CardBgPicker
               showCardBg={showCardBg}
-              onColorChange={handleColorChange} 
+              onColorChange={handleBgColorChange}
+              setCardSetting={setCardSetting}
+            />
+          )}
+
+          <div
+            onClick={() => setShowCardFont(!showCardFont)}
+            className="px-5 py-1 mt-5 cursor-pointer flex justify-between items-center"
+          >
+            <h3 className="font-semibold">Card Font Color</h3>
+            <IoMdArrowDropdownCircle
+              className={`text-xl transition-transform duration-300 ${
+                showCardFont ? "rotate-180" : ""
+              }`}
+            />
+          </div>
+          {showCardFont && (
+            <CardFontPicker
+              showCardFont={showCardFont}
+              onColorChange={handleFontColorChange}
               setCardSetting={setCardSetting}
             />
           )}
