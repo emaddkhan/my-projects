@@ -26,6 +26,7 @@ function Forground({
   const [users, setUsers] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [activeCardIndex, setActiveCardIndex] = useState(null);
+  
 
   const [navColor, setNavColor] = useState(() => {
     return localStorage.getItem("navColor") || "#ffffff";
@@ -37,6 +38,11 @@ function Forground({
   const [navBtnFontColor, setNavBtnFontColor] = useState(() => {
     return localStorage.getItem("navBtnFontColor") || "#000000";
   });
+  const [dragging, setDragging] = useState(() => {
+  const stored = localStorage.getItem("dragging");
+  return stored !== null ? stored === "true" : true; 
+});
+
 
   const [showSettings, setShowSettings] = useState(false);
 
@@ -70,6 +76,7 @@ function Forground({
     localStorage.setItem("navBtnFontColor", navBtnFontColor);
     localStorage.setItem("backgroundMainColor", backgroundMainColor);
     localStorage.setItem("backgroundMainFontColor", backgroundMainFontColor);
+    localStorage.setItem("dragging", dragging.toString()); 
   }, [
     navColor,
     navFontColor,
@@ -77,6 +84,7 @@ function Forground({
     navBtnFontColor,
     backgroundMainColor,
     backgroundMainFontColor,
+    dragging
   ]);
 
   const handleAddUser = (newUser) => {
@@ -120,6 +128,8 @@ function Forground({
         setBgFontValue={setBgFontValue}
         bgFontValue={bgFontValue}
         setFontFamily={setFontFamily}
+        dragging={dragging}
+        setDragging={setDragging}
       />
 
       <div
@@ -147,6 +157,7 @@ function Forground({
               setDeleteTop(true);
               setDeleteLeft(true);
             }}
+            dragging={dragging}
             onDragEnd={() => {
               if (isOverDelete) {
                 handleDeleteUser(index);

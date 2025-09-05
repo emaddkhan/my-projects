@@ -14,6 +14,7 @@ function Card({
   onDragEnd,
   isActive,
   setIsOverDelete,
+  dragging
 }) {
   const [overDelete, setOverDelete] = useState(false);
   const [showCardSetting, setCardSetting] = useState(false);
@@ -62,7 +63,7 @@ function Card({
 
   return (
     <motion.div
-      drag
+      drag={dragging?true:false}
       dragConstraints={reference}
       whileDrag={{ scale: 1.1 }}
       dragElastic={0.1}
