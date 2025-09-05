@@ -13,17 +13,18 @@ import { div } from "framer-motion/client";
 function getContrastColor(hex) {
   if (!hex) return "#000000";
 
-  // normalize input (#abc → #aabbcc)
   hex = hex.replace("#", "");
   if (hex.length === 3) {
-    hex = hex.split("").map(c => c + c).join("");
+    hex = hex
+      .split("")
+      .map((c) => c + c)
+      .join("");
   }
 
   const r = parseInt(hex.substr(0, 2), 16) / 255;
   const g = parseInt(hex.substr(2, 2), 16) / 255;
   const b = parseInt(hex.substr(4, 2), 16) / 255;
 
-  // convert sRGB → linear RGB
   const toLinear = (c) =>
     c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
 
@@ -31,20 +32,13 @@ function getContrastColor(hex) {
   const G = toLinear(g);
   const B = toLinear(b);
 
-  // relative luminance (0–1)
   const L = 0.2126 * R + 0.7152 * G + 0.0722 * B;
 
-  // contrast ratios against white & black
-  const contrastWhite = (1.05) / (L + 0.05);
+  const contrastWhite = 1.05 / (L + 0.05);
   const contrastBlack = (L + 0.05) / 0.05;
 
-  // return whichever gives better contrast
   return contrastBlack > contrastWhite ? "#000000" : "#ffffff";
 }
-
-
-
-
 
 function SettingPanel({
   showSettings,
@@ -62,7 +56,8 @@ function SettingPanel({
   bgFontValue,
   setFontFamily,
   dragging,
-  setDragging
+  setDragging,
+  setShowSettings
 }) {
   const [showNavTheme, setShowNavTheme] = useState(false);
   const [showMainNav, setShowMainNav] = useState(false);
@@ -102,7 +97,25 @@ function SettingPanel({
     setFontFamily("Comic Sans MS, cursive, sans-serif");
     setActiveFont("Comic Sans MS, cursive, sans-serif");
   };
+  const resetHandler =()=>{
+    setShowNavTheme(false)
+    setShowMainNav(false)
+    setShowNavFont(false)
+    setShowNavBtnBg(false)
+    setShowNavBtnFont(false)
+    setShowBackgroundMain(false)
+    setShowBgPicker(false)
+    setShowBgFontColor(false)
+    setShowBgFontSize(false)
+    setBgFontValue(13)
+    setShowFontStyle(false)
+    setNavColor("#ffffff")
+    setNavFontColor("#000000")
+    setNavBtnFontColor("#ffffff")
+    setDragging(true)
+    setShowSettings(false)
 
+  }
   return (
     <div
       className={`absolute w-[25%] 
@@ -362,7 +375,8 @@ function SettingPanel({
             </button>
             <button
               onClick={buttonTwoFontHandler}
-              style={{ fontFamily: "Times New Roman, Times, serif" ,
+              style={{
+                fontFamily: "Times New Roman, Times, serif",
                 backgroundColor:
                   activeFont === "Times New Roman, Times, serif"
                     ? "black"
@@ -378,7 +392,8 @@ function SettingPanel({
             </button>
             <button
               onClick={buttonThreeFontHandler}
-              style={{ fontFamily: "Courier New, Courier, monospace" ,
+              style={{
+                fontFamily: "Courier New, Courier, monospace",
                 backgroundColor:
                   activeFont === "Courier New, Courier, monospace"
                     ? "black"
@@ -394,7 +409,8 @@ function SettingPanel({
             </button>
             <button
               onClick={buttonFourFontHandler}
-              style={{ fontFamily: "Comic Sans MS, cursive, sans-serif",
+              style={{
+                fontFamily: "Comic Sans MS, cursive, sans-serif",
                 backgroundColor:
                   activeFont === "Comic Sans MS, cursive, sans-serif"
                     ? "black"
@@ -403,7 +419,7 @@ function SettingPanel({
                   activeFont === "Comic Sans MS, cursive, sans-serif"
                     ? "white"
                     : "black",
-               }}
+              }}
               className="text-xl px-3 py-1 rounded-full"
             >
               Docs.
@@ -412,35 +428,36 @@ function SettingPanel({
         )}
       </div>
 
-
       <div
         onClick={() => setShowBackgroundMain(!showBackgroundMain)}
         className="flex justify-between cursor-pointer items-center mt-2"
       >
         <h3 className="text-2xl font-semibold">Dragging</h3>
         <label className="relative inline-flex items-center cursor-pointer">
-  <input
-    type="checkbox"
-    checked={dragging}
-    onChange={() => setDragging(!dragging)}
-    className="sr-only peer"
-  />
+          <input
+            type="checkbox"
+            checked={dragging}
+            onChange={() => setDragging(!dragging)}
+            className="sr-only peer"
+          />
 
-  {/* dynamic bg + contrast */}
-  <div
-    className="w-12 h-6 rounded-full transition-colors"
-    style={{
-      backgroundColor: dragging
-        ? getContrastColor(navColor) // contrast color
-        : "#d1d5db" // gray-300 when off
-    }}
-  ></div>
+          {/* dynamic bg + contrast */}
+          <div
+            className="w-12 h-6 rounded-full transition-colors"
+            style={{
+              backgroundColor: dragging
+                ? getContrastColor(navColor) // contrast color
+                : "#d1d5db", // gray-300 when off
+            }}
+          ></div>
 
-  <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow-md transition-transform peer-checked:translate-x-6"></div>
-</label>
-
+          <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow-md transition-transform peer-checked:translate-x-6"></div>
+        </label>
       </div>
 
+      <div className="flex justify-center items-center">
+        <button onClick={resetHandler} className="w-full rounded-full py-3 mt-5 bg-black text-white">Reset</button>
+      </div>
     </div>
   );
 }

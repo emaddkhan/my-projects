@@ -26,6 +26,8 @@ function Forground({
   const [users, setUsers] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [activeCardIndex, setActiveCardIndex] = useState(null);
+
+  
   
 
   const [navColor, setNavColor] = useState(() => {
@@ -36,7 +38,7 @@ function Forground({
   });
 
   const [navBtnFontColor, setNavBtnFontColor] = useState(() => {
-    return localStorage.getItem("navBtnFontColor") || "#000000";
+    return localStorage.getItem("navBtnFontColor") || "#ffffff";
   });
   const [dragging, setDragging] = useState(() => {
   const stored = localStorage.getItem("dragging");
@@ -112,6 +114,7 @@ function Forground({
         backgroundMainColor={backgroundMainColor}
       />
       <SettingPanel
+        setShowSettings={setShowSettings}
         setNavColor={setNavColor}
         navColor={navColor}
         showSettings={showSettings}

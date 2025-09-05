@@ -89,9 +89,9 @@ function Card({
       </button>
 
       {showCardSetting && (
-        <div className="w-full h-full top-0 left-0 bg-zinc-800 absolute">
+        <div className="w-full h-full top-0 left-0 bg-zinc-800 absolute" style={{backgroundColor:cardBgColor,color:cardFontColor}}>
           <button onClick={() => setCardSetting(!showCardSetting)}>
-            <BiUndo className="top-5 left-5 absolute text-2xl text-white" />
+            <BiUndo className="top-5 left-5 absolute text-2xl text-white" style={{color:cardFontColor}} />
           </button>
 
           <div
