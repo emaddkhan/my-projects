@@ -10,6 +10,7 @@ function Navbar({
   navBtnBgColor,
   navBtnFontColor,
   settingBtnHandler,
+  fontFamily
 }) {
   return (
     <div
@@ -33,7 +34,7 @@ function Navbar({
           Settings
         </h3>
       </button>
-      <h5 className="text-xl font-semibold" style={{ color: navFontColor }}>
+      <h5 className="text-xl font-semibold" style={{ color: navFontColor,fontFamily:fontFamily }}>
         Documents
       </h5>
       <button

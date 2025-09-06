@@ -17,7 +17,8 @@ function Forground({
   bgNewFontVal,
   setBackgroundMainFontColor,
   setBackgroundMainColor,
-  setFontFamily
+  setFontFamily,
+  fontFamily
 }) {
   const [isOverDelete, setIsOverDelete] = useState(false);
   const [deletTop, setDeleteTop] = useState(false);
@@ -115,6 +116,7 @@ function Forground({
         navBtnBgColor={navBtnBgColor}
         navBtnFontColor={navBtnFontColor}
         backgroundMainColor={backgroundMainColor}
+        fontFamily={fontFamily}
       />
       <SettingPanel
         setShowSettings={setShowSettings}

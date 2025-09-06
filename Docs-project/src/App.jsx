@@ -47,6 +47,7 @@ function App() {
         setBackgroundMainFontColor={setBackgroundMainFontColor}
         setBackgroundMainColor={setBackgroundMainColor}
         setFontFamily={setFontFamily}
+        fontFamily={fontFamily}
       />
       {showForm && (
         <Form

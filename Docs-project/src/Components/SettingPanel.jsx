@@ -366,11 +366,11 @@ function SettingPanel({
                 fontFamily: "Arial, Helvetica, sans-serif",
                 backgroundColor:
                   activeFont === "Arial, Helvetica, sans-serif"
-                    ? "black"
+                    ? navFontColor
                     : "white",
                 color:
                   activeFont === "Arial, Helvetica, sans-serif"
-                    ? "white"
+                    ? navColor
                     : navFontColor,
               }}
               className="text-xl px-3 py-1 rounded-full"
@@ -384,11 +384,11 @@ function SettingPanel({
                 fontFamily: "Times New Roman, Times, serif",
                 backgroundColor:
                   activeFont === "Times New Roman, Times, serif"
-                    ? "black"
+                    ? navFontColor
                     : "white",
                 color:
                   activeFont === "Times New Roman, Times, serif"
-                    ? "white"
+                    ? navColor
                     : navFontColor,
               }}
               className="text-xl px-3 py-1 rounded-full"
@@ -401,11 +401,11 @@ function SettingPanel({
                 fontFamily: "Courier New, Courier, monospace",
                 backgroundColor:
                   activeFont === "Courier New, Courier, monospace"
-                    ? "black"
+                    ? navFontColor
                     : "white",
                 color:
                   activeFont === "Courier New, Courier, monospace"
-                    ? "white"
+                    ? navColor
                     : navFontColor,
               }}
               className="text-xl font-semibold px-3 py-1 rounded-full"
@@ -418,11 +418,11 @@ function SettingPanel({
                 fontFamily: "Comic Sans MS, cursive, sans-serif",
                 backgroundColor:
                   activeFont === "Comic Sans MS, cursive, sans-serif"
-                    ? "black"
+                    ? navFontColor
                     : "white",
                 color:
                   activeFont === "Comic Sans MS, cursive, sans-serif"
-                    ? "white"
+                    ? navColor
                     : navFontColor,
               }}
               className="text-xl px-3 py-1 rounded-full"
