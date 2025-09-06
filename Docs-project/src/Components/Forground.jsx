@@ -30,6 +30,9 @@ function Forground({
   
   
 
+  
+  
+
   const [navColor, setNavColor] = useState(() => {
     return localStorage.getItem("navColor") || "#ffffff";
   });
@@ -170,6 +173,7 @@ function Forground({
               setDeleteLeft(false);
               setIsOverDelete(false);
             }}
+            
           />
         ))}
       </div>

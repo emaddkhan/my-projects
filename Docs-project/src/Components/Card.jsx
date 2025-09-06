@@ -14,7 +14,7 @@ function Card({
   onDragEnd,
   isActive,
   setIsOverDelete,
-  dragging
+  dragging,
 }) {
   const [overDelete, setOverDelete] = useState(false);
   const [showCardSetting, setCardSetting] = useState(false);

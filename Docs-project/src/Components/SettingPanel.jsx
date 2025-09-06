@@ -57,7 +57,8 @@ function SettingPanel({
   setFontFamily,
   dragging,
   setDragging,
-  setShowSettings
+  setShowSettings,
+  setCarDefault
 }) {
   const [showNavTheme, setShowNavTheme] = useState(false);
   const [showMainNav, setShowMainNav] = useState(false);
@@ -114,7 +115,10 @@ function SettingPanel({
     setNavBtnFontColor("#ffffff")
     setDragging(true)
     setShowSettings(false)
-
+    setNavBtnBgColor("#000000")
+    setBackgroundMainColor("#27272A")
+    setBackgroundMainFontColor("#18181B")
+    setFontFamily("Arial, Helvetica, sans-serif")
   }
   return (
     <div
@@ -124,13 +128,13 @@ function SettingPanel({
         transition-all duration-500 overflow-y-auto p-5`}
       style={{ backgroundColor: navColor }}
     >
-      <h1 className="font-semibold text-lg">Theme:</h1>
+      <h1 style={{color:navFontColor}} className="font-semibold text-lg">Theme:</h1>
 
       <div
         onClick={() => setShowMainNav(!showMainNav)}
         className="flex justify-between cursor-pointer items-center"
       >
-        <h3 className="text-2xl font-semibold">Navbar:</h3>
+        <h3 className="text-2xl font-semibold" style={{color:navFontColor}}>Navbar:</h3>
         <IoMdArrowDropdownCircle
           className={`text-2xl transition-all duration-300 ${
             showMainNav ? "rotate-180" : ""
@@ -147,7 +151,7 @@ function SettingPanel({
           onClick={() => setShowNavTheme(!showNavTheme)}
           className="flex items-center cursor-pointer justify-between"
         >
-          <h4 className="font-semibold">Navbar Theme</h4>
+          <h4 className="font-semibold" style={{color:navFontColor}}>Navbar Theme</h4>
           <IoMdArrowDropdownCircle
             className={`text-2xl transition-all duration-300 ${
               showNavTheme ? "rotate-180" : ""
@@ -173,7 +177,7 @@ function SettingPanel({
           onClick={() => setShowNavFont(!showNavFont)}
           className="flex items-center cursor-pointer justify-between"
         >
-          <h4 className="font-semibold">Navbar Font Color</h4>
+          <h4 className="font-semibold" style={{color:navFontColor}}>Navbar Font Color</h4>
           <IoMdArrowDropdownCircle
             className={`text-2xl transition-all duration-300 ${
               showNavFont ? "rotate-180" : ""
@@ -198,7 +202,7 @@ function SettingPanel({
           onClick={() => setShowNavBtnBg(!showNavBtnBg)}
           className="flex items-center cursor-pointer justify-between"
         >
-          <h4 className="font-semibold">Navbar Button Background</h4>
+          <h4 className="font-semibold" style={{color:navFontColor}}>Navbar Button Background</h4>
           <IoMdArrowDropdownCircle
             className={`text-2xl transition-all duration-300 ${
               showNavBtnBg ? "rotate-180" : ""
@@ -217,7 +221,7 @@ function SettingPanel({
           onClick={() => setShowNavBtnFont(!showNavBtnFont)}
           className="flex items-center cursor-pointer justify-between mt-2"
         >
-          <h4 className="font-semibold">Navbar Button Font Color</h4>
+          <h4 className="font-semibold" style={{color:navFontColor}}>Navbar Button Font Color</h4>
           <IoMdArrowDropdownCircle
             className={`text-2xl transition-all duration-300 ${
               showNavBtnFont ? "rotate-180" : ""
@@ -237,7 +241,7 @@ function SettingPanel({
         onClick={() => setShowBackgroundMain(!showBackgroundMain)}
         className="flex justify-between cursor-pointer items-center mt-3"
       >
-        <h3 className="text-2xl font-semibold">Background:</h3>
+        <h3 className="text-2xl font-semibold" style={{color:navFontColor}}>Background:</h3>
         <IoMdArrowDropdownCircle
           className={`text-2xl transition-all duration-300 ${
             showBackgroundMain ? "rotate-180" : ""
@@ -254,7 +258,7 @@ function SettingPanel({
           onClick={() => setShowBgPicker(!showBgPicker)}
           className="flex items-center cursor-pointer justify-between"
         >
-          <h4 className="font-semibold">Background Color</h4>
+          <h4 className="font-semibold" style={{color:navFontColor}}>Background Color</h4>
           <IoMdArrowDropdownCircle
             className={`text-2xl transition-all duration-300 ${
               showBgPicker ? "rotate-180" : ""
@@ -279,7 +283,7 @@ function SettingPanel({
           onClick={() => setShowBgFontColor(!showBgFontColor)}
           className="flex items-center cursor-pointer justify-between"
         >
-          <h4 className="font-semibold">Background Font Color</h4>
+          <h4 className="font-semibold" style={{color:navFontColor}}>Background Font Color</h4>
           <IoMdArrowDropdownCircle
             className={`text-2xl transition-all duration-300 ${
               showBgFontColor ? "rotate-180" : ""
@@ -304,7 +308,7 @@ function SettingPanel({
           onClick={() => setShowBgFontSize(!showBgFontSize)}
           className="flex items-center cursor-pointer justify-between"
         >
-          <h4 className="font-semibold">Font Size</h4>
+          <h4 className="font-semibold" style={{color:navFontColor}}>Font Size</h4>
           <IoMdArrowDropdownCircle
             className={`text-2xl transition-all duration-300 ${
               showBgFontSize ? "rotate-180" : ""
@@ -347,7 +351,7 @@ function SettingPanel({
           onClick={() => setShowFontStyle(!showFontStyle)}
           className="flex items-center cursor-pointer justify-between"
         >
-          <h4 className="font-semibold">Font Style</h4>
+          <h4 className="font-semibold" style={{color:navFontColor}}>Font Style</h4>
           <IoMdArrowDropdownCircle
             className={`text-2xl transition-all duration-300 ${
               showFontStyle ? "rotate-180" : ""
@@ -367,9 +371,10 @@ function SettingPanel({
                 color:
                   activeFont === "Arial, Helvetica, sans-serif"
                     ? "white"
-                    : "black",
+                    : navFontColor,
               }}
               className="text-xl px-3 py-1 rounded-full"
+              
             >
               Docs.
             </button>
@@ -384,7 +389,7 @@ function SettingPanel({
                 color:
                   activeFont === "Times New Roman, Times, serif"
                     ? "white"
-                    : "black",
+                    : navFontColor,
               }}
               className="text-xl px-3 py-1 rounded-full"
             >
@@ -401,7 +406,7 @@ function SettingPanel({
                 color:
                   activeFont === "Courier New, Courier, monospace"
                     ? "white"
-                    : "black",
+                    : navFontColor,
               }}
               className="text-xl font-semibold px-3 py-1 rounded-full"
             >
@@ -418,7 +423,7 @@ function SettingPanel({
                 color:
                   activeFont === "Comic Sans MS, cursive, sans-serif"
                     ? "white"
-                    : "black",
+                    : navFontColor,
               }}
               className="text-xl px-3 py-1 rounded-full"
             >
@@ -432,7 +437,7 @@ function SettingPanel({
         onClick={() => setShowBackgroundMain(!showBackgroundMain)}
         className="flex justify-between cursor-pointer items-center mt-2"
       >
-        <h3 className="text-2xl font-semibold">Dragging</h3>
+        <h3 className="text-2xl font-semibold" style={{color:navFontColor}}>Dragging</h3>
         <label className="relative inline-flex items-center cursor-pointer">
           <input
             type="checkbox"
