@@ -6,6 +6,7 @@ import { IoMdArrowDropdownCircle } from "react-icons/io";
 import CardBgPicker from "./color pickers/CardBgPicker";
 import CardFontPicker from "./color pickers/CardFontPicker";
 import { button, div } from "framer-motion/client";
+import { RiResetLeftFill } from "react-icons/ri";
 
 function Card({
   data,
@@ -16,7 +17,7 @@ function Card({
   isActive,
   setIsOverDelete,
   dragging,
-  onDelete
+  onDelete,
 }) {
   const [overDelete, setOverDelete] = useState(false);
   const [showCardSetting, setCardSetting] = useState(false);
@@ -24,6 +25,13 @@ function Card({
   const [cardBgColor, setCardBgColor] = useState("rgba(24,24,27,0.9)");
   const [showCardFont, setShowCardFont] = useState(false);
   const [cardFontColor, setCardFontColor] = useState("#ffffff");
+  const [reset, setReset] = useState(false);
+  const resetCardHandler = () => {
+    setReset(!reset);
+    setCardBgColor("rgba(24,24,27,0.9)")
+    setCardFontColor("#ffffff")
+    setCardSetting(false)
+  };
 
   const bgKey = `card-bg-${data.email}`;
   const fontKey = `card-font-${data.email}`;
@@ -62,15 +70,15 @@ function Card({
     setOverDelete(inside);
     setIsOverDelete(inside);
   };
-  const cardDeleteHandler=()=>{
-    if(onDelete){
-      onDelete()
+  const cardDeleteHandler = () => {
+    if (onDelete) {
+      onDelete();
     }
-  }
+  };
 
   return (
     <motion.div
-      drag={dragging?true:false}
+      drag={dragging ? true : false}
       dragConstraints={reference}
       whileDrag={{ scale: 1.1 }}
       dragElastic={0.1}
@@ -84,7 +92,7 @@ function Card({
       onDrag={handleDrag}
       style={{
         background: isActive && overDelete ? "rgb(220,38,38)" : cardBgColor,
-        color: cardFontColor, 
+        color: cardFontColor,
       }}
       className="flex-shrink-0 relative w-60 h-72 px-3 py-10 rounded-[45px] overflow-hidden"
     >
@@ -96,14 +104,34 @@ function Card({
       </button>
 
       {showCardSetting && (
-        <div className="w-full h-full top-0 left-0 bg-zinc-800 absolute" style={{backgroundColor:cardBgColor,color:cardFontColor}}>
+        <div
+          className="w-full h-full top-0 left-0 bg-zinc-800 absolute"
+          style={{ backgroundColor: cardBgColor, color: cardFontColor }}
+        >
           <button onClick={() => setCardSetting(!showCardSetting)}>
-            <BiUndo className="top-5 left-5 absolute text-2xl text-white" style={{color:cardFontColor}} />
+            <BiUndo
+              className="top-5 left-5 absolute text-2xl text-white"
+              style={{ color: cardFontColor }}
+            />
+          </button>
+
+          <button
+            onClick={resetCardHandler}
+            style={{ color: cardFontColor }}
+            className="flex items-center gap-2 font-semibold absolute top-5 right-5"
+          >
+            Reset{" "}
+            <RiResetLeftFill
+            style={{ color: cardFontColor }}
+              className={`text-lg transition-transform duration-300 ${
+                reset ? "rotate-[360deg]" : ""
+              }`}
+            />
           </button>
 
           <div
             onClick={() => setCardBg(!showCardBg)}
-            className="px-5 py-1 mt-5 cursor-pointer flex justify-between items-center"
+            className="px-5 py-1 mt-8 cursor-pointer flex justify-between items-center"
           >
             <h3 className="font-semibold">Card Background</h3>
             <IoMdArrowDropdownCircle
@@ -122,7 +150,7 @@ function Card({
 
           <div
             onClick={() => setShowCardFont(!showCardFont)}
-            className="px-5 py-1 mt-5 cursor-pointer flex justify-between items-center"
+            className="px-5 py-1 mt-3 cursor-pointer flex justify-between items-center"
           >
             <h3 className="font-semibold">Card Font Color</h3>
             <IoMdArrowDropdownCircle
@@ -138,10 +166,16 @@ function Card({
               setCardSetting={setCardSetting}
             />
           )}
-          {dragging?"":(
+          {dragging ? (
+            ""
+          ) : (
             <div className="p-1 mt-3 w-full flex justify-center ">
-            <button onClick={cardDeleteHandler} className="bg-red-600 w-[80%] py-3 text-center rounded-full" >Delete</button>
-
+              <button
+                onClick={cardDeleteHandler}
+                className="bg-red-600 w-[80%] py-3 text-center rounded-full"
+              >
+                Delete
+              </button>
             </div>
           )}
         </div>

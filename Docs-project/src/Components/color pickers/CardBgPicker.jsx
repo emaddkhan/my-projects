@@ -36,7 +36,7 @@ function CardBgPicker({ showCardBg, onColorChange,setCardSetting }) {
 
   return (
     <div
-      className={`px-5 space-y-3 overflow-hidden transition-all duration-500 ease-in-out
+      className={`px-5  overflow-hidden transition-all duration-500 ease-in-out
         ${showCardBg ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}
     >
       <div>
