@@ -19,6 +19,10 @@ function App() {
   const [fontFamily, setFontFamily] = useState(() => {
     return localStorage.getItem("fontFamily") || "Arial, Helvetica, sans-serif";
   });
+  const formCloseBtnHandeler = () => {
+  setShowForm(false);
+};
+
   const [showForm, setShowForm] = useState(false);
   useEffect(() => {
     localStorage.setItem("bgFontValue", bgFontValue);
@@ -49,12 +53,7 @@ function App() {
         setFontFamily={setFontFamily}
         fontFamily={fontFamily}
       />
-      {showForm && (
-        <Form
-          navBtnBgColor={navBtnBgColor}
-          formCloseBtnHandeler={formCloseBtnHandeler}
-        />
-      )}
+      
     </div>
   );
 }

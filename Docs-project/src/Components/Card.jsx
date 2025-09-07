@@ -5,6 +5,7 @@ import { BiUndo } from "react-icons/bi";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 import CardBgPicker from "./color pickers/CardBgPicker";
 import CardFontPicker from "./color pickers/CardFontPicker";
+import { button, div } from "framer-motion/client";
 
 function Card({
   data,
@@ -15,6 +16,7 @@ function Card({
   isActive,
   setIsOverDelete,
   dragging,
+  onDelete
 }) {
   const [overDelete, setOverDelete] = useState(false);
   const [showCardSetting, setCardSetting] = useState(false);
@@ -60,6 +62,11 @@ function Card({
     setOverDelete(inside);
     setIsOverDelete(inside);
   };
+  const cardDeleteHandler=()=>{
+    if(onDelete){
+      onDelete()
+    }
+  }
 
   return (
     <motion.div
@@ -130,6 +137,12 @@ function Card({
               onColorChange={handleFontColorChange}
               setCardSetting={setCardSetting}
             />
+          )}
+          {dragging?"":(
+            <div className="p-1 mt-3 w-full flex justify-center ">
+            <button onClick={cardDeleteHandler} className="bg-red-600 w-[80%] py-3 text-center rounded-full" >Delete</button>
+
+            </div>
           )}
         </div>
       )}

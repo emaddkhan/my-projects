@@ -124,7 +124,7 @@ function SettingPanel({
     <div
       className={`absolute w-[25%] 
         ${showSettings ? "max-h-[90%] opacity-100" : "max-h-0 opacity-0"} 
-        rounded-2xl top-[10%] z-[6] left-[2%] 
+        rounded-2xl top-[10%] z-[5] left-[2%] 
         transition-all duration-500 overflow-y-auto p-5`}
       style={{ backgroundColor: navColor }}
     >
@@ -367,7 +367,7 @@ function SettingPanel({
                 backgroundColor:
                   activeFont === "Arial, Helvetica, sans-serif"
                     ? navFontColor
-                    : "white",
+                    : navColor,
                 color:
                   activeFont === "Arial, Helvetica, sans-serif"
                     ? navColor
@@ -385,7 +385,7 @@ function SettingPanel({
                 backgroundColor:
                   activeFont === "Times New Roman, Times, serif"
                     ? navFontColor
-                    : "white",
+                    : navColor,
                 color:
                   activeFont === "Times New Roman, Times, serif"
                     ? navColor
@@ -402,7 +402,7 @@ function SettingPanel({
                 backgroundColor:
                   activeFont === "Courier New, Courier, monospace"
                     ? navFontColor
-                    : "white",
+                    : navColor,
                 color:
                   activeFont === "Courier New, Courier, monospace"
                     ? navColor
@@ -419,11 +419,12 @@ function SettingPanel({
                 backgroundColor:
                   activeFont === "Comic Sans MS, cursive, sans-serif"
                     ? navFontColor
-                    : "white",
+                    : navColor,
                 color:
                   activeFont === "Comic Sans MS, cursive, sans-serif"
                     ? navColor
                     : navFontColor,
+                    
               }}
               className="text-xl px-3 py-1 rounded-full"
             >

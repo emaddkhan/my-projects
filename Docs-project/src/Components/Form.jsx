@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { motion } from "motion/react";
 
-function Form({ formCloseBtnHandeler,onUserAdd ,navBtnBgColor}) {
+function Form({ formCloseBtnHandeler,onUserAdd,navBtnFontColor,dragging ,navBtnBgColor}) {
   const ref = useRef(null);
 
   const [formData, setFormData] = useState({
@@ -86,12 +86,12 @@ const handleImageChange = (e) => {
         <motion.div
           dragElastic={0.1}
           dragTransition={{ bounceStiffness: 100, bounceDamping: 30 }}
-          drag
+          drag={dragging?true:false}
           dragConstraints={ref}
-          className="h-[90%] shadow-md shadow-white w-[30%] rounded-2xl overflow-hidden bg-zinc-50"
+          className="h-[90%] shadow-md  w-[30%] rounded-2xl overflow-hidden bg-zinc-50"
         >
-          <div className="py-5 w-full bg-green-300" style={{backgroundColor:navBtnBgColor}}>
-            <h1 className="text-center text-white text-xl font-semibold">
+          <div className="py-5 w-full " style={{backgroundColor:navBtnBgColor}}>
+            <h1 className="text-center text-white text-xl font-semibold" style={{color:navBtnFontColor}}>
               Add User
             </h1>
           </div>

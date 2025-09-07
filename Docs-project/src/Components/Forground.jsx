@@ -175,6 +175,7 @@ function Forground({
               setDeleteLeft(false);
               setIsOverDelete(false);
             }}
+            onDelete={() => handleDeleteUser(index)} 
             
           />
         ))}
@@ -184,6 +185,9 @@ function Forground({
         <Form
           formCloseBtnHandeler={() => setShowForm(false)}
           onUserAdd={handleAddUser}
+          dragging={dragging}
+          navBtnBgColor={navBtnBgColor}
+          navBtnFontColor={navBtnFontColor}
         />
       )}
     </div>
