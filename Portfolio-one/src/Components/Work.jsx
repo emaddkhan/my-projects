@@ -5,16 +5,22 @@ import bdh from "../assets/Frame4.png";
 import database from "../assets/frame5.png";
 import sab from "../assets/frame6.png";
 import movie2 from "../assets/Frame 1.png";
+import cuberto from "../assets/cuberto.png"
+import Obys from "../assets/Obys.png"
+import Miranda from "../assets/Miranda.png"
+import Refokus from "../assets/Refokus.png"
+import RayBan from "../assets/Ray.Ban.png"
+import userLayout from "../assets/profileCustom.png"
 import "../css/work.css";
 
 function Work() {
   const items = [
-    { img: movie, name: "Movie Web App" },
-    { img: wheather, name: "Weather Web App" },
-    { img: bdh, name: "BDH Website" },
-    { img: database, name: "Mortuary Database Web App" },
-    { img: sab, name: "SAB Website" },
-    { img: movie2, name: "Movie Web App" },
+    { img: cuberto, name: "Cuberto" },
+    { img: Obys, name: "Obys Agency" },
+    { img: Miranda, name: "Miranda" },
+    { img: Refokus, name: "Refokus" },
+    { img: RayBan, name: "Ray.Ban (Modern Landing Page)" },
+    { img: userLayout, name: "Customizable Profile Layout" },
   ];
 
   return (
