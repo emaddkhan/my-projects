@@ -39,8 +39,8 @@ function About() {
               </h4>
               <ul className="list-disc adoutList list-outside ml-5 text-white py-2">
                 {[
-                  "Diploma in Information Technology",
-                  "National Senior Certificate [Grade 12/Matric]",
+                  "DHA Suffa University — BS Software Engineering (Ongoing)",
+                  "SSAT Degree College — Intermediate",
                 ].map((item, i) => {
                   return <li className="aboutLi text-sm">{item}</li>;
                 })}
@@ -52,12 +52,9 @@ function About() {
               </h4>
               <ul className="list-disc adoutList list-outside ml-5 text-white py-2">
                 {[
-                  "Front-End Web Development Program [ALX Africa]",
-                  "National Senior Certificate [freeCodeCamp]",
-                  "Web Programming Foundations [LinkedIn]",
-                  "HTML Essential Training [LinkedIn]",
-                  "JavaScript Essentials [Cisco]",
-                  "Professional  Foundations [ALX Africa]",
+                  "Frontend Development Course — Squads Coders Dev (2023)",
+                  "Frontend Development Course — Sheryians Coding School (2024)",
+                  "Frontend Development Internship — CodeAlpha (2025)",
                 ].map((item, i) => {
                   return <li className="aboutLi text-sm">{item}</li>;
                 })}

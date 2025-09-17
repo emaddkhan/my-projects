@@ -4,7 +4,7 @@ import twitter from "../assets/Vector (1).png";
 import insta from "../assets/Social Icons (1).png";
 import linkedin from "../assets/Social Icons (2).png";
 import github from "../assets/Social Icons (3).png";
-import profile from "../assets/profile.png";
+import profile from "../assets/profilePic.png";
 import "../css/home.css";
 
 function LandingPage() {
