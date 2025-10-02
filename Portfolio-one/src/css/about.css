@@ -156,9 +156,12 @@
         margin-top: 1rem;
     }
 }
+@media (max-width:360px) {
+    
+}
 @media (max-width:320px){
     .about{
-        height: 120vh;
+        height: 128vh;
     }
     .aboutHeading{
      font-size: 1.3rem;   
@@ -166,7 +169,7 @@
     }
     .aboutParaContainer{
         padding: .3rem .6rem;
-        height: 38%;
+        height: 36%;
     }
     .aboutPara{
         font-size: .6rem;
@@ -174,6 +177,7 @@
     }
     .eduContainer{
         padding: .3rem .6rem;
+        height: 40%;
         
     }
     .aboutSecDiv{

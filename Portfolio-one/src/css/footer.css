@@ -103,7 +103,19 @@
         height: 62vh;
     }
     .footerEmail{
-        width: 75%;
+        width: 100%;
+    }
+    .footerEmailInner{
+        font-size: 1.3rem;
+        padding-right: .8rem;
+    }
+    .LinksContainer{
+        width: 100%;
+        justify-content: center;
+    }
+    .emailImg{
+        width: 10%;
+        height: fit-content;
     }
     .footerLinks{
         width: 14%;
@@ -115,24 +127,74 @@
         font-size: .7rem;
     }
 }
+@media (max-width:412px) {
+    .footerEmail{
+        width: 100%;     
+    }
+    .footerEmailInner{
+        font-size: 1.3rem;
+    }
+    .emailImg{
+        width: 10%;
+        height: fit-content;
+    }
+    .LinksContainer{
+        gap: 1.5rem;
+        width: 100%;
+    }
+    .footerLinks{
+        width: 18%;
+    }
+}
+@media (max-width:393px) {
+    .footerEmail{
+        width: 100%;
+
+    }
+    .footerEmailInner{
+        font-size: 1.2rem;
+        padding-right: .7rem;
+    }
+    .emailImg{
+        width: 8%;
+    }
+    .LinksContainer{
+        width: 100%;
+    }
+    .contactsContainer{
+        height: 30%;
+        margin-top: 2.5rem;
+    }
+}
 @media (max-width:360px) {
-    .footerEmail{width: 77%;}
+    .footerEmail{width: 100%;}
+    .footerEmailInner{
+        font-size: 1.1rem;
+        padding-right: .5rem;
+    }
+    .LinksContainer{
+        width: 100%;
+    }
 }
 @media (max-width:320px) {
     .contactMain{
         height: 42vh;
     }
     .footerEmail{
-        width: 78%;
+        width: 100%;
     }
     .emailImg{
-        width: 8%;
+        width: 8.8%;
+        height: fit-content;
     }
     .footerEmailInner{
-        font-size: .8rem;
+        font-size: 1.01rem;
+        padding-right: .6rem;
     }
     .LinksContainer{
         margin-top: .4rem;
+        width: 80%;
+        margin: 0 auto;
     }
     .contactsContainer {
         height: 60%;
@@ -159,16 +221,7 @@
         font-size: .8rem;
         margin-top: .1rem;
     }
-}
-@media (max-width:412px) {
-    .footerEmail{
-        width: 82%;
-
-    }
-    .LinksContainer{
-        gap: 1.5rem;
-    }
-    .footerLinks{
-        width: 18%;
+    .contactsContainer{
+        height: 24%;
     }
 }

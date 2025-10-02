@@ -5,12 +5,12 @@ import bdh from "../assets/Frame4.png";
 import database from "../assets/frame5.png";
 import sab from "../assets/frame6.png";
 import movie2 from "../assets/Frame 1.png";
-import cuberto from "../assets/cuberto.png"
-import Obys from "../assets/Obys.png"
-import Miranda from "../assets/Miranda.png"
-import Refokus from "../assets/Refokus.png"
-import RayBan from "../assets/Ray.Ban.png"
-import userLayout from "../assets/profileCustom.png"
+import cuberto from "../assets/cuberto.png";
+import Obys from "../assets/Obys.png";
+import Miranda from "../assets/Miranda.png";
+import Refokus from "../assets/Refokus.png";
+import RayBan from "../assets/Ray.Ban.png";
+import userLayout from "../assets/profileCustom.png";
 import "../css/work.css";
 
 function Work() {
@@ -36,11 +36,9 @@ function Work() {
               Development Projects
             </h3>
 
-            {/* left + right shadow fades */}
             <div className="absolute tileShadows top-0 left-0 w-6 opacity-5 h-full z-10 bg-gradient-to-r from-white to-transparent pointer-events-none" />
             <div className="absolute tileShadows top-0 right-0 w-6 opacity-5 h-full z-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
 
-            {/* marquee row */}
             <div className="marquee w-max workTilesContainer h-[71%] flex gap-5 whitespace-nowrap py-1">
               {items.concat(items).map((item, i) => (
                 <div
