@@ -5,9 +5,9 @@ html{
   background-color: #A9A9A9; /* grey */
   color: white; /* optional, change if needed */
 }
-body{
+/* body{
   cursor: none
-}
+} */
 
 
 @tailwind base;
