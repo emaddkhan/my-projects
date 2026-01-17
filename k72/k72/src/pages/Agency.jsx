@@ -1,19 +1,81 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 import React from "react";
+import { useRef } from "react";
+import img1 from "../../src/assets/imgAgency1.jpg"
+import img2 from "../../src/assets/imgAgency2.jpg"
+import img3 from "../../src/assets/imgAgency3.jpg"
+import img4 from "../../src/assets/imgAgency4.jpg"
+import img5 from "../../src/assets/imgAgency5.jpg"
+import img6 from "../../src/assets/imgAgency6.jpg"
+import img7 from "../../src/assets/imgAgency7.jpg"
+import img8 from "../../src/assets/imgAgency8.jpg"
+
+  gsap.registerPlugin(ScrollTrigger);
 
 function Agency() {
+  const imageDivRef = useRef(null);
+  const imageRef =useRef(null);
+  const imagesArray = [img1,img2,img3,img4,img5,img6,img7,img8]
+  useGSAP(()=> {
+    gsap.to(imageDivRef.current, {
+
+      scrollTrigger: {
+        trigger:imageDivRef.current,
+        markers:true,
+        start:"top 23%",
+        end:"top -128%",
+        scrub:true,
+        pin:true,
+        onUpdate:(elem)=>{
+          let imageIndex ;
+          if(elem.progress<1){
+            imageIndex =Math.floor(elem.progress * imagesArray.length)
+          }
+          else{
+            imageIndex =imagesArray.length-1; 
+          }
+          imageRef.current.src =imagesArray[imageIndex]
+        }
+      },
+      
+    });
+  }, { scope: imageDivRef });
   return (
     <div>
-      <div className="h-[20vw] w-[15vw] top-[10.9vw] left-[30.4vw] overflow-hidden rounded-3xl absolute">
-        <img src="https://k72.ca/images/teamMembers/Carl_480x640.jpg?w=480&h=640&fit=crop&s=f0a84706bc91a6f505e8ad35f520f0b7" alt="" />
+      <div className="section1">
+        <div
+          ref={imageDivRef}
+          className="h-[20vw] w-[15vw] top-[10.9vw] left-[30.4vw] overflow-hidden rounded-3xl absolute"
+        >
+          <img
+            ref={imageRef}
+            className="h-full w-full object-cover"
+            src={img1}
+            alt=""
+          />
+        </div>
+        <div className="relative font-[font2] text-center">
+          <div className="mt-[55vh]">
+            <h1 className="text-[20vw]  leading-[18vw] uppercase ">
+              SEVEN7Y TWO
+            </h1>
+          </div>
+          <div className="pl-[40%] mt-20">
+            <p className=" text-6xl text-start">
+              {" "}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We’re
+              inquisitive and open-minded, and we make sure creativity crowds
+              out ego from every corner. A brand is a living thing, with values,
+              a personality and a story. If we ignore that, we can achieve
+              short-term success, but not influence that goes the distance. We
+              bring that perspective to every brand story we help tell.
+            </p>
+          </div>
+        </div>
       </div>
-      <div className="font-[font2] text-center">
-      <div className="mt-[55vh]">
-        <h1 className="text-[20vw]  leading-[18vw] uppercase ">SEVEN7Y TWO</h1>
-      </div>
-      <div className="pl-[40%] mt-20">
-        <p className=" text-6xl text-start"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We’re inquisitive and open-minded, and we make sure creativity crowds out ego from every corner. A brand is a living thing, with values, a personality and a story. If we ignore that, we can achieve short-term success, but not influence that goes the distance. We bring that perspective to every brand story we help tell.</p>
-      </div>
-    </div>
+      <div className="section2 h-screen"></div>
     </div>
   );
 }
