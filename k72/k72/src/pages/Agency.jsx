@@ -23,7 +23,6 @@ function Agency() {
 
       scrollTrigger: {
         trigger:imageDivRef.current,
-        markers:true,
         start:"top 23%",
         end:"top -128%",
         scrub:true,
