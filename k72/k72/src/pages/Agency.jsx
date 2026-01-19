@@ -24,9 +24,15 @@ function Agency() {
       scrollTrigger: {
         trigger:imageDivRef.current,
         start:"top 23%",
-        end:"top -128%",
-        scrub:true,
+        end:"top -138%",
+        scrub:1,
         pin:true,
+        pinSpacing:true,
+        pinReparent:true,
+        anticipatePin:true,
+        invalidateOnRefresh:true,
+        pinType:'transform',
+        markers:true,
         onUpdate:(elem)=>{
           let imageIndex ;
           if(elem.progress<1){
@@ -38,15 +44,15 @@ function Agency() {
           imageRef.current.src =imagesArray[imageIndex]
         }
       },
-      
     });
-  }, { scope: imageDivRef });
+  });
+  
   return (
     <div>
-      <div className="section1">
+      <div className="section1 relative py-1">
         <div
           ref={imageDivRef}
-          className="h-[20vw] w-[15vw] top-[10.9vw] left-[30.4vw] overflow-hidden rounded-3xl absolute"
+          className="h-[20vw]  w-[15vw] -top-[7vw] left-[30.4vw] overflow-hidden rounded-3xl absolute"
         >
           <img
             ref={imageRef}
@@ -55,9 +61,9 @@ function Agency() {
             alt=""
           />
         </div>
-        <div className="relative font-[font2] text-center">
+        <div className="relative font-[font2] ">
           <div className="mt-[55vh]">
-            <h1 className="text-[20vw]  leading-[18vw] uppercase ">
+            <h1 className="text-[20vw] text-center leading-[18vw] uppercase ">
               SEVEN7Y TWO
             </h1>
           </div>
@@ -80,3 +86,4 @@ function Agency() {
 }
 
 export default Agency;
+
