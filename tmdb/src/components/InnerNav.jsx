@@ -1,10 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-function InnerNav({ activeTab, setActiveTab }) {
-  const tabs = [
-    { label: "Today", value: "day" },
-    { label: "This Week", value: "week" }
-  ];
+function InnerNav({ tabs,activeTab, setActiveTab }) {
+  
 
   const [capsuleStyle, setCapsuleStyle] = useState({ width: 0, left: 0 });
   const tabsRef = useRef([]);
@@ -12,6 +9,7 @@ function InnerNav({ activeTab, setActiveTab }) {
   // Update capsule on activeTab change
   useEffect(() => {
     const index = tabs.findIndex(tab => tab.value === activeTab);
+  
     if (tabsRef.current[index]) {
       const tab = tabsRef.current[index];
       setCapsuleStyle({
