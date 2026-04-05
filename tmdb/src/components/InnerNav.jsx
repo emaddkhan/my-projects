@@ -1,42 +1,44 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-function InnerNav() {
-  const tabs = ["Today", "This Week"]; // dynamic tabs
-  const [activeIndex, setActiveIndex] = useState(0); // Today default active
+function InnerNav({ activeTab, setActiveTab }) {
+  const tabs = [
+    { label: "Today", value: "day" },
+    { label: "This Week", value: "week" }
+  ];
+
   const [capsuleStyle, setCapsuleStyle] = useState({ width: 0, left: 0 });
   const tabsRef = useRef([]);
 
-  // Set capsule on first render & every active change
+  // Update capsule on activeTab change
   useEffect(() => {
-    if (tabsRef.current[activeIndex]) {
-      const tab = tabsRef.current[activeIndex];
+    const index = tabs.findIndex(tab => tab.value === activeTab);
+    if (tabsRef.current[index]) {
+      const tab = tabsRef.current[index];
       setCapsuleStyle({
         width: tab.offsetWidth,
         left: tab.offsetLeft,
       });
     }
-  }, [activeIndex, tabs]);
+  }, [activeTab]);
 
   return (
     <div className="flex justify-center">
-      <div className="relative flex items-center border gap-1 border-[#032541]  rounded-full w-fit">
-        {/* Sliding capsule */}
+      <div className="relative flex items-center border gap-1 border-[#032541] rounded-full w-fit">
         <div
           className="absolute top-0 bottom-0 bg-[#032541] rounded-full transition-all duration-300"
           style={{ width: capsuleStyle.width, transform: `translateX(${capsuleStyle.left}px)` }}
         ></div>
 
-        {/* Tabs */}
         {tabs.map((tab, index) => (
           <div
             key={index}
-            ref={(el) => (tabsRef.current[index] = el)}
-            onClick={() => setActiveIndex(index)}
+            ref={el => (tabsRef.current[index] = el)}
+            onClick={() => setActiveTab(tab.value)}
             className={`relative z-10 px-5 py-[.2vw] cursor-pointer text-[.75vw] font-semibold select-none transition-colors duration-300 ${
-              activeIndex === index ? "text-white" : "text-gray-500 hover:text-gray-700"
+              activeTab === tab.value ? "text-white" : "text-gray-500 hover:text-gray-700"
             }`}
           >
-            {tab}
+            {tab.label}
           </div>
         ))}
       </div>

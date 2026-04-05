@@ -2,20 +2,19 @@ import React from 'react';
 import MovieCard from './MovieCard';
 import '../../src/index.css';
 
-function HomeMovieDisplay() {
+function HomeMovieDisplay({movies}) {
   return (
     <div className="relative w-full p-1 pb-9">
       
       {/* Horizontal scroll container */}
       <div className="flex items-center gap-4 overflow-x-auto horizontal-scroll relative pb-8 z-10">
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+        {movies && movies.length > 0 ? (
+          movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))
+        ) : (
+          <p>No trending movies available.</p>
+        )}
       </div>
 
       {/* Right side shadow */}
