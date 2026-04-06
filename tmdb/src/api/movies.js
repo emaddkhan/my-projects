@@ -19,3 +19,9 @@ export const getRentMovies = () => {
 export const getInTheatersMovies = () => {
   return fetchDataFromApi("/movie/now_playing");
 };
+export const getPopularTrailorsMovies = () => {
+  return fetchDataFromApi("/movie/upcoming");
+}
+export const getPopularTrailorMoviesVideos = (id) => {
+  return fetchDataFromApi(`/movie/${id}/videos`);
+}
