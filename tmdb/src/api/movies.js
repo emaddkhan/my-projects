@@ -25,3 +25,30 @@ export const getPopularTrailorsMovies = () => {
 export const getPopularTrailorMoviesVideos = (id) => {
   return fetchDataFromApi(`/movie/${id}/videos`);
 }
+export const getLatestStreamingMovies = () => {
+  return fetchDataFromApi(
+    "/discover/movie?with_watch_monetization_types=flatrate&sort_by=release_date.desc&watch_region=DE"
+  );
+};
+
+export const getLatestOnTvTrailor = () => {
+  return fetchDataFromApi("/tv/on_the_air");
+};
+export const getTvVideos = (id) => {
+  return fetchDataFromApi(`/tv/${id}/videos`);
+};
+export const getRentMoviesTrailor = () => {
+  return fetchDataFromApi(
+    "/discover/movie?with_watch_monetization_types=rent&watch_region=DE&sort_by=popularity.desc"
+  );
+};
+export const getOnRentTrailorMovieVideos = (id) => {
+  return fetchDataFromApi(`/movie/${id}/videos`);
+};
+
+export const getInTheatersTrailorMovies = () => {
+  return fetchDataFromApi("/movie/now_playing");
+};
+export const getMovieTheatorsVideos = (id) => {
+  return fetchDataFromApi(`/movie/${id}/videos`);
+};

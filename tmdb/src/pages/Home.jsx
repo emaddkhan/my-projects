@@ -5,13 +5,20 @@ import Banner from "../components/Banner";
 import HomeSections from "../components/HomeSections";
 import {
   getInTheatersMovies,
+  getInTheatersTrailorMovies,
+  getLatestOnTvTrailor,
+  getLatestStreamingMovies,
   getMoviesThisWeek,
+  getMovieTheatorsVideos,
+  getOnRentTrailorMovieVideos,
   getOntTv,
   getPopularMovies,
   getPopularTrailorMoviesVideos,
   getPopularTrailorsMovies,
   getRentMovies,
+  getRentMoviesTrailor,
   getTrendingMovies,
+  getTvVideos,
 } from "../api/movies";
 import { IMAGE_BASE_URL } from "../api/config";
 
@@ -30,6 +37,11 @@ function Home() {
   const [rentMovies, setRentMovies] = useState([]);
   const [inTheatersMovies, setInTheatersMovies] = useState([]);
   const [popularMoviesTrailors, setPopularMoviesTrailors] = useState([]);
+  const [streamingTrailorMovies, setStreamingTrailorMovies] = useState([]);
+  const [OnTvTrailorMovies, setOnTvTrailorMovies] = useState([]);
+  const [onRentTrailorMovies, setOnRentTrailorMovies] = useState([]);
+  const [onTheatersTrailorMovies, setInTheatersTrailorMovies] = useState([]);
+
   const tabsSection1 = [
     { label: "Today", value: "day" },
     { label: "This Week", value: "week" },
@@ -157,6 +169,7 @@ function Home() {
     };
     loadInTheatersMovies();
   }, []);
+  //trailors section code streaming and popular movies
   useEffect(() => {
     const loadPopularTrailors = async () => {
       try {
@@ -165,7 +178,8 @@ function Home() {
         const data = await getPopularTrailorsMovies();
 
         // 👇 sirf top 8 movies (performance ke liye)
-        const movies = data.results.slice(0, 8);
+        const movies = data.results.slice(0, 20);
+        console.log("Popular Movies for Trailers:", movies);
 
         const moviesWithTrailers = await Promise.all(
           movies.map(async (movie) => {
@@ -198,6 +212,173 @@ function Home() {
 
     loadPopularTrailors();
   }, []);
+  useEffect(() => {
+  const loadStreamingTrailorMovies = async () => {
+    try {
+      setLoading(true);
+
+      const data = await getLatestStreamingMovies();
+      const movies = data.results.slice(0, 20) || [];
+
+      const moviesWithTrailor = await Promise.all(
+        movies.map(async (movie) => {
+          const videoData = await getPopularTrailorMoviesVideos(movie.id);
+
+          const trailer = videoData.results.find(
+            (v) => v.type === "Trailer" && v.site === "YouTube"
+          );
+
+          return {
+            ...movie,
+            trailerKey: trailer?.key || null,
+          };
+        })
+      );
+
+      const filteredMoviesWithTrailor = moviesWithTrailor.filter(
+        (movie) => movie.trailerKey
+      );
+
+      console.log("Streaming Movies with Trailers:", filteredMoviesWithTrailor);
+
+      setStreamingTrailorMovies(filteredMoviesWithTrailor);
+
+    } catch (error) {
+      console.error("Error fetching streaming trailers:", error);
+      setStreamingTrailorMovies([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  loadStreamingTrailorMovies(); 
+}, []);
+//on tvvvv
+  useEffect(() => {
+  const loadOnTvTrailor = async () => {
+    try {
+      setLoading(true);
+
+      const data = await getLatestOnTvTrailor();
+      const movies = data.results.slice(0, 20) || [];
+
+      const moviesWithTrailor = await Promise.all(
+        movies.map(async (movie) => {
+          const videoData = await getTvVideos(movie.id);
+
+          const trailer = videoData.results.find(
+            (v) => v.type === "Trailer" && v.site === "YouTube"
+          );
+
+          return {
+            ...movie,
+            trailerKey: trailer?.key || null,
+          };
+        })
+      );
+
+      const filteredMoviesWithTrailor = moviesWithTrailor.filter(
+        (movie) => movie.trailerKey
+      );
+
+      console.log("Streaming Movies with Trailers:", filteredMoviesWithTrailor);
+
+      setOnTvTrailorMovies(filteredMoviesWithTrailor);
+
+    } catch (error) {
+      console.error("Error fetching on TV trailers:", error);
+      setOnTvTrailorMovies([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  loadOnTvTrailor(); 
+}, []);
+//On Rent Trailor code
+ useEffect(() => {
+  const loadOnRentTrailor = async () => {
+    try {
+      setLoading(true);
+
+      const data = await getRentMoviesTrailor();
+      const movies = data.results.slice(0, 20) || [];
+
+      const moviesWithTrailor = await Promise.all(
+        movies.map(async (movie) => {
+          const videoData = await getOnRentTrailorMovieVideos(movie.id);
+
+          const trailer = videoData.results.find(
+            (v) => v.type === "Trailer" && v.site === "YouTube"
+          );
+
+          return {
+            ...movie,
+            trailerKey: trailer?.key || null,
+          };
+        })
+      );
+
+      const filteredMoviesWithTrailor = moviesWithTrailor.filter(
+        (movie) => movie.trailerKey
+      );
+
+      console.log("Streaming Movies with Trailers:", filteredMoviesWithTrailor);
+
+      setOnRentTrailorMovies(filteredMoviesWithTrailor);
+
+    } catch (error) {
+      console.error("Error fetching on TV trailers:", error);
+      setOnRentTrailorMovies([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  loadOnRentTrailor(); 
+}, []);
+//on theaters trailor code
+useEffect(() => {
+  const loadInTheaterTrailor = async () => {
+    try {
+      setLoading(true);
+
+      const data = await getInTheatersTrailorMovies();
+      const movies = data.results.slice(0, 20) || [];
+
+      const moviesWithTrailor = await Promise.all(
+        movies.map(async (movie) => {
+          const videoData = await getMovieTheatorsVideos(movie.id);
+
+          const trailer = videoData.results.find(
+            (v) => v.type === "Trailer" && v.site === "YouTube"
+          );
+
+          return {
+            ...movie,
+            trailerKey: trailer?.key || null,
+          };
+        })
+      );
+
+      const filteredMoviesWithTrailor = moviesWithTrailor.filter(
+        (movie) => movie.trailerKey
+      );
+
+      console.log("Streaming Movies with Trailers:", filteredMoviesWithTrailor);
+
+      setInTheatersTrailorMovies(filteredMoviesWithTrailor);
+
+    } catch (error) {
+      console.error("Error fetching on TV trailers:", error);
+      setInTheatersTrailorMovies([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  loadInTheaterTrailor(); 
+}, []);
   const moviesToShow = activeTab === "day" ? trendingToday : trendingTodayWeek;
   const moviesToShowSec2 =
     activeTabSec2 === "streaming"
@@ -231,7 +412,7 @@ function Home() {
         setShowSection3Bg={setShowSection3Bg}
         activeTab={activeTabSec3}
         setActiveTab={setActiveTabSec3}
-        moviesToShow={popularMoviesTrailors}
+        moviesToShow={inTheatersMovies}
         showSection3Color={showSection3Color}
       />
       <HomeSections
