@@ -52,3 +52,13 @@ export const getInTheatersTrailorMovies = () => {
 export const getMovieTheatorsVideos = (id) => {
   return fetchDataFromApi(`/movie/${id}/videos`);
 };
+export const getFreeToWatchMovies = () => {
+  return fetchDataFromApi(
+    "/discover/movie?with_watch_monetization_types=free"
+  );
+};
+export const getOnTvShows = () => {
+  return fetchDataFromApi(
+    "/discover/tv?with_watch_monetization_types=flatrate&watch_region=US"
+  );
+};

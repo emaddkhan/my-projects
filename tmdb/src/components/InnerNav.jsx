@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-function InnerNav({ tabs,activeTab, setActiveTab }) {
+function InnerNav({ tabs,tabColor,activeTab, setActiveTab }) {
   
 
   const [capsuleStyle, setCapsuleStyle] = useState({ width: 0, left: 0 });
@@ -23,8 +23,8 @@ function InnerNav({ tabs,activeTab, setActiveTab }) {
     <div className="flex justify-center">
       <div className="relative flex items-center border gap-1 border-[#032541] rounded-full w-fit">
         <div
-          className="absolute top-0 bottom-0 bg-[#032541] rounded-full transition-all duration-300"
-          style={{ width: capsuleStyle.width, transform: `translateX(${capsuleStyle.left}px)` }}
+          className={`absolute top-0 bottom-0  rounded-full transition-all duration-300`}
+          style={{ width: capsuleStyle.width, transform: `translateX(${capsuleStyle.left}px)`,backgroundColor:tabColor?"#31DAAD":"#032541" }}
         ></div>
 
         {tabs.map((tab, index) => (

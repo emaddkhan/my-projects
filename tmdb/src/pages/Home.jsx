@@ -4,6 +4,7 @@ import Search from "../components/Search";
 import Banner from "../components/Banner";
 import HomeSections from "../components/HomeSections";
 import {
+  getFreeToWatchMovies,
   getInTheatersMovies,
   getInTheatersTrailorMovies,
   getLatestOnTvTrailor,
@@ -12,6 +13,7 @@ import {
   getMovieTheatorsVideos,
   getOnRentTrailorMovieVideos,
   getOntTv,
+  getOnTvShows,
   getPopularMovies,
   getPopularTrailorMoviesVideos,
   getPopularTrailorsMovies,
@@ -22,6 +24,7 @@ import {
 } from "../api/movies";
 import { IMAGE_BASE_URL } from "../api/config";
 import HomeTrailorSection from "../components/HomeTrailorSection";
+import HomeFooter from "../components/HomeFooter";
 
 function Home() {
   const [trendingToday, setTrendingToday] = useState([]);
@@ -42,6 +45,9 @@ function Home() {
   const [OnTvTrailorMovies, setOnTvTrailorMovies] = useState([]);
   const [onRentTrailorMovies, setOnRentTrailorMovies] = useState([]);
   const [onTheatersTrailorMovies, setInTheatersTrailorMovies] = useState([]);
+  const [activeTabSection4,setActiveSection4]=useState("movie");
+  const [freeToWatchMovies, setFreeToWatchMovies] = useState([]);
+  const [freeToWatchOnTv, setFreeToWatchOnTv] = useState([]);
 
   const tabsSection1 = [
     { label: "Today", value: "day" },
@@ -59,6 +65,10 @@ function Home() {
     { label: "On Tv", value: "tv" },
     { label: "For Rent", value: "rent" },
     { label: "In Theaters", value: "theaters" },
+  ];
+  const tabSection4 = [
+    { label: "Movie", value: "movie" },
+    { label: "Tv", value: "tv" },
   ];
   const sectionTitles = [
     "Trending",
@@ -167,6 +177,39 @@ function Home() {
     };
     loadInTheatersMovies();
   }, []);
+
+  //fee to watch movies
+  useEffect(() => {
+    const loadFreeToWatchMovies = async () => {
+      try {
+        const data = await getFreeToWatchMovies();
+        setFreeToWatchMovies(data?.results || []);
+      } catch (error) {
+        console.error("Error fetching free to watch movies:", error);
+        setFreeToWatchMovies([]);
+      }
+    };
+    loadFreeToWatchMovies();
+  }, []);
+  //on Tv free to watch
+  useEffect(() => {
+    const loadFreeToWatchOnTv = async () => {
+      try {
+        setLoading(true)
+        const data=await getOnTvShows();
+        setFreeToWatchOnTv(data?.results||[]);
+      }catch(error){
+        setFreeToWatchOnTv([]);
+        console.error("Error fetching free to watch on TV shows:", error);
+      }finally{
+        setLoading(false);
+      } 
+    }
+      loadFreeToWatchOnTv();
+
+    }, []);
+
+
   //trailors section code streaming and popular movies
   useEffect(() => {
     const loadPopularTrailors = async () => {
@@ -392,6 +435,7 @@ useEffect(() => {
           activeTabSec3 === "tv"? OnTvTrailorMovies:
           activeTabSec3 === "rent"? onRentTrailorMovies:
           onTheatersTrailorMovies;
+          const moviesToShowSection4=activeTabSection4==="movie"? freeToWatchMovies:freeToWatchOnTv;
   return (
     <div className="h-screen relative w-full">
       <div className="fixed w-full z-30">
@@ -422,8 +466,13 @@ useEffect(() => {
         moviesToShow={moviesToShowSec2}
       />
       <HomeSections
-      tabs
-      />      
+        tabs={tabSection4}
+        sectionTitles={sectionTitles[2]}
+        activeTab={activeTabSection4}
+        setActiveTab={setActiveSection4}
+        moviesToShow={moviesToShowSection4}
+      />
+      <HomeFooter />            
     </div>
   );
 }
