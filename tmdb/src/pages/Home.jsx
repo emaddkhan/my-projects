@@ -21,6 +21,7 @@ import {
   getTvVideos,
 } from "../api/movies";
 import { IMAGE_BASE_URL } from "../api/config";
+import HomeTrailorSection from "../components/HomeTrailorSection";
 
 function Home() {
   const [trendingToday, setTrendingToday] = useState([]);
@@ -125,7 +126,6 @@ function Home() {
       try {
         setLoading(true);
         const data = await getOntTv();
-        console.log("On The Air TV Shows:", data.results);
         setOnTheAirTv(data?.results || []);
       } catch (error) {
         console.error("Error fetching on the air TV shows:", error);
@@ -141,7 +141,6 @@ function Home() {
       try {
         setLoading(true);
         const data = await getRentMovies();
-        console.log("Rent Movies:", data.results);
         setRentMovies(data?.results || []);
       } catch (error) {
         console.error("Error fetching rent movies:", error);
@@ -158,7 +157,6 @@ function Home() {
       try {
         setLoading(true);
         const data = await getInTheatersMovies();
-        console.log("In Theaters Movies:", data.results);
         setInTheatersMovies(data?.results || []);
       } catch (error) {
         console.error("Error fetching in theaters movies:", error);
@@ -261,6 +259,7 @@ function Home() {
 
       const data = await getLatestOnTvTrailor();
       const movies = data.results.slice(0, 20) || [];
+      console.log("On TV Movies for Trailers:", movies);
 
       const moviesWithTrailor = await Promise.all(
         movies.map(async (movie) => {
@@ -345,7 +344,7 @@ useEffect(() => {
 
       const data = await getInTheatersTrailorMovies();
       const movies = data.results.slice(0, 20) || [];
-
+      console.log("In Theaters Movies for Trailers:", movies);
       const moviesWithTrailor = await Promise.all(
         movies.map(async (movie) => {
           const videoData = await getMovieTheatorsVideos(movie.id);
@@ -388,6 +387,11 @@ useEffect(() => {
         : activeTabSec2 === "rent"
           ? rentMovies
           : inTheatersMovies;
+          const TrailosToShow = activeTabSec3 === "popular"? popularMoviesTrailors:
+          activeTabSec3 === "streaming"? streamingTrailorMovies:
+          activeTabSec3 === "tv"? OnTvTrailorMovies:
+          activeTabSec3 === "rent"? onRentTrailorMovies:
+          onTheatersTrailorMovies;
   return (
     <div className="h-screen relative w-full">
       <div className="fixed w-full z-30">
@@ -415,6 +419,8 @@ useEffect(() => {
         moviesToShow={inTheatersMovies}
         showSection3Color={showSection3Color}
       />
+      <HomeTrailorSection tabs={tabsSection3} moviesToShow={TrailosToShow} activeTab={activeTabSec3}
+        setActiveTab={setActiveTabSec3}/>
       <HomeSections
         tabs={tabsSection2}
         sectionTitles={sectionTitles[2]}
