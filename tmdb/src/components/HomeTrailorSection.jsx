@@ -1,10 +1,10 @@
 import React from 'react'
 import TrailorSectionDisplay from './TrailorSectionDisplay'
 
-function HomeTrailorSection({tabs, activeTab,moviesToShow, setActiveTab}) {
+function HomeTrailorSection({tabs,setShowSection3Bg,showSection3Bg, activeTab,moviesToShow, setActiveTab}) {
   return (
-    <div className='h-[39vh] pt-5 w-full bg-blue-500'>
-        <TrailorSectionDisplay tabs={tabs} activeTab={activeTab} moviesToShow={moviesToShow} setActiveTab={setActiveTab}/>
+    <div style={{ backgroundImage: `url(${showSection3Bg})`, backgroundRepeat:'no-repeat' ,backgroundSize:'cover',backgroundPositionY:'20%'}} className='transition-all duration-1000 ease-in-out h-[40vh] pt-5 w-full bg-[#032541c7] bg-blend-multiply'>
+        <TrailorSectionDisplay setShowSection3Bg={setShowSection3Bg} tabs={tabs} activeTab={activeTab} moviesToShow={moviesToShow} setActiveTab={setActiveTab}/>
 
     </div>
   )

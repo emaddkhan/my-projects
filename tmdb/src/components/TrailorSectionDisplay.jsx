@@ -2,10 +2,10 @@ import React from "react";
 import InnerNav from "./InnerNav";
 import TrailorMovieCard from "./TrailorMovieCard";
 
-function TrailorSectionDisplay({ tabs, moviesToShow, activeTab, setActiveTab }) {
+function TrailorSectionDisplay({setShowSection3Bg, tabs, moviesToShow, activeTab, setActiveTab }) {
   return (
     <div className="w-[63%] h-full mx-auto ">
-      <div className="flex  items-center gap-6 pb-5">
+      <div className="flex  items-center gap-6 pb-8">
         <h2 className="text-[1.2vw] font-semibold text-white">
           Latest Trailers
         </h2>
@@ -17,7 +17,7 @@ function TrailorSectionDisplay({ tabs, moviesToShow, activeTab, setActiveTab }) 
       </div>
       <div className="flex items-center gap-5 overflow-auto">
         {moviesToShow.map((movie) => (
-          <TrailorMovieCard movie={movie} key={movie.id} />
+          <TrailorMovieCard setShowSection3Bg={setShowSection3Bg} movie={movie} key={movie.id} />
         ))}
       
       </div>

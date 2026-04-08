@@ -409,18 +409,11 @@ useEffect(() => {
         setActiveTab={setActiveTab}
         moviesToShow={moviesToShow}
       />
-      <HomeSections
-        tabs={tabsSection3}
-        sectionTitles={sectionTitles[1]}
-        showSection3Bg={showSection3Bg}
-        setShowSection3Bg={setShowSection3Bg}
-        activeTab={activeTabSec3}
-        setActiveTab={setActiveTabSec3}
-        moviesToShow={inTheatersMovies}
-        showSection3Color={showSection3Color}
-      />
       <HomeTrailorSection tabs={tabsSection3} moviesToShow={TrailosToShow} activeTab={activeTabSec3}
-        setActiveTab={setActiveTabSec3}/>
+        showSection3Bg={showSection3Bg}
+        setActiveTab={setActiveTabSec3} 
+        setShowSection3Bg={setShowSection3Bg}
+         />
       <HomeSections
         tabs={tabsSection2}
         sectionTitles={sectionTitles[2]}
@@ -428,6 +421,9 @@ useEffect(() => {
         setActiveTab={setActiveTabSec2}
         moviesToShow={moviesToShowSec2}
       />
+      <HomeSections
+      tabs
+      />      
     </div>
   );
 }
