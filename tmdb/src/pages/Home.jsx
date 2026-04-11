@@ -25,6 +25,7 @@ import {
 import { IMAGE_BASE_URL } from "../api/config";
 import HomeTrailorSection from "../components/HomeTrailorSection";
 import HomeFooter from "../components/HomeFooter";
+import VideoPlayer from "../components/VideoPlayer";
 
 function Home() {
   const [trendingToday, setTrendingToday] = useState([]);
@@ -48,6 +49,8 @@ function Home() {
   const [activeTabSection4,setActiveSection4]=useState("movie");
   const [freeToWatchMovies, setFreeToWatchMovies] = useState([]);
   const [freeToWatchOnTv, setFreeToWatchOnTv] = useState([]);
+  const [videoKey, setVideoKey] = useState(null);
+  const [trailorLoading, setTrailorLoading] = useState(false);
 
   const tabsSection1 = [
     { label: "Today", value: "day" },
@@ -457,7 +460,10 @@ useEffect(() => {
         showSection3Bg={showSection3Bg}
         setActiveTab={setActiveTabSec3} 
         setShowSection3Bg={setShowSection3Bg}
+        setVideoKey={setVideoKey}
+        setTrailorLoading={setTrailorLoading}
          />
+         <VideoPlayer videoKey={videoKey} trailorLoading={trailorLoading} setVideoKey={setVideoKey}/>
       <HomeSections
         tabs={tabsSection2}
         sectionTitles={sectionTitles[2]}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InnerNav from "./InnerNav";
 import TrailorMovieCard from "./TrailorMovieCard";
 
-function TrailorSectionDisplay({setShowSection3Bg, tabs, moviesToShow, activeTab, setActiveTab }) {
+function TrailorSectionDisplay({setVideoKey,setTrailorLoading,setShowSection3Bg, tabs, moviesToShow, activeTab, setActiveTab }) {
   const [tabColor,setTabColor]=useState(true);
   return (
     <div className="w-[63%] h-full mx-auto ">
@@ -19,7 +19,7 @@ function TrailorSectionDisplay({setShowSection3Bg, tabs, moviesToShow, activeTab
       </div>
       <div className="flex items-center gap-5 overflow-auto">
         {moviesToShow.map((movie) => (
-          <TrailorMovieCard setShowSection3Bg={setShowSection3Bg} movie={movie} key={movie.id} />
+          <TrailorMovieCard setTrailorLoading={setTrailorLoading} setVideoKey={setVideoKey} setShowSection3Bg={setShowSection3Bg} movie={movie} key={movie.id} />
         ))}
       
       </div>
