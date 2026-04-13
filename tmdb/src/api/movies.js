@@ -62,3 +62,10 @@ export const getOnTvShows = () => {
     "/discover/tv?with_watch_monetization_types=flatrate&watch_region=US"
   );
 };
+
+//get movie details
+export const getFullMovieDetails = (id) => {
+  return fetchDataFromApi(
+    `/movie/${id}?append_to_response=credits,videos,similar,images`
+  );
+};

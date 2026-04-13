@@ -1,13 +1,18 @@
 import React from "react";
 import movieImg from "../assets/movie1.jpg";
 import { IMAGE_BASE_URL } from "../api/config";
+import { useNavigate } from "react-router-dom";
 
 function MovieCard({ setShowSection3Bg, activeTab, movie }) {
+  const navigate = useNavigate();
+  const handleCardClick = () => {
+    navigate(`/movie/${movie.id}`,{state:movie});
+  }
   const posterUrl = movie.poster_path
     ? `${IMAGE_BASE_URL}${movie.poster_path}`
     : movieImg;
   return (
-    <div className="w-[9vw] p-1 mt-3 shrink-0  overflow-hidden ">
+    <div onClick={handleCardClick} className="w-[9vw] p-1 mt-3 shrink-0  overflow-hidden ">
       <img
         onMouseEnter={() => setShowSection3Bg(movie.backdrop_path ? `${IMAGE_BASE_URL}${movie.backdrop_path}` : null)}
         className="w-[9vw] rounded-xl"
