@@ -66,6 +66,11 @@ export const getOnTvShows = () => {
 //get movie details
 export const getFullMovieDetails = (id) => {
   return fetchDataFromApi(
-    `/movie/${id}?append_to_response=credits,videos,similar,images`
+    `/movie/${id}?append_to_response=credits,videos,images,similar,release_dates`
+  );
+};
+export const getMovieWatchProviders = (id) => {
+  return fetchDataFromApi(
+    `/movie/${id}/watch/providers?language=en-US`
   );
 };

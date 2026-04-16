@@ -3,6 +3,7 @@ import movieImg from "../assets/movie1.jpg";
 import { IMAGE_BASE_URL } from "../api/config";
 import { useNavigate } from "react-router-dom";
 
+
 function MovieCard({ setShowSection3Bg, activeTab, movie }) {
   const navigate = useNavigate();
   const handleCardClick = () => {
