@@ -3,6 +3,8 @@ import { useLocation, useParams } from "react-router-dom";
 import { getFullMovieDetails, getMovieWatchProviders } from "../api/movies";
 import Navbar from "../components/Navbar";
 import MovieDetailBanner from "../components/MovieDetailBanner";
+import VideoPlayer from "../components/VideoPlayer";
+
 
 
 function MovieDetails() {
@@ -11,6 +13,12 @@ function MovieDetails() {
   const movie = loacation.state;
   const [movieDetails, setMovieDetails] = useState(null);
   const [movieProvider, setMovieProvider] = useState(null);
+  const [videoKey, setVideoKey] = useState(null);
+  const [trailorLoading, setTrailorLoading] = useState(false);
+  
+  
+  
+  
   
   useEffect(() => {
     const loadData = async () => {
@@ -35,8 +43,10 @@ function MovieDetails() {
         <Navbar />
       </div>
       <div className="pt-[3.4vw] bg-amber-200">
-        <MovieDetailBanner movie={movieDetails} />
+        <MovieDetailBanner setTrailorLoading={setTrailorLoading} setVideoKey={setVideoKey} movie={movieDetails} />
       </div>
+         <VideoPlayer videoKey={videoKey} trailorLoading={trailorLoading} setVideoKey={setVideoKey}/>
+
     </div>
   );
 }
