@@ -4,6 +4,8 @@ import { getFullMovieDetails, getMovieWatchProviders } from "../api/movies";
 import Navbar from "../components/Navbar";
 import MovieDetailBanner from "../components/MovieDetailBanner";
 import VideoPlayer from "../components/VideoPlayer";
+import MovieDetailCastSection from "../components/MovieDetailCastSection";
+import MovieDetailContainer from "../components/movieDetailContainer";
 
 
 
@@ -46,6 +48,9 @@ function MovieDetails() {
         <MovieDetailBanner setTrailorLoading={setTrailorLoading} setVideoKey={setVideoKey} movie={movieDetails} />
       </div>
          <VideoPlayer videoKey={videoKey} trailorLoading={trailorLoading} setVideoKey={setVideoKey}/>
+      <div className="w-full bg-blue-300 py-1">
+        <MovieDetailContainer movie={movieDetails}/>
+      </div>
 
     </div>
   );

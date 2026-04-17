@@ -26,7 +26,10 @@ function MovieDetailBanner({ setTrailorLoading, movie, setVideoKey }) {
 
     const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
 
-    let r = 0, g = 0, b = 0, count = 0;
+    let r = 0,
+      g = 0,
+      b = 0,
+      count = 0;
 
     for (let i = 0; i < data.length; i += 40) {
       r += data[i];
@@ -65,7 +68,7 @@ function MovieDetailBanner({ setTrailorLoading, movie, setVideoKey }) {
       const videosData = await getOnRentTrailorMovieVideos(movie.id);
 
       const trailer = videosData?.results?.find(
-        (video) => video.type === "Trailer" && video.site === "YouTube"
+        (video) => video.type === "Trailer" && video.site === "YouTube",
       );
 
       if (trailer) setVideoKey(trailer.key);
@@ -87,55 +90,50 @@ function MovieDetailBanner({ setTrailorLoading, movie, setVideoKey }) {
     : TrailorImg;
 
   // 📅 release logic
- const getBestReleaseInfo = (movie) => {
-  const originCountry =
-    movie?.production_countries?.[0]?.iso_3166_1;
+  const getBestReleaseInfo = (movie) => {
+    const originCountry = movie?.production_countries?.[0]?.iso_3166_1;
 
-  const allRegions = movie?.release_dates?.results || [];
+    const allRegions = movie?.release_dates?.results || [];
 
-  // helper to get valid rating
-  const getValidRating = (arr) =>
-    arr?.find((r) => r.certification && r.certification.trim() !== "")
-      ?.certification || null;
+    // helper to get valid rating
+    const getValidRating = (arr) =>
+      arr?.find((r) => r.certification && r.certification.trim() !== "")
+        ?.certification || null;
 
-  // 1st priority: origin country
-  const originRegion = allRegions.find(
-    (r) => r.iso_3166_1 === originCountry
-  );
+    // 1st priority: origin country
+    const originRegion = allRegions.find((r) => r.iso_3166_1 === originCountry);
 
-  const originData = originRegion?.release_dates?.[0];
+    const originData = originRegion?.release_dates?.[0];
 
-  if (originData?.release_date) {
+    if (originData?.release_date) {
+      return {
+        date: originData.release_date,
+        country: originCountry,
+        rating: getValidRating(originRegion?.release_dates),
+      };
+    }
+
+    // 2nd priority: any region with valid date
+    const firstRegion = allRegions.find((r) => r.release_dates?.length > 0);
+
+    const firstData = firstRegion?.release_dates?.[0];
+
+    if (firstData?.release_date) {
+      return {
+        date: firstData.release_date,
+        country: firstRegion.iso_3166_1,
+        rating: getValidRating(firstRegion?.release_dates),
+      };
+    }
+
     return {
-      date: originData.release_date,
-      country: originCountry,
-      rating: getValidRating(originRegion?.release_dates),
+      date: movie?.release_date,
+      country: "N/A",
+      rating: "N/A",
     };
-  }
-
-  // 2nd priority: any region with valid date
-  const firstRegion = allRegions.find(
-    (r) => r.release_dates?.length > 0
-  );
-
-  const firstData = firstRegion?.release_dates?.[0];
-
-  if (firstData?.release_date) {
-    return {
-      date: firstData.release_date,
-      country: firstRegion.iso_3166_1,
-      rating: getValidRating(firstRegion?.release_dates),
-    };
-  }
-
-  return {
-    date: movie?.release_date,
-    country: "N/A",
-    rating: "N/A",
   };
-};
   const releaseInfo = getBestReleaseInfo(movie);
-  console.log("release",releaseInfo)
+  console.log("release", releaseInfo);
 
   const formattedDate = releaseInfo.date
     ? new Date(releaseInfo.date).toLocaleDateString("en-GB")
@@ -155,26 +153,35 @@ function MovieDetailBanner({ setTrailorLoading, movie, setVideoKey }) {
       ? movie.genres.map((g) => g.name).join(" and ")
       : "Unknown";
 
+  //getting only writer and director data
+  const crew =movie?.credits?.crew||[];
+  
+  const getCrewMember = (crew, jobs) =>
+  crew.find(c => jobs.includes(c.job));
+
+const director = getCrewMember(crew, ["Director"]);
+const writer = getCrewMember(crew, ["Writer", "Screenplay", "Story"]);
+console.log(writer)
+console.log(director)
   return (
     <div
       style={{
-        background: `
-          linear-gradient(
-            to right,
-            rgba(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]}, 0.95),
-            rgba(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]}, 0.5),
-            rgba(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]}, 0.2)
-          ),
-          url(${backdropUrl})
-        `,
-        backgroundRepeat: "no-repeat",
+        backgroundImage: `
+    linear-gradient(
+      to right,
+      rgba(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]}, 0.95),
+      rgba(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]}, 0.5),
+      rgba(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]}, 0.2)
+    ),
+    url(${backdropUrl})
+  `,
         backgroundSize: "cover",
-        backgroundPosition: "80% center",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
       className="h-[62.5vh] text-white py-5 w-full"
     >
       <div className="w-[69%] h-full flex justify-between items-center mx-auto">
-
         {/* Poster */}
         <div className="rounded-2xl overflow-hidden w-[22.5%] h-full bg-white">
           <img
@@ -185,13 +192,16 @@ function MovieDetailBanner({ setTrailorLoading, movie, setVideoKey }) {
         </div>
 
         {/* Details */}
-        <div className="h-full w-[75%] py-16">
-
+        <div className="h-full w-[75%] py-8">
           <h2 className="font-bold text-[1.8vw]">{movie.title}</h2>
 
           {/* release + genre + runtime */}
           <div className="flex flex-wrap items-center gap-3 text-sm mt-2 opacity-90">
-            <span className="py-[.1vw] px-2 text-xs border-1 border-white">{releaseInfo.rating}</span>
+            {releaseInfo.rating && (
+              <span className="py-[.1vw] px-2 text-xs border-1 border-white">
+                {releaseInfo.rating}
+              </span>
+            )}
             <span>
               {formattedDate} ({releaseInfo.country})
             </span>
@@ -207,13 +217,14 @@ function MovieDetailBanner({ setTrailorLoading, movie, setVideoKey }) {
               <RatingCircle value={movie.vote_average} />
             </div>
             <h4 className="font-semibold leading-[1.1vw]">
-              User<br />Score
+              User
+              <br />
+              Score
             </h4>
           </div>
 
           {/* Icons */}
           <div className="flex items-center mt-3 gap-5">
-
             {[list, heart, save].map((icon, i) => (
               <div
                 key={i}
@@ -230,12 +241,22 @@ function MovieDetailBanner({ setTrailorLoading, movie, setVideoKey }) {
               <img className="w-5" src={playBtn} />
               <h2 className="font-semibold">Play Trailer</h2>
             </div>
-
           </div>
-          <h4 className="italic text-[#B0AEAC] text-[1vv] mt-6">{movie.tagline}</h4>
+          <h4 className="italic text-[#B0AEAC] text-[1vv] mt-6">
+            {movie.tagline}
+          </h4>
           <h2 className="text-[1.1vw] font-semibold mt-3">Overview</h2>
           <p className="mt-1 text-sm">{movie.overview}</p>
-
+          <div className="mt-5 flex gap-20 items-center">
+            <div>
+              <h3 className="font-semibold underline underline-offset-4 decoration-0 text-sm">{director.name}</h3>
+              <p className="text-xs pt-1">{director.job}</p>
+            </div>
+            <div>
+              <h3 className="font-semibold underline underline-offset-4 decoration-0 text-sm">{writer.name}</h3>
+              <p className="text-xs pt-1">{writer.job}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
