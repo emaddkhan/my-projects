@@ -44,11 +44,11 @@ function MovieDetails() {
       <div className="fixed z-40 w-full">
         <Navbar />
       </div>
-      <div className="pt-[3.4vw] bg-amber-200">
+      <div className="pt-[3.4vw] ">
         <MovieDetailBanner setTrailorLoading={setTrailorLoading} setVideoKey={setVideoKey} movie={movieDetails} />
       </div>
          <VideoPlayer videoKey={videoKey} trailorLoading={trailorLoading} setVideoKey={setVideoKey}/>
-      <div className="w-full bg-blue-300 py-1">
+      <div className="w-full  py-1">
         <MovieDetailContainer movie={movieDetails}/>
       </div>
 

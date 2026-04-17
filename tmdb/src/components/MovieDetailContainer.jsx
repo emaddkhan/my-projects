@@ -4,7 +4,7 @@ import MovieDetailRightSectionDetail from './MovieDetailRightSectionDetail'
     
     function MovieDetailContainer({movie}) {
       return (
-        <div className='w-[73%] mx-auto flex justify-between  bg-amber-500 py-5'>
+        <div className='w-[73%] mx-auto flex justify-between   py-5'>
             <MovieDetailRightSectionDetail movie={movie}/>
             <MovieDetailSideBar/>
         </div>

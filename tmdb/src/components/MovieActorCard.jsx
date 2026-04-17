@@ -1,18 +1,24 @@
 import React from 'react'
 import actor from "../assets/actor.jpg"
+import { IMAGE_BASE_URL } from "../api/config";
+
 
 
 function MovieActorCard({movie}) {
+    const posterUrl = movie.profile_path
+    ? `${IMAGE_BASE_URL}${movie.profile_path}`
+    : actor;
+    
   return (
-    <div className='w-[8vw] shrink-0 h-full rounded-lg overflow-hidden bg-red-300'>
-            <div className='h-[60%] w-full bg-amber-200'>
-                <img className='w-full h-full' src={actor} alt="" />
+    <div className='w-[7.5vw] shrink-0 h-full border-1 border-[#F2F2F2] bg-white rounded-lg overflow-hidden '>
+            <div className='h-[70%] w-full '>
+                <img className='w-full object-cover object-top h-full' src={posterUrl} alt="" />
             </div>
-            <div className='h-[40%] p-2 pt-3 w-full bg-amber-300'>
+            <div className='h-[30%] p-2 pt-3 w-full '>
                 <h2 className='text-sm font-bold'>{movie.name}</h2>
-                <p className='text-xs pb-1'>Dr. Michael 'Robby'</p>
-                <p className='text-xs pb-1'>Robinavitch</p>
-                <p className='text-xs pb-1'>30 Episodes</p>
+                <p className='text-xs pb-1'>{movie?.character}'</p>
+                {/* <p className='text-xs pb-1'>Robinavitch</p>
+                <p className='text-xs pb-1'>30 Episodes</p> */}
             </div>
         </div>
   )
