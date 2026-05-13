@@ -223,7 +223,6 @@ console.log(director)
             </h4>
           </div>
 
-          {/* Icons */}
           <div className="flex items-center mt-3 gap-5">
             {[list, heart, save].map((icon, i) => (
               <div
