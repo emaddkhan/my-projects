@@ -85,11 +85,9 @@ function Home() {
         setLoading(true);
 
         const data = await getTrendingMovies();
-        console.log("data:", data);
 
         if (data && data.results) {
           setTrendingToday(data.results);
-          console.log("Trending Today Movies:", data.results);
         } else {
           setTrendingToday([]);
         }

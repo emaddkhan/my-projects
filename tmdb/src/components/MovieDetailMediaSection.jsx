@@ -1,16 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IMAGE_BASE_URL } from "../api/config";
+import VideoPlayer from "./VideoPlayer";
+import playBtn from "../assets/playBtn.png";
 
 function MovieDetailMediaSection({ movie }) {
   const [mostPopular, setMostPopular] = useState([]);
+  const [videoKey, setVideoKey] = useState(null);
 
   const [activeTab, setActiveTab] = useState(0);
   const navRefs = useRef([]);
+
   const videos = movie?.videos?.results || [];
   const backdrops = movie?.images?.backdrops || [];
   const posters = movie?.images?.posters || [];
-
-
+  const backdropMedia = backdrops.slice(0, 8);
+  const videoMedia = videos
+    .filter((v) => v.site === "YouTube" && v.key)
+    .slice(0, 8);
+  const posterMedia=posters.slice(0,8)
   const mediaNav = [
     { title: "Most Popular", value: "popular" },
     { title: "Videos", value: "videos", length: videos.length },
@@ -18,8 +25,18 @@ function MovieDetailMediaSection({ movie }) {
     { title: "Posters", value: "posters", length: posters.length },
   ];
 
+  // MOST POPULAR DATA
   useEffect(() => {
-    const video = videos[0] ? { ...videos[0], type: "video" } : null;
+    const officialTrailer =
+      videos.find(
+        (v) =>
+          v.type === "Trailer" && v.site === "YouTube" && v.official === true,
+      ) ||
+      videos.find((v) => v.type === "Trailer" && v.site === "YouTube") ||
+      videos[0];
+    const video = officialTrailer
+      ? { ...officialTrailer, type: "video" }
+      : null;
 
     const backdrop = backdrops[0]
       ? { ...backdrops[0], type: "backdrop" }
@@ -30,19 +47,14 @@ function MovieDetailMediaSection({ movie }) {
     const data = [video, backdrop, poster].filter(Boolean);
 
     setMostPopular(data);
-
-    console.log("🔥 MOST POPULAR:", data);
   }, [videos, backdrops, posters]);
 
-  
-
+  // UNDERLINE
   const [underline, setUnderline] = useState({
     x: 0,
     width: 0,
   });
-  const backdropMedia = backdrops.slice(0, 7);
-  const posterMedia = posters.slice(0, 7);
-  
+
   useEffect(() => {
     const el = navRefs.current[activeTab];
 
@@ -54,74 +66,198 @@ function MovieDetailMediaSection({ movie }) {
     }
   }, [activeTab]);
 
-  console.log("mostPopular", mostPopular);
-  console.log("backdropMedia", backdropMedia);
-  console.log("posterMedia", posterMedia);
-  const postUrl = movie.poster_path
-      ? `${IMAGE_BASE_URL}${movie.poster_path}`
-      : "";
-
   return (
-    <div className="bg-amber-300 h-[45vh] w-full py-5">
-      <div className="upperMediaNav pb-5 bg-amber-100 flex justify-between items-center">
-        {/* LEFT */}
-        <div className="flex items-center gap-10">
-          <h2 className="font-semibold text-xl">Media</h2>
+    <>
+      <div className=" w-full py-5  border-b-2 border-[#D7D7D7] ">
+        <div className="upperMediaNav pb-5 flex justify-between items-center">
+          <div className="flex items-center gap-10">
+            <h2 className="font-semibold text-2xl">Media</h2>
 
-          <div className="relative flex gap-7 items-center">
-            {mediaNav.map((item, i) => (
+            <div className="relative flex gap-7 items-center">
+              {mediaNav.map((item, i) => (
+                <div
+                  key={i}
+                  ref={(el) => (navRefs.current[i] = el)}
+                  onClick={() => setActiveTab(i)}
+                  className="cursor-pointer"
+                >
+                  <div className="flex items-center gap-1">
+                    <h2
+                      className={`text-[1vw] font-semibold ${
+                        activeTab === i ? "text-black" : "text-gray-400"
+                      }`}
+                    >
+                      {item.title}
+                    </h2>
+
+                    {item?.length > 0 && (
+                      <span className="text-[0.9vw] text-gray-500">
+                        {item.length}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+
+              <div
+                className="absolute -bottom-1 h-[2px] bg-black rounded-full"
+                style={{
+                  width: underline.width,
+                  transform: `translateX(${underline.x}px)`,
+                  transition: "all 600ms ease",
+                }}
+              />
+            </div>
+          </div>
+          {
+            activeTab !==0 &&(
+              
+            <h2 className="text-[#025A7C] font-semibold cursor-pointer text-sm">Show all {mediaNav[activeTab].title}</h2>
+          
+            )
+          }
+        </div>
+
+        <div className="flex w-full h-[35vh] overflow-x-auto overflow-y-hidden ">
+          {activeTab === 0 &&
+            mostPopular.map((item, index) => {
+              if (item.type === "video") {
+                return (
+                  <div
+                    key={index}
+                    onClick={() => setVideoKey(item.key)}
+                    className="relative min-w-[60%] h-full cursor-pointer group"
+                  >
+                    <img
+                      src={
+                        backdrops[0]?.file_path
+                          ? `${IMAGE_BASE_URL}${backdrops[0]?.file_path}`
+                          : `https://i.ytimg.com/vi/${item.key}/hq720.jpg`
+                      }
+                      onError={(e) => {
+                        e.target.src = `https://i.ytimg.com/vi/${item.key}/hqdefault.jpg`;
+                      }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition"
+                      alt=""
+                    />
+
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition" />
+
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center">
+                        <img className="w-8" src={playBtn} alt="Play" />
+                      </div>
+                    </div>
+
+                    <div className="absolute bottom-5 left-5">
+                      <h2 className="text-3xl font-bold">{item.name}</h2>
+                      <p className="text-zinc-300 text-sm">Play Trailer</p>
+                    </div>
+                  </div>
+                );
+              }
+
+              if (item.type === "backdrop") {
+                return (
+                  <div
+                    key={index}
+                    className="relative min-w-[60%] h-full overflow-hidden group"
+                  >
+                    <img
+                      src={`${IMAGE_BASE_URL}${item.file_path}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition"
+                      alt=""
+                    />
+                    <div className="absolute inset-0 bg-black/10" />
+                  </div>
+                );
+              }
+
+              if (item.type === "poster") {
+                return (
+                  <div
+                    key={index}
+                    className="relative min-w-[20%] h-full overflow-hidden group"
+                  >
+                    <img
+                      src={`${IMAGE_BASE_URL}${item.file_path}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition"
+                      alt=""
+                    />
+                    <div className="absolute inset-0 bg-black/10" />
+                  </div>
+                );
+              }
+            })}
+          {/* VIDEOS TAB */}
+          {activeTab === 1 &&
+            videoMedia.map((vid, i) => (
               <div
                 key={i}
-                ref={(el) => (navRefs.current[i] = el)}
-                onClick={() => setActiveTab(i)}
-                className="cursor-pointer"
+                onClick={() => setVideoKey(vid.key)}
+                className="relative min-w-[60%] h-full cursor-pointer group overflow-hidden"
               >
-                <div className="flex items-center gap-1">
-                  <h2
-                    className={`text-[1vw] font-semibold transition-colors duration-300 ${activeTab === i ? "text-black" : "text-gray-500"}`}
-                  >
-                    {item.title}
-                  </h2>
+                {/* THUMBNAIL */}
+                <img
+                  src={`https://img.youtube.com/vi/${vid.key}/hq720.jpg`}
+                  onError={(e) => {
+                    e.target.src = `https://img.youtube.com/vi/${vid.key}/hqdefault.jpg`;
+                  }}
+                  className="w-full h-full object-cover group-hover:scale-105 transition"
+                  alt={vid.name}
+                />
 
-                  {item?.length > 0 && (
-                    <span className="text-[0.9vw] text-[#D7D7D7]">
-                      {item.length}
-                    </span>
-                  )}
+                {/* OVERLAY */}
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition" />
+
+                {/* PLAY ICON */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center">
+                        <img className="w-8" src={playBtn} alt="Play" />
+                      </div>
+                </div>
+
+                {/* TITLE */}
+                <div className="absolute bottom-3 left-3">
+                  <h2 className="text-white text-sm font-semibold line-clamp-1">
+                    {vid.name}
+                  </h2>
                 </div>
               </div>
             ))}
-
-            {/* UNDERLINE */}
-            <div
-              className="absolute bottom-0 h-[2px] bg-black rounded-full"
-              style={{
-                width: underline.width,
-                transform: `translateX(${underline.x}px)`,
-                transition:
-                  "transform 2000ms cubic-bezier(0.16, 1, 0.3, 1), width 2000ms cubic-bezier(0.16, 1, 0.3, 1)",
-              }}
-            />
-          </div>
-        </div>
-
-        {/* RIGHT */}
-        <div>
-          <h2 className="text-[#2ACEF3] capitalize font-semibold cursor-pointer">
-            {activeTab === 0 ? "" : `show all ${mediaNav[activeTab].value}`}
-          </h2>
+          {activeTab === 2 &&
+            backdropMedia.map((i, index) => {
+              return (
+                <img
+                  className="h-full w-[60%]"
+                  src={`${IMAGE_BASE_URL}${i.file_path}`}
+                  alt=""
+                />
+              );
+            })}
+            {activeTab === 3 &&
+            <>
+            {
+              posterMedia.map((i, index) => {
+              return (
+                <img
+                  className="h-full w-[23%]"
+                  src={`${IMAGE_BASE_URL}${i.file_path}`}
+                  alt=""
+                />
+              );
+            })
+            }
+            <div className="w-23% h-full flex justify-center items-center">
+              <h2></h2>
+            </div>
+            </>
+            }
         </div>
       </div>
-      <div className="mediaShowCaseContainer flex w-full h-[34.6vh] bg-amber-50  ">
-        {mostPopular.map((i)=>{
-            return(
-                <div >
 
-                </div>
-            )
-        })}
-      </div>
-    </div>
+      <VideoPlayer videoKey={videoKey} setVideoKey={setVideoKey} />
+    </>
   );
 }
 

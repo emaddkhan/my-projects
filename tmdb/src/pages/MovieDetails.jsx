@@ -27,10 +27,8 @@ function MovieDetails() {
       try {
         const data = await getFullMovieDetails(id);
         const pros = await getMovieWatchProviders(id);
-        console.log("Movie Details:", data);
         setMovieDetails(data);
         setMovieProvider(pros);
-        console.log("prosss", pros);
       } catch (error) {
         console.error("Error fetching movie details:", error);
       }
