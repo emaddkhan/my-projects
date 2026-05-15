@@ -22,21 +22,79 @@ function MovieDetails() {
   
   
   
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const data = await getFullMovieDetails(id);
-        const pros = await getMovieWatchProviders(id);
-        setMovieDetails(data);
-        setMovieProvider(pros);
-      } catch (error) {
-        console.error("Error fetching movie details:", error);
-      }
-    };
+  // useEffect(() => {
 
-    loadData();
-  }, [id]);
+  //   const loadData = async () => {
+  //     try {
+  //       const data = await getFullMovieDetails(id);
+  //       const pros = await getMovieWatchProviders(id);
+  //       setMovieDetails(data);
+  //       setMovieProvider(pros);
+  //     } catch (error) {
+  //       console.error("Error fetching movie details:", error);
+  //     }
+  //   };
 
+  //   loadData();
+  // }, [id]);
+//   useEffect(() => {
+//   const loadData = async () => {
+//     try {
+//       const [data, pros] = await Promise.all([
+//         getFullMovieDetails(id),
+//         getMovieWatchProviders(id),
+//       ]);
+
+//       setMovieDetails(data);
+
+//       const getProviders = (pros) => {
+//   if (!pros?.results) return null;
+
+//   return (
+//     pros.results.PK ||
+//     pros.results.US ||
+//     pros.results.GB ||
+//     Object.values(pros.results).find(Boolean) ||
+//     null
+//   );
+// };
+//       setMovieProvider(getProviders(pros));
+//     } catch (error) {
+//       console.error("Error fetching movie details:", error);
+//     }
+//   };
+
+//   loadData();
+// }, [id]);
+useEffect(() => {
+  const loadData = async () => {
+    try {
+      const [data, pros] = await Promise.all([
+        getFullMovieDetails(id),
+        getMovieWatchProviders(id),
+      ]);
+
+      setMovieDetails(data);
+      setMovieProvider(getProviders(pros));
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
+  };
+
+  loadData();
+}, [id]);
+const getProviders = (pros) => {
+  if (!pros?.results) return null;
+
+  return (
+    pros.results.PK ||
+    pros.results.US ||
+    pros.results.GB ||
+    Object.values(pros.results).find(Boolean) ||
+    null
+  );
+};
+console.log("moviP",movieProvider)
   return (
     <div>
       <div className="fixed z-40 w-full">
@@ -47,7 +105,10 @@ function MovieDetails() {
       </div>
          <VideoPlayer videoKey={videoKey} trailorLoading={trailorLoading} setVideoKey={setVideoKey}/>
       <div className="w-full  py-1">
-        <MovieDetailContainer movie={movieDetails}/>
+        {movieProvider && (
+        <MovieDetailContainer movie={movieDetails} movieProvider={movieProvider} />
+
+        )}
       </div>
 
     </div>

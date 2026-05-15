@@ -23,3 +23,15 @@
   scrollbar-width: thin;
   scrollbar-color: #555 #f1f1f1;
 }
+@keyframes pulseZoom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.animate-pulseZoom {
+  animation: pulseZoom .5s infinite ease-in-out;
+}

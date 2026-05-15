@@ -3,7 +3,6 @@ import actor from "../assets/actor.jpg"
 import MovieActorCard from './MovieActorCard'
 import arrowRight from "../assets/arrow-right-solid-full.svg"
 function MovieDetailSectionCastContainer({movie}) {
-    console.log(movie)
     const cast =movie?.credits?.cast||[];
   return (
     <div className='h-[30.5vh] w-full flex gap-4 overflow-x-auto pb-4  0 pt-1'>

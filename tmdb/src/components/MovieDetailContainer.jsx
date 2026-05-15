@@ -2,11 +2,11 @@
 import MovieDetailSideBar from './MovieDetailSideBar'
 import MovieDetailRightSectionDetail from './MovieDetailRightSectionDetail'
     
-    function MovieDetailContainer({movie}) {
+    function MovieDetailContainer({movie,movieProvider}) {
       return (
         <div className='w-[73%] mx-auto flex justify-between   py-5'>
             <MovieDetailRightSectionDetail movie={movie}/>
-            <MovieDetailSideBar/>
+            <MovieDetailSideBar movieProvider={movieProvider} />
         </div>
       )
     }

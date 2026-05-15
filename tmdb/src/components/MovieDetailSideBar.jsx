@@ -1,8 +1,11 @@
 import React from 'react'
+import MovieWatchBtn from './MovieWatchBtn'
 
-function MovieDetailSideBar() {
+function MovieDetailSideBar({movieProvider}) {
   return (
-    <div className='w-[23%] p-1 '>MovieDetailSideBar</div>
+    <div className='w-[23%] p-1 '>
+      <MovieWatchBtn movieProvider={movieProvider}/>
+    </div>
   )
 }
 

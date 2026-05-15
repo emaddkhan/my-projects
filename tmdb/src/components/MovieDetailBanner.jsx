@@ -133,7 +133,6 @@ function MovieDetailBanner({ setTrailorLoading, movie, setVideoKey }) {
     };
   };
   const releaseInfo = getBestReleaseInfo(movie);
-  console.log("release", releaseInfo);
 
   const formattedDate = releaseInfo.date
     ? new Date(releaseInfo.date).toLocaleDateString("en-GB")
@@ -161,8 +160,7 @@ function MovieDetailBanner({ setTrailorLoading, movie, setVideoKey }) {
 
 const director = getCrewMember(crew, ["Director"]);
 const writer = getCrewMember(crew, ["Writer", "Screenplay", "Story"]);
-console.log(writer)
-console.log(director)
+
   return (
     <div
       style={{
@@ -248,12 +246,12 @@ console.log(director)
           <p className="mt-1 text-sm">{movie.overview}</p>
           <div className="mt-5 flex gap-20 items-center">
             <div>
-              <h3 className="font-semibold underline underline-offset-4 decoration-0 text-sm">{director.name}</h3>
+              <h3 className="font-semibold underline underline-offset-4 decoration-0 text-sm">{director?.name}</h3>
               <p className="text-xs pt-1">{director.job}</p>
             </div>
             <div>
-              <h3 className="font-semibold underline underline-offset-4 decoration-0 text-sm">{writer.name}</h3>
-              <p className="text-xs pt-1">{writer.job}</p>
+              <h3 className="font-semibold underline underline-offset-4 decoration-0 text-sm">{writer?.name}</h3>
+              <p className="text-xs pt-1">{writer?.job}</p>
             </div>
           </div>
         </div>
