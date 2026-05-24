@@ -1,7 +1,6 @@
 import React from 'react'
 
 function MovieSideBarDetails({movie}) {
-    console.log("mocisi",movie)
     const languageMap = {
     en: "English",
     fr: "French",

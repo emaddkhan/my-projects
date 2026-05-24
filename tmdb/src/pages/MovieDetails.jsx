@@ -6,6 +6,7 @@ import MovieDetailBanner from "../components/MovieDetailBanner";
 import VideoPlayer from "../components/VideoPlayer";
 import MovieDetailCastSection from "../components/MovieDetailCastSection";
 import MovieDetailContainer from "../components/movieDetailContainer";
+import HomeFooter from "../components/HomeFooter";
 
 
 
@@ -96,7 +97,6 @@ const getProviders = (pros) => {
     null
   );
 };
-console.log("moviP",movieProvider)
   return (
     <div>
       <div className="fixed z-40 w-full">
@@ -109,9 +109,9 @@ console.log("moviP",movieProvider)
       <div className="w-full  py-1">
         {movieProvider && (
         <MovieDetailContainer bgColor={bgColor} movie={movieDetails} movieProvider={movieProvider} />
-
         )}
       </div>
+      <HomeFooter/>
 
     </div>
   );

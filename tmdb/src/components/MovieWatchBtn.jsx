@@ -3,7 +3,6 @@ import playBtn from "../assets/playBtn.png";
 
 
 function MovieWatchBtn({movieProvider=null}) {
-    console.log("moviePro",movieProvider)
    
   return (
     <div className='w-full h-[5.5vh] flex justify-between items-center py-2 px-3 bg-[#F0F0F0]'>

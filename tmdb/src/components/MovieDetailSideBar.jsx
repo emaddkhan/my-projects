@@ -24,7 +24,6 @@ function MovieDetailSideBar({ bgColor, movieProvider, movie }) {
   return "Not worth watching";
 };
 const scoreComment = getScoreComment(contentScore);
-  console.log("contentScore", contentScore);
   return (
     <div className="w-[23%] p-1 ">
       <MovieWatchBtn movieProvider={movieProvider} />

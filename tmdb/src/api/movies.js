@@ -82,3 +82,12 @@ export const getMovieWatchProviders = (id) => {
     `/movie/${id}/watch/providers?language=en-US`
   );
 };
+
+//mood movies 
+export const fetchMovies = (genreId) => {
+  console.log("FETCH MOVIES CALLED:", genreId);
+
+  return fetchDataFromApi(
+    `/discover/movie?with_genres=${genreId}`
+  );
+};
