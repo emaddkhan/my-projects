@@ -17,6 +17,8 @@ function MovieDetails() {
   const [movieProvider, setMovieProvider] = useState(null);
   const [videoKey, setVideoKey] = useState(null);
   const [trailorLoading, setTrailorLoading] = useState(false);
+  const [bgColor, setBgColor] = useState([0, 0, 0]);
+
   
   
   
@@ -101,12 +103,12 @@ console.log("moviP",movieProvider)
         <Navbar />
       </div>
       <div className="pt-[3.4vw] ">
-        <MovieDetailBanner setTrailorLoading={setTrailorLoading} setVideoKey={setVideoKey} movie={movieDetails} />
+        <MovieDetailBanner bgColor={bgColor} setBgColor={setBgColor} setTrailorLoading={setTrailorLoading} setVideoKey={setVideoKey} movie={movieDetails} />
       </div>
          <VideoPlayer videoKey={videoKey} trailorLoading={trailorLoading} setVideoKey={setVideoKey}/>
       <div className="w-full  py-1">
         {movieProvider && (
-        <MovieDetailContainer movie={movieDetails} movieProvider={movieProvider} />
+        <MovieDetailContainer bgColor={bgColor} movie={movieDetails} movieProvider={movieProvider} />
 
         )}
       </div>

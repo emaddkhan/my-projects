@@ -9,10 +9,10 @@ import save from "../assets/floppy-disk-solid-full.svg";
 import playBtn from "../assets/playBtn.png";
 import { getOnRentTrailorMovieVideos } from "../api/movies";
 
-function MovieDetailBanner({ setTrailorLoading, movie, setVideoKey }) {
+function MovieDetailBanner({ setTrailorLoading, movie, setVideoKey,bgColor, setBgColor }) {
   if (!movie) return <div>Loading...</div>;
 
-  const [bgColor, setBgColor] = useState([0, 0, 0]);
+  // const [bgColor, setBgColor] = useState([0, 0, 0]);
 
   // 🎨 dominant color extractor
   const getDominantColor = (img) => {

@@ -64,10 +64,18 @@ export const getOnTvShows = () => {
 };
 
 //get movie details
-export const getFullMovieDetails = (id) => {
-  return fetchDataFromApi(
-    `/movie/${id}?append_to_response=credits,videos,images,similar,release_dates`
-  );
+export const getFullMovieDetails = async (id) => {
+  const [movieDetails, keywordsData] = await Promise.all([
+    fetchDataFromApi(
+      `/movie/${id}?append_to_response=credits,videos,images,similar,release_dates`
+    ),
+    fetchDataFromApi(`/movie/${id}/keywords`)
+  ]);
+
+  return {
+    ...movieDetails,
+    keywords: keywordsData?.keywords || []
+  };
 };
 export const getMovieWatchProviders = (id) => {
   return fetchDataFromApi(

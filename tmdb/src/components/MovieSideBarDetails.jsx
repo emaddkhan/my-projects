@@ -38,12 +38,12 @@ function MovieSideBarDetails({movie}) {
     ]
     
   return (
-    <div className='mt-6'>
+    <div className='mt-1'>
         
         {
             data.map((item,i)=>{
                 return(
-                    <div key={i} className='py-1'>
+                    <div key={i} className='pt-5 '>
                         <h2 className='text-sm font-semibold '>{item.title}</h2>
                         <p className='text-[.9vw] '>{item.value}</p>
                     </div>
