@@ -196,7 +196,7 @@ const writer = getCrewMember(crew, ["Writer", "Screenplay", "Story"]);
           {/* release + genre + runtime */}
           <div className="flex flex-wrap items-center gap-3 text-sm mt-2 opacity-90">
             {releaseInfo.rating && (
-              <span className="py-[.1vw] px-2 text-xs border-1 border-white">
+              <span className="py-[.1vw] px-2 text-xs border border-white">
                 {releaseInfo.rating}
               </span>
             )}
@@ -239,7 +239,7 @@ const writer = getCrewMember(crew, ["Writer", "Screenplay", "Story"]);
               <h2 className="font-semibold">Play Trailer</h2>
             </div>
           </div>
-          <h4 className="italic text-[#B0AEAC] text-[1vv] mt-6">
+          <h4 className="italic text-[#B0AEAC] text-[1vw] mt-6">
             {movie.tagline}
           </h4>
           <h2 className="text-[1.1vw] font-semibold mt-3">Overview</h2>

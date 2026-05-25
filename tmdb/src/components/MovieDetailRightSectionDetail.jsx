@@ -12,6 +12,7 @@ function MovieDetailRightSectionDetail({movie}) {
         <SimilarMovieSection movie={movie}
          similarMovies={movie?.similar?.results || []}/>
          <MovieDetailsMoodButtons movie={movie}/>
+         
     </div>
   )
 }

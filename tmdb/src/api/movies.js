@@ -91,3 +91,6 @@ export const fetchMovies = (genreId) => {
     `/discover/movie?with_genres=${genreId}`
   );
 };
+export const getPopularPeople = () => {
+  return fetchDataFromApi("/person/popular");
+};
