@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emad Khan — Frontend Developer</title>
+  <meta name="description" content="Portfolio of Emad Khan, Frontend Developer focused on interactive interfaces, 3D motion, and modern web experiences.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- Custom Cursor Follower -->
+  <div class="custom-cursor" id="customCursor"></div>
+
+  <!-- Header Navigation Bar -->
+  <header class="site-header">
+    <div class="header-left">
+      <a href="#" class="header-brand">EMAD KHAN</a>
+      
+      <button class="header-menu-btn" id="menuBtn">
+        MENU <span class="line"></span>
+      </button>
+    </div>
+
+    <button class="audio-toggle-btn" id="audioBtn">
+      AUDIO <span id="audioState">OFF</span> —
+    </button>
+
+    <div class="header-right">
+      <span class="label">FOR INQUIRIES</span>
+      <a href="mailto:hello@emadkhan.dev" class="email-link">hello@emadkhan.dev</a>
+    </div>
+  </header>
+
+  <!-- Main Hero Stage & 3D Ring Stage Container -->
+  <main class="main-stage">
+
+    <!-- Left Hero Column -->
+    <section class="hero-content">
+      <div>
+        <div class="hero-meta-top">
+          EMAD KHAN &nbsp;&nbsp;/&nbsp;&nbsp; FRONTEND DEVELOPER
+        </div>
+
+        <h1 class="hero-title">
+          I BUILD<br>
+          DIGITAL<br>
+          EXPERIENCES.
+        </h1>
+
+        <p class="hero-subtitle">
+          Frontend developer focused on interactive interfaces, motion and modern web experiences.
+        </p>
+
+        <div class="hero-tech-list">
+          <span>REACT</span>
+          <span>JAVASCRIPT</span>
+          <span>GSAP</span>
+          <span>HTML</span>
+          <span>CSS</span>
+        </div>
+      </div>
+
+      <div class="hero-footer-meta">
+        <div class="meta-group">
+          <span class="meta-label">BASED IN</span>
+          <span class="meta-val">KARACHI, PAKISTAN</span>
+        </div>
+
+        <div class="meta-group">
+          <span class="meta-label">AVAILABLE</span>
+          <span class="meta-val">FOR SELECTED WORK</span>
+        </div>
+
+        <div class="hero-scroll-indicator">
+          <span>SCROLL TO ROTATE RING</span>
+          <div class="scroll-line-container"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right 3D Perspective Ring Stage -->
+    <div class="collage-viewport" id="collageViewport">
+      <div class="collage-scene" id="collageScene">
+
+        <!-- CARD 01: MINI HRMS -->
+        <div class="project-card-wrapper card-mini-hrms" 
+             data-project="1" 
+             data-title="MINI HRMS" 
+             data-cat="FULL-STACK WEB APPLICATION" 
+             data-stack="Node.js / Express / MongoDB / EJS"
+             data-img="../images/mini_hrms_exact.png"
+             data-desc="Full-stack human resource management platform featuring real-time employee analytics, attendance tracking, leave management, and interactive admin dashboards.">
+          <div class="project-card-inner">
+            <img src="../images/mini_hrms_exact.png" alt="Mini HRMS Dashboard" class="project-img">
+          </div>
+        </div>
+
+        <!-- CARD 02: OBYS -->
+        <div class="project-card-wrapper card-obys" 
+             data-project="2" 
+             data-title="OBYS" 
+             data-cat="CRAFTING DIGITAL NARRATIVES" 
+             data-stack="JavaScript / WebGL / GSAP"
+             data-img="../images/obys_exact.png"
+             data-desc="Pure interactive luxury website featuring interactive particle canvas, particle hands motion, and bespoke typography.">
+          <div class="project-card-inner">
+            <img src="../images/obys_exact.png" alt="Obys Experience" class="project-img">
+          </div>
+        </div>
+
+        <!-- CARD 03: MIRANDA -->
+        <div class="project-card-wrapper card-miranda" 
+             data-project="3" 
+             data-title="MIRANDA" 
+             data-cat="INTEATIVE FRONTEND EXPERIENCE" 
+             data-stack="HTML / CSS / JavaScript / GSAP / Locomotive"
+             data-img="../images/miranda_exact.png"
+             data-desc="High-fashion digital showcase website with smooth Locomotive smooth scrolling, fluid WebGL transitions, and editorial typography.">
+          <div class="project-card-inner">
+            <img src="../images/miranda_exact.png" alt="Miranda Experience" class="project-img">
+          </div>
+        </div>
+
+        <!-- CARD 04: REFOKUS -->
+        <div class="project-card-wrapper card-refokus" 
+             data-project="4" 
+             data-title="REFOKUS" 
+             data-cat="INTERACTIVE WEB EXPERIENCE" 
+             data-stack="React / JavaScript / GSAP"
+             data-img="../images/refokus_exact.png"
+             data-desc="Immersive interactive brand web experience built for modern digital studios featuring custom shaders and smooth micro-animations.">
+          <div class="project-card-inner">
+            <img src="../images/refokus_exact.png" alt="Refokus Web Experience" class="project-img">
+          </div>
+        </div>
+
+        <!-- CARD 05: CUBERTO -->
+        <div class="project-card-wrapper card-cuberto" 
+             data-project="5" 
+             data-title="CUBERTO" 
+             data-cat="CREATIVE FRONTEND EXPERIENCE" 
+             data-stack="React / JavaScript / GSAP"
+             data-img="../images/cuberto_exact.png"
+             data-desc="Cutting-edge motion studio website featuring 3D physics geometric objects, magnetic buttons, and fluid page transitions.">
+          <div class="project-card-inner">
+            <img src="../images/cuberto_exact.png" alt="Cuberto Studio Experience" class="project-img">
+          </div>
+        </div>
+
+        <!-- CARD 06: RAY-BAN -->
+        <div class="project-card-wrapper card-rayban" 
+             data-project="6" 
+             data-title="RAY-BAN" 
+             data-cat="INTERACTIVE PRODUCT EXPERIENCE" 
+             data-stack="HTML / CSS / JavaScript / GSAP"
+             data-img="../images/rayban_exact.png"
+             data-desc="Interactive product showroom featuring robotic arm motion controls and dynamic 360-degree sunglasses customization.">
+          <div class="project-card-inner">
+            <img src="../images/rayban_exact.png" alt="Ray-Ban Product Experience" class="project-img">
+          </div>
+        </div>
+
+        <!-- Dynamic Text Tags (One per card) -->
+        <div class="project-info-tag tag-mini-hrms active-tag">
+          <span class="proj-num">01</span>
+          <h2 class="proj-title">MINI HRMS</h2>
+          <p class="proj-category">FULL-STACK WEB APPLICATION</p>
+          <p class="proj-stack">Node.js / Express / MongoDB / EJS</p>
+        </div>
+
+        <div class="project-info-tag tag-obys">
+          <span class="proj-num">02</span>
+          <h2 class="proj-title">OBYS</h2>
+          <p class="proj-category">CRAFTING DIGITAL NARRATIVES</p>
+          <p class="proj-stack">JavaScript / WebGL / GSAP</p>
+        </div>
+
+        <div class="project-info-tag tag-miranda">
+          <span class="proj-num">03</span>
+          <h2 class="proj-title">MIRANDA</h2>
+          <p class="proj-category">INTEATIVE FRONTEND EXPERIENCE</p>
+          <p class="proj-stack">HTML / CSS / JavaScript / GSAP / Locomotive</p>
+        </div>
+
+        <div class="project-info-tag tag-refokus">
+          <span class="proj-num">04</span>
+          <h2 class="proj-title">REFOKUS</h2>
+          <p class="proj-category">INTERACTIVE WEB EXPERIENCE</p>
+          <p class="proj-stack">React / JavaScript / GSAP</p>
+        </div>
+
+        <div class="project-info-tag tag-cuberto">
+          <span class="proj-num">05</span>
+          <h2 class="proj-title">CUBERTO</h2>
+          <p class="proj-category">CREATIVE FRONTEND EXPERIENCE</p>
+          <p class="proj-stack">React / JavaScript / GSAP</p>
+        </div>
+
+        <div class="project-info-tag tag-rayban">
+          <span class="proj-num">06</span>
+          <h2 class="proj-title">RAY-BAN</h2>
+          <p class="proj-category">INTERACTIVE PRODUCT EXPERIENCE</p>
+          <p class="proj-stack">HTML / CSS / JavaScript / GSAP</p>
+        </div>
+
+        <!-- Leader line + VIEW badge -->
+        <div class="view-badge-container active-badge">
+          <div class="view-leader-line"></div>
+          <div class="badge-view-pill">VIEW</div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Bottom Right Footer Counter -->
+  <div class="footer-counter">
+    <span>SELECTED WORK</span>
+    <span class="counter-line"></span>
+    <span class="counter-num">01 / 06</span>
+  </div>
+
+  <!-- Fullscreen Navigation Menu Overlay -->
+  <div class="nav-overlay" id="navOverlay">
+    <div class="nav-overlay-header">
+      <span class="header-brand" style="color: #fff;">EMAD KHAN</span>
+      <button class="nav-close-btn" id="navCloseBtn">CLOSE ✕</button>
+    </div>
+
+    <div class="nav-links">
+      <a href="#" class="nav-link-item">01. Selected Work</a>
+      <a href="#" class="nav-link-item">02. About Me</a>
+      <a href="#" class="nav-link-item">03. Experience</a>
+      <a href="#" class="nav-link-item">04. Tech Stack</a>
+      <a href="#" class="nav-link-item">05. Contact</a>
+    </div>
+
+    <div class="nav-footer">
+      <span>KARACHI, PAKISTAN</span>
+      <span>hello@emadkhan.dev</span>
+      <span>&copy; 2026 EMAD KHAN</span>
+    </div>
+  </div>
+
+  <!-- Project Details Interactive Modal -->
+  <div class="project-modal" id="projectModal">
+    <div class="modal-content-card">
+      <button class="modal-close-btn" id="modalCloseBtn">✕</button>
+      
+      <div class="modal-image-col">
+        <img src="" id="modalImg" alt="Project Preview">
+      </div>
+
+      <div class="modal-info-col">
+        <div>
+          <span class="modal-num" id="modalNum">01</span>
+          <h2 class="modal-title" id="modalTitle">PROJECT TITLE</h2>
+          <p class="modal-cat" id="modalCat">CATEGORY</p>
+          <p class="modal-desc" id="modalDesc">Project description goes here...</p>
+          <p class="modal-tech" id="modalTech">Tech stack</p>
+        </div>
+
+        <a href="#" target="_blank" class="modal-btn">LAUNCH PROJECT →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="../javascripts/main.js"></script>
+</body>
+</html>
