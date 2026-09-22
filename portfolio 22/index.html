@@ -15,7 +15,9 @@
 <body>
 
   <!-- ── CURSOR ── -->
-  <div id="cursor"></div>
+  <div id="cursor-wrap">
+    <div id="cursor-dot"></div>
+  </div>
 
   <!-- ── HEADER ── -->
   <header>
@@ -36,9 +38,13 @@
       <div class="l-top">
         <div class="l-eyebrow">
           <span class="dot-avail"></span>
-          EMAD KHAN / FRONTEND DEVELOPER
+          <span class="name">EMAD KHAN </span>/ FRONTEND DEVELOPER
         </div>
-        <h1 class="l-hero">I BUILD<br>DIGITAL<br>EXPERIENCES.</h1>
+        <h1 class="l-hero">
+          <span class="hero-line"><span class="hero-inner">I BUILD</span></span>
+          <span class="hero-line"><span class="hero-inner">DIGITAL</span></span>
+          <span class="hero-line"><span class="hero-inner">EXPERIENCES.</span></span>
+        </h1>
         <p class="l-sub">Frontend developer focused on interactive interfaces, motion and modern web experiences.</p>
         <div class="l-tags">
           <span class="l-tag">REACT</span>
@@ -78,7 +84,7 @@
       </div>
 
       <!-- VIEW badge -->
-      <div class="feat-view" id="featView">VIEW</div>
+      <!-- <div class="feat-view" id="featView">VIEW</div> -->
 
       <!-- CARD 0 — Mini HRMS -->
       <div class="card" id="c0" data-num="01" data-title="MINI HRMS" data-cat="FULL-STACK WEB APPLICATION"
@@ -179,16 +185,14 @@
     </div><!-- /scene -->
   </div><!-- /page -->
 
-  <!-- COUNTER -->
-  <div class="counter">
-    <span class="ctr-label">SELECTED WORK</span>
-    <span class="ctr-line"></span>
-    <div class="ctr-frac">
-      <span class="ctr-cur" id="ctrC">01</span>
-      <span class="ctr-sep">/</span>
-      <span class="ctr-tot">06</span>
+  <!-- ── EDITORIAL INTRO ── -->
+  <section class="editorial-intro" id="editorialIntro" aria-label="About">
+    <div class="ei-inner">
+      <span class="ei-meta">ABOUT / 01</span>
+      <p class="ei-para">I'm Emad, a frontend-focused software developer who enjoys turning ideas into thoughtful digital experiences. I care about clean interfaces, smooth interactions, and the small details that make a product feel effortless.</p>
     </div>
-  </div>
+  </section>
+
 
   <!-- DOTS -->
   <div class="dots" id="dots"></div>

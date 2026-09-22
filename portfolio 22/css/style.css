@@ -36,51 +36,90 @@
   padding: 0;
 }
 
-html,
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100%;
   background: var(--bg);
   font-family: var(--sans);
   color: var(--dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   cursor: none;
 }
 
 /* ══════════════════════════════════════════
-   CURSOR
+   CURSOR — Clean 20px black dot
 ══════════════════════════════════════════ */
-#cursor {
+
+#cursor-wrap {
   position: fixed;
-  width: 10px;
-  height: 10px;
-  background: var(--dark);
-  border-radius: 50%;
+  top: 0;
+  left: 0;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
+  will-change: left, top;
+}
+
+#cursor-dot {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--dark);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
   transition:
-    width .32s var(--ease-out),
-    height .32s var(--ease-out),
-    border-radius .32s var(--ease-out),
-    background .32s ease,
-    opacity .2s ease;
-  mix-blend-mode: difference;
+    width .38s var(--ease-out),
+    height .38s var(--ease-out),
+    border-radius .3s ease;
 }
 
-#cursor.h {
-  width: 56px;
-  height: 32px;
-  border-radius: 20px;
-  background: #fff;
-  mix-blend-mode: normal;
+/* "VIEW" text revealed inside dot on hover */
+#cursor-dot::after {
+  content: 'VIEW';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--bg);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity .22s ease;
 }
 
-#cursor.click {
-  transform: translate(-50%, -50%) scale(.75);
+/* ── HOVER STATE ── */
+#cursor-wrap.h #cursor-dot {
+  width: 62px;
+  height: 62px;
 }
+
+#cursor-wrap.h #cursor-dot::after {
+  opacity: 1;
+}
+
+/* ── CLICK BURST ── */
+#cursor-wrap.click #cursor-dot {
+  width: 42px;
+  height: 42px;
+  transition:
+    width .1s var(--ease-out),
+    height .1s var(--ease-out);
+}
+
 
 /* ══════════════════════════════════════════
    HEADER
@@ -100,9 +139,9 @@ header {
 
 .hb {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--dark);
   text-decoration: none;
@@ -118,7 +157,7 @@ header {
   border: none;
   cursor: none;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -126,7 +165,8 @@ header {
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: opacity .2s ease;
+  transition: opacity .2s ease, transform .5s cubic-bezier(.23, 1, .32, 1);
+  will-change: transform;
 }
 
 .hm:hover {
@@ -150,15 +190,16 @@ header {
   border: none;
   cursor: none;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--dark);
-  transition: opacity .2s ease;
+  transition: opacity .2s ease, transform .5s cubic-bezier(.23, 1, .32, 1);
   display: flex;
   align-items: center;
   gap: 7px;
+  will-change: transform;
 }
 
 .hc:hover {
@@ -184,7 +225,7 @@ header {
   align-items: center;
   gap: 18px;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 13px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
@@ -222,9 +263,11 @@ header {
    PAGE LAYOUT
 ══════════════════════════════════════════ */
 .page {
-  position: fixed;
-  inset: 0;
+  position: relative;
+  width: 100%;
+  height: 100vh;
   display: flex;
+  overflow: hidden;
 }
 
 /* ══════════════════════════════════════════
@@ -232,8 +275,8 @@ header {
 ══════════════════════════════════════════ */
 .left {
   flex-shrink: 0;
-  width: 375px;
-  padding: 96px 0 48px 44px;
+  width: clamp(380px, 38vw, 520px);
+  padding: 220px 0 48px 44px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -248,7 +291,7 @@ header {
   align-items: center;
   gap: 8px;
   font-family: var(--mono);
-  font-size: 8.5px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -265,6 +308,10 @@ header {
   animation: pulse 2.5s ease-in-out infinite;
 }
 
+.l-eyebrow .name {
+  color: var(--dark);
+}
+
 @keyframes pulse {
 
   0%,
@@ -279,91 +326,137 @@ header {
 
 .l-hero {
   font-family: var(--grotesk);
-  font-size: clamp(2.6rem, 3.8vw, 4.8rem);
+  font-size: clamp(3.8rem, 5.2vw, 6.5rem);
   font-weight: 700;
-  line-height: .88;
-  letter-spacing: -.04em;
+  line-height: .86;
+  letter-spacing: -.05em;
   text-transform: uppercase;
   color: var(--dark);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+}
+
+/* Line-reveal clip wrapper */
+.hero-line {
+  display: block;
+  overflow: hidden;
+  /* tiny extra bottom padding so descenders aren't clipped */
+  padding-bottom: .08em;
+}
+
+/* Inner text — slides up from below */
+.hero-inner {
+  display: block;
+  transform: translateY(110%);
+  animation: heroSlideUp 1s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.hero-line:nth-child(1) .hero-inner { animation-delay: .08s; }
+.hero-line:nth-child(2) .hero-inner { animation-delay: .2s;  }
+.hero-line:nth-child(3) .hero-inner { animation-delay: .32s; }
+
+@keyframes heroSlideUp {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0);    }
 }
 
 .l-sub {
-  font-size: 12.5px;
+  font-size: 14px;
   line-height: 1.72;
-  color: var(--muted);
-  max-width: 272px;
+  color: var(--dark);
+  max-width: 380px;
   margin-bottom: 22px;
   font-weight: 400;
 }
 
 .l-tags {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 0;
   margin-bottom: 0;
 }
 
 .l-tag {
-  padding: 4px 11px;
-  border: 1px solid var(--border);
-  border-radius: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
   font-family: var(--mono);
-  font-size: 7.5px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--muted);
-  background: rgba(255, 255, 255, .4);
-  transition: color .2s ease, border-color .2s ease;
+  transition: color .2s ease;
 }
 
 .l-tag:hover {
   color: var(--dark);
-  border-color: rgba(0, 0, 0, .2);
+  border-color: transparent;
+}
+
+/* Slash separator between tags */
+.l-tag:not(:last-child)::after {
+  content: ' /';
+  color: var(--dim);
+  font-weight: 400;
+  margin-right: 6px;
 }
 
 /* Bottom block */
 .l-foot {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .l-meta {}
 
+/* Dash prefix before each label */
 .l-meta .lml {
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--dim);
-  margin-bottom: 2px;
-  display: block;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.l-meta .lml::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  background: var(--dim);
+  flex-shrink: 0;
 }
 
 .l-meta .lmv {
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--dark);
+  padding-left: 30px;
 }
 
+/* Divider hidden — dash is now part of the label */
 .l-divider {
-  width: 32px;
-  height: 1px;
-  background: var(--border);
+  display: none;
 }
 
 .l-scroll {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
@@ -674,7 +767,7 @@ header {
   align-items: center;
   gap: 14px;
   font-family: var(--mono);
-  font-size: 8.5px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -699,7 +792,7 @@ header {
 }
 
 .ctr-cur {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 900;
   font-family: var(--grotesk);
   transition: opacity .3s ease;
@@ -707,12 +800,12 @@ header {
 
 .ctr-sep {
   color: var(--dim);
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .ctr-tot {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 13px;
 }
 
 /* ══════════════════════════════════════════
@@ -1048,9 +1141,7 @@ header {
   animation: fadeUp .7s var(--ease-out) .1s both;
 }
 
-.l-hero {
-  animation: fadeUp .7s var(--ease-out) .2s both;
-}
+/* .l-hero lines handled individually via .hero-inner animation */
 
 .l-sub {
   animation: fadeUp .7s var(--ease-out) .32s both;
@@ -1079,4 +1170,98 @@ header {
 
 .dots {
   animation: fadeUp .6s var(--ease-out) .7s both;
+}
+
+/* ══════════════════════════════════════════
+   EDITORIAL INTRO SECTION
+══════════════════════════════════════════ */
+.editorial-intro {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 130px clamp(44px, 8vw, 120px) 150px;
+  background: var(--bg);
+  position: relative;
+}
+
+/* Thin top border to separate from hero */
+.editorial-intro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: clamp(44px, 8vw, 120px);
+  right: clamp(44px, 8vw, 120px);
+  height: 1px;
+  background: var(--border);
+}
+
+.ei-inner {
+  width: 100%;
+}
+
+/* ── Meta label ── */
+.ei-meta {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 60px;
+  transition:
+    opacity .75s var(--ease-out),
+    transform .75s var(--ease-out);
+}
+
+/* ── Editorial paragraph ── */
+.ei-para {
+  font-family: var(--grotesk);
+  font-size: clamp(2.8rem, 4.2vw, 6rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -.055em;
+  color: var(--dark);
+  max-width: 78vw;
+  margin: 0;
+  padding-left: clamp(0px, 5vw, 100px);
+  transition:
+    opacity 1.15s var(--ease-out) .2s,
+    transform 1.15s var(--ease-out) .2s;
+}
+
+/* ── Revealed state ── */
+.editorial-intro.revealed .ei-meta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.editorial-intro.revealed .ei-para {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .editorial-intro {
+    min-height: auto;
+    padding: 90px 28px 110px;
+  }
+
+  .editorial-intro::before {
+    left: 28px;
+    right: 28px;
+  }
+
+  .ei-meta {
+    margin-bottom: 40px;
+  }
+
+  .ei-para {
+    font-size: clamp(2.2rem, 9vw, 4rem);
+    letter-spacing: -.04em;
+    max-width: 100%;
+    padding-left: 0;
+  }
 }

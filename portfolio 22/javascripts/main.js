@@ -6,19 +6,19 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ══════════════════════════════════════
-     CURSOR — smooth magnetic feel
+     CURSOR — Rotating text ring
   ══════════════════════════════════════ */
-  const cursor = document.getElementById('cursor');
+  const cursor = document.getElementById('cursor-wrap');
   let mx = window.innerWidth / 2, my = window.innerHeight / 2;
   let cx = mx, cy = my;
 
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
   (function tickCursor() {
-    cx += (mx - cx) * .115;
-    cy += (my - cy) * .115;
+    cx += (mx - cx) * .09;   // lag for elegant trailing effect
+    cy += (my - cy) * .09;
     cursor.style.left = cx + 'px';
-    cursor.style.top = cy + 'px';
+    cursor.style.top  = cy + 'px';
     requestAnimationFrame(tickCursor);
   })();
 
@@ -27,10 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
       el.addEventListener('mouseenter', () => cursor.classList.add('h'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('h'));
       el.addEventListener('mousedown', () => cursor.classList.add('click'));
-      el.addEventListener('mouseup', () => cursor.classList.remove('click'));
+      el.addEventListener('mouseup',   () => cursor.classList.remove('click'));
     });
   }
   addHover(document.querySelectorAll('.card, button, a, .dot'));
+
 
   /* ══════════════════════════════════════
      SLOT DEFINITIONS
@@ -47,14 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     // SLOT 1 — TOP RIGHT (small, far)
     {
-      top: '7%', left: '63%',
-      width: '268px', height: '172px',
-      transform: 'rotateX(22deg) rotateY(-27deg) rotateZ(14deg)',
+      top: '12%', left: '56%',
+      width: '255px', height: '166px',
+      transform: 'rotateX(22deg) rotateY(-27deg) rotateZ(18deg)',
       zIndex: 15, opacity: 0.92
     },
     // SLOT 2 — MID RIGHT (medium)
     {
-      top: '38%', left: '70%',
+      top: '35%', left: '71%',
       width: '305px', height: '194px',
       transform: 'rotateX(20deg) rotateY(-23deg) rotateZ(12deg)',
       zIndex: 16, opacity: 0.86
@@ -68,16 +69,16 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     // SLOT 4 — BOTTOM LEFT (partially off-screen)
     {
-      top: '58%', left: '-2%',
-      width: '316px', height: '200px',
-      transform: 'rotateX(17deg) rotateY(-12deg) rotateZ(-9deg)',
+      top: '70%', left: '25%',
+      width: '270px', height: '170px',
+      transform: 'rotateX(17deg) rotateY(-12deg) rotateZ(8deg)',
       zIndex: 13, opacity: 0.80
     },
     // SLOT 5 — BOTTOM CENTER
     {
-      top: '66%', left: '37%',
+      top: '76%', left: '48%',
       width: '242px', height: '152px',
-      transform: 'rotateX(13deg) rotateY(-9deg) rotateZ(4deg)',
+      transform: 'rotateX(13deg) rotateY(0deg) rotateZ(7deg)',
       zIndex: 12, opacity: 0.78
     }
   ];
@@ -110,15 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const s = SLOTS[slotIdx];
     const lp = LABEL_POS[slotIdx];
 
-    card.style.cssText = `
-      top: ${s.top};
-      left: ${s.left};
-      width: ${s.width};
-      height: ${s.height};
-      transform: ${s.transform};
-      z-index: ${s.zIndex};
-      opacity: ${s.opacity};
-    `;
+    card.style.top = s.top;
+    card.style.left = s.left;
+    card.style.width = s.width;
+    card.style.height = s.height;
+    card.style.transform = s.transform;
+    card.style.zIndex = s.zIndex;
+    card.style.opacity = s.opacity;
     card.className = `card s${slotIdx}`;
 
     if (lp) {
@@ -145,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const feat = document.getElementById('featLabel');
     const view = document.getElementById('featView');
     feat.classList.add('fade');
-    view.classList.add('fade');
+    if (view) view.classList.add('fade');
 
     clearTimeout(feat._t);
     feat._t = setTimeout(() => {
@@ -155,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('flCat').textContent = d.cat || '';
       document.getElementById('flStack').textContent = d.stack || '';
       feat.classList.remove('fade');
-      view.classList.remove('fade');
+      if (view) view.classList.remove('fade');
     }, 240);
   }
 
@@ -187,68 +186,42 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ══════════════════════════════════════
-     NAVIGATION
+     NAVIGATION — Custom cycle
+     Slot path: 1(TopRight)→0(Center)→4(BottomLeft)→5(BottomCenter)→3(BottomRight)→2(MidRight)→1
+     CYCLE[currentSlot] = nextSlot
   ══════════════════════════════════════ */
-  function rotate(dir) {
-    // Shift all slot assignments by dir
-    slotOf = slotOf.map(s => ((s - dir) + N) % N);
+  const CYCLE      = [4, 0, 1, 2, 5, 3]; // forward:  0→4, 1→0, 2→1, 3→2, 4→5, 5→3
+  const CYCLE_BACK = [1, 2, 3, 5, 0, 4]; // reverse (inverse permutation)
+
+  function rotateNext() {
+    slotOf = slotOf.map(s => CYCLE[s]);
     render();
   }
 
   function goNext() {
     if (busy) return;
     busy = true;
-    rotate(1);
+    rotateNext();
     setTimeout(() => busy = false, 750);
   }
-  function goPrev() {
-    if (busy) return;
-    busy = true;
-    rotate(-1);
-    setTimeout(() => busy = false, 750);
-  }
+
   function goTo(cardIdx) {
     if (busy || slotOf[cardIdx] === 0) return;
     busy = true;
-    const steps = slotOf[cardIdx];
-    slotOf = slotOf.map(s => ((s - steps) + N) % N);
+    // Step forward through cycle until target card reaches slot 0
+    let guard = 0;
+    while (slotOf[cardIdx] !== 0 && guard++ < N) {
+      slotOf = slotOf.map(s => CYCLE[s]);
+    }
     render();
     setTimeout(() => busy = false, 850);
   }
 
-  /* ── Scroll wheel ── */
-  let sbuf = 0, stimer = null;
-  document.addEventListener('wheel', e => {
-    e.preventDefault();
-    sbuf += e.deltaY;
-    clearTimeout(stimer);
-    stimer = setTimeout(() => {
-      if (sbuf > 40) goNext();
-      if (sbuf < -40) goPrev();
-      sbuf = 0;
-    }, 55);
-  }, { passive: false });
+  /* ── Auto-rotate every 1.5s ── */
+  setInterval(goNext, 1500);
 
-  /* ── Keyboard ── */
-  document.addEventListener('keydown', e => {
-    if (['ArrowDown', 'ArrowRight'].includes(e.key)) { e.preventDefault(); goNext(); }
-    if (['ArrowUp', 'ArrowLeft'].includes(e.key)) { e.preventDefault(); goPrev(); }
-  });
 
-  /* ── Touch swipe ── */
-  let tx = 0, ty = 0;
-  document.addEventListener('touchstart', e => {
-    tx = e.touches[0].clientX; ty = e.touches[0].clientY;
-  }, { passive: true });
-  document.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - tx;
-    const dy = e.changedTouches[0].clientY - ty;
-    if (Math.abs(dy) > Math.abs(dx)) {
-      if (dy < -40) goNext(); else if (dy > 40) goPrev();
-    } else {
-      if (dx < -40) goNext(); else if (dx > 40) goPrev();
-    }
-  }, { passive: true });
+
 
   /* ── Card click ── */
   const modal = document.getElementById('modal');
@@ -334,12 +307,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Staggered card entrance animation */
   cards.forEach((card, i) => {
-    card.style.transition = 'none';
+    const targetOpacity = SLOTS[slotOf[i]].opacity;
     card.style.opacity = '0';
+    card.style.transform = card.style.transform + ' translateY(20px)';
     setTimeout(() => {
-      card.style.transition = '';
-      card.style.opacity = SLOTS[slotOf[i]].opacity.toString();
-    }, 100 + i * 80);
+      card.style.opacity = targetOpacity.toString();
+      card.style.transform = SLOTS[slotOf[i]].transform;
+    }, 120 + i * 90);
   });
+
+  /* ══════════════════════════════════════
+     MAGNETIC BUTTONS
+  ══════════════════════════════════════ */
+  const magneticEls = document.querySelectorAll('button, .hb, .nov-links a, .mi-btn');
+  const MAGNET_STRENGTH = 0.32;
+  const MAGNET_RADIUS   = 90;
+
+  magneticEls.forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const r  = el.getBoundingClientRect();
+      const cx = r.left + r.width  / 2;
+      const cy = r.top  + r.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < MAGNET_RADIUS) {
+        const pull = (1 - dist / MAGNET_RADIUS) * MAGNET_STRENGTH;
+        el.style.transform  = `translate(${dx * pull}px, ${dy * pull}px)`;
+        el.style.transition = 'transform 0.12s cubic-bezier(.23,1,.32,1)';
+      }
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform  = 'translate(0,0)';
+      el.style.transition = 'transform 0.55s cubic-bezier(.23,1,.32,1)';
+    });
+  });
+
+  /* ══════════════════════════════════════
+     EDITORIAL INTRO — scroll reveal
+  ══════════════════════════════════════ */
+  const editorialSection = document.getElementById('editorialIntro');
+  if (editorialSection) {
+    const reveal = () => editorialSection.classList.add('revealed');
+
+    const revealObs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          reveal();
+          revealObs.disconnect();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    revealObs.observe(editorialSection);
+
+    /* Fallback: if scroll is blocked, reveal after user interaction */
+    window.addEventListener('scroll', function onScroll() {
+      const rect = editorialSection.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92) {
+        reveal();
+        window.removeEventListener('scroll', onScroll);
+      }
+    }, { passive: true });
+  }
 
 });
