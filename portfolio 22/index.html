@@ -193,6 +193,26 @@
     </div>
   </section>
 
+  <!-- ── SKILLS / WAVY TICKER ── -->
+  <section class="skills-section" id="skillsSection" aria-label="Skills & Stack">
+    <!-- FRAMER WAVY TICKER -->
+    <div class="wavy-ticker-section" id="wavyTickerSec" aria-label="Wavy Skills Ticker">
+      <div class="wavy-ticker-container" id="wavyTickerContainerRow1" data-direction="left">
+        <!-- Populated dynamically by JS with Framer Wavy Ticker sine wave animation -->
+      </div>
+
+      <!-- CENTER TITLE BETWEEN WAVES -->
+      <div class="wavy-center-title">
+        <h2 class="wavy-heading">
+          <span class="wavy-serif">Meine</span> <span class="wavy-sans">SKILLS</span>
+        </h2>
+      </div>
+
+      <div class="wavy-ticker-container" id="wavyTickerContainerRow2" data-direction="right">
+        <!-- Populated dynamically by JS with Framer Wavy Ticker sine wave animation -->
+      </div>
+    </div>
+  </section>
 
   <!-- DOTS -->
   <div class="dots" id="dots"></div>
@@ -207,7 +227,7 @@
     </div>
     <div class="nov-links">
       <a href="#">Work</a>
-      <a href="#">About</a>
+      <a href="#editorialIntro" id="aboutNavBtn">About</a>
       <a href="#">Services</a>
       <a href="html/experience.html">Experience</a>
       <a href="html/contact_form.html">Contact</a>
@@ -239,6 +259,8 @@
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="javascripts/main.js"></script>
 </body>
 
