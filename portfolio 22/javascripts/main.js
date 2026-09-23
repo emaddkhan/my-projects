@@ -6,23 +6,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ══════════════════════════════════════
-     CURSOR — Rotating text ring
+     CURSOR (Disabled - using standard browser cursor)
   ══════════════════════════════════════ */
   const cursor = document.getElementById('cursor-wrap');
-  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-  let cx = mx, cy = my;
-
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-  (function tickCursor() {
-    cx += (mx - cx) * .09;   // lag for elegant trailing effect
-    cy += (my - cy) * .09;
-    cursor.style.left = cx + 'px';
-    cursor.style.top = cy + 'px';
-    requestAnimationFrame(tickCursor);
-  })();
-
   function addHover(els) {
+    if (!cursor) return;
     els.forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('h'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('h'));
@@ -30,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
       el.addEventListener('mouseup', () => cursor.classList.remove('click'));
     });
   }
-  addHover(document.querySelectorAll('.card, button, a, .dot'));
 
 
   /* ══════════════════════════════════════
@@ -627,6 +614,480 @@ document.addEventListener('DOMContentLoaded', () => {
 
   createWavyTicker('wavyTickerContainerRow1', row1Skills, 'left');
   createWavyTicker('wavyTickerContainerRow2', row2Skills, 'right');
+
+  /* ══════════════════════════════════════
+     MEINE WORK — FRAMER DEPTH BLUR CAROUSEL (INTERACTIVE SLIDER)
+  ══════════════════════════════════════ */
+  const depthWrapper = document.getElementById('depthWrapper');
+  const depthTrack = document.getElementById('depthTrack');
+  const depthPrev = document.getElementById('depthPrev');
+  const depthNext = document.getElementById('depthNext');
+  const depthDotsContainer = document.getElementById('depthDots');
+
+  if (depthWrapper && depthTrack) {
+    const cards = Array.from(depthTrack.querySelectorAll('.depth-card'));
+    const totalCards = cards.length;
+
+    let currentPos = 0;      // Current lerp position
+    let targetPos = 0;       // Target card position index
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragPosStart = 0;
+    let isHovered = false;
+    let autoSlideTimer = null;
+
+    function resetAutoSlide() {
+      if (autoSlideTimer) clearInterval(autoSlideTimer);
+      autoSlideTimer = setInterval(() => {
+        if (!isDragging && !isHovered) {
+          targetPos = Math.round(targetPos) + 1;
+        }
+      }, 3000); // Automatically steps to next card every 2.5 seconds
+    }
+
+    depthWrapper.addEventListener('mouseenter', () => { isHovered = true; });
+    depthWrapper.addEventListener('mouseleave', () => { isHovered = false; resetAutoSlide(); });
+
+    // Create pagination dots
+    if (depthDotsContainer) {
+      depthDotsContainer.innerHTML = '';
+      cards.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = `depth-dot ${i === 0 ? 'active' : ''}`;
+        dot.addEventListener('click', () => {
+          targetPos = i;
+          resetAutoSlide();
+        });
+        depthDotsContainer.appendChild(dot);
+      });
+    }
+
+    addHover(cards);
+
+    // Mouse Drag / Touch Swipe
+    depthWrapper.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      dragStartX = e.clientX;
+      dragPosStart = targetPos;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const isMobile = window.innerWidth <= 768;
+      const cardSpacing = isMobile ? 220 : 340;
+      const diffX = (dragStartX - e.clientX) / cardSpacing;
+      targetPos = dragPosStart + diffX;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        targetPos = Math.round(targetPos);
+        resetAutoSlide();
+      }
+    });
+
+    // Touch support for mobile swipe
+    depthWrapper.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        dragStartX = e.touches[0].clientX;
+        dragPosStart = targetPos;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const isMobile = window.innerWidth <= 768;
+      const cardSpacing = isMobile ? 220 : 340;
+      const diffX = (dragStartX - e.touches[0].clientX) / cardSpacing;
+      targetPos = dragPosStart + diffX;
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      if (isDragging) {
+        isDragging = false;
+        targetPos = Math.round(targetPos);
+        resetAutoSlide();
+      }
+    });
+
+    // Nav Arrows Click
+    if (depthPrev) depthPrev.addEventListener('click', () => {
+      targetPos = Math.round(targetPos) - 1;
+      resetAutoSlide();
+    });
+    if (depthNext) depthNext.addEventListener('click', () => {
+      targetPos = Math.round(targetPos) + 1;
+      resetAutoSlide();
+    });
+
+    // Keyboard Arrow Keys
+    window.addEventListener('keydown', (e) => {
+      const rect = depthWrapper.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (!inView) return;
+      if (e.key === 'ArrowLeft') { targetPos = Math.round(targetPos) - 1; resetAutoSlide(); }
+      if (e.key === 'ArrowRight') { targetPos = Math.round(targetPos) + 1; resetAutoSlide(); }
+    });
+
+    // Card Click behavior
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => {
+        const activeIdx = (Math.round(currentPos) % totalCards + totalCards) % totalCards;
+        if (i !== activeIdx) {
+          targetPos = targetPos + (i - activeIdx);
+          resetAutoSlide();
+        } else {
+          // Open Modal
+          const d = card.dataset;
+          const m = document.getElementById('modal');
+          if (!m || !d) return;
+          document.getElementById('mImg').src = d.img || '';
+          document.getElementById('mNum').textContent = d.num || '';
+          document.getElementById('mTitle').textContent = d.title || '';
+          document.getElementById('mCat').textContent = d.cat || '';
+          document.getElementById('mDesc').textContent = d.desc || '';
+          document.getElementById('mStack').textContent = d.stack || '';
+          document.getElementById('mLink').href = d.link || '#';
+          m.classList.add('open');
+          m.setAttribute('aria-hidden', 'false');
+        }
+      });
+    });
+
+    // Start auto slide timer on initialization
+    resetAutoSlide();
+
+    // 3D DEPTH BLUR ANIMATION RENDER LOOP (INTERACTIVE LERP, NO AUTO-SCROLLING MOTION)
+    function renderFrame() {
+      // Smooth lerp towards targetPos
+      currentPos += (targetPos - currentPos) * 0.1;
+
+      const isMobile = window.innerWidth <= 768;
+      const cardSpacing = isMobile ? 220 : 340;
+      const normalizedCurrent = (currentPos % totalCards + totalCards) % totalCards;
+      const activeIdx = (Math.round(normalizedCurrent) % totalCards + totalCards) % totalCards;
+
+      cards.forEach((card, i) => {
+        let offset = i - normalizedCurrent;
+
+        // Circular Wrap Math
+        if (offset > totalCards / 2) offset -= totalCards;
+        if (offset < -totalCards / 2) offset += totalCards;
+
+        const absOffset = Math.abs(offset);
+        const isCenter = absOffset < 0.35;
+
+        if (isCenter) card.classList.add('active');
+        else card.classList.remove('active');
+
+        // Continuous 3D Depth Transforms & Real-time Gaussian Blur
+        const translateX = offset * cardSpacing;
+        const scale = isCenter
+          ? 1.08 - absOffset * 0.1
+          : Math.max(0.65, 1 - absOffset * 0.18);
+        const blurPx = isCenter ? absOffset * 4 : Math.min(absOffset * 8, 20);
+        const opacity = isCenter ? 1 : Math.max(0.2, 1 - absOffset * 0.35);
+        const rotateY = offset * -16;
+        const zIndex = 100 - Math.round(absOffset * 10);
+
+        card.style.transform = `translate3d(${translateX.toFixed(2)}px, 0, ${isCenter ? (80 - absOffset * 60) : -absOffset * 90}px) scale(${scale.toFixed(3)}) rotateY(${rotateY.toFixed(2)}deg)`;
+        card.style.filter = blurPx > 0.1 ? `blur(${blurPx.toFixed(1)}px)` : 'none';
+        card.style.opacity = opacity.toFixed(2);
+        card.style.zIndex = zIndex;
+      });
+
+      // Update Dots
+      if (depthDotsContainer) {
+        const dots = Array.from(depthDotsContainer.children);
+        dots.forEach((dot, idx) => {
+          if (idx === activeIdx) dot.classList.add('active');
+          else dot.classList.remove('active');
+        });
+      }
+
+      requestAnimationFrame(renderFrame);
+    }
+
+    requestAnimationFrame(renderFrame);
+  }
+
+  /* ══════════════════════════════════════
+     SOTNICHENKO INTERACTIVE TEXT SURFACE ENGINE (LAG-FREE & SHADOW-FREE)
+     Framer Shader Text Surface Distortion for "Meine WORK"
+  ══════════════════════════════════════ */
+  /* ══════════════════════════════════════
+     SOTNICHENKO INTERACTIVE TEXT SURFACE ENGINE (LAG-FREE & SHADOW-FREE)
+     Framer Shader Text Surface Distortion for "Meine WORK" and "Meine SKILLS"
+  ══════════════════════════════════════ */
+  function initInteractiveTextSurface(containerId, serifText = 'Meine', sansText = 'WORK') {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.className = 'interactive-text-surface-canvas';
+    container.appendChild(canvas);
+
+    const defaultHeading = container.querySelector('.wavy-heading');
+
+    const gl = canvas.getContext('webgl', {
+      alpha: false,
+      antialias: false,
+      depth: false,
+      stencil: false,
+      premultipliedAlpha: false,
+      powerPreference: 'high-performance'
+    });
+
+    if (!gl) {
+      if (defaultHeading) defaultHeading.style.display = 'block';
+      return;
+    }
+
+    if (defaultHeading) defaultHeading.style.display = 'none';
+
+    const VERTEX_SHADER = `
+      attribute vec2 aPosition;
+      varying vec2 vUv;
+      void main() {
+        vUv = vec2(aPosition.x * 0.5 + 0.5, 0.5 - aPosition.y * 0.5);
+        gl_Position = vec4(aPosition, 0.0, 1.0);
+      }
+    `;
+
+    const FRAGMENT_SHADER = `
+      precision highp float;
+      varying vec2 vUv;
+
+      uniform sampler2D uTexture;
+      uniform vec2 uResolution;
+      uniform vec2 uPointer;
+      uniform vec3 uBackground;
+      uniform vec3 uTextColor;
+      uniform float uRadius;
+      uniform float uDepth;
+      uniform float uSoftness;
+      uniform float uStrength;
+
+      float bumpProfile(float normalizedDistance) {
+        float x = clamp(1.0 - normalizedDistance, 0.0, 1.0);
+        float smoothBump = x * x * (3.0 - 2.0 * x);
+        return pow(smoothBump, mix(0.7, 2.4, uSoftness));
+      }
+
+      float textAlpha(vec2 uv) {
+        vec2 insideLow = step(vec2(0.0), uv);
+        vec2 insideHigh = step(uv, vec2(1.0));
+        float inside = insideLow.x * insideLow.y * insideHigh.x * insideHigh.y;
+        return texture2D(uTexture, clamp(uv, 0.0, 1.0)).a * inside;
+      }
+
+      void main() {
+        vec2 safeResolution = max(uResolution, vec2(1.0));
+        vec2 pointerUv = uPointer / safeResolution;
+        vec2 deltaPx = (vUv - pointerUv) * safeResolution;
+        float distancePx = length(deltaPx);
+        float normalizedDistance = distancePx / max(uRadius, 1.0);
+        float height = bumpProfile(normalizedDistance) * uStrength;
+        vec2 direction = deltaPx / max(distancePx, 0.0001);
+
+        vec2 warpScale = vec2(uRadius) / safeResolution;
+        vec2 warpedUv = vUv - direction * warpScale * height * uDepth * 0.105;
+        float glyph = textAlpha(warpedUv);
+
+        vec3 color = mix(uBackground, uTextColor, glyph);
+
+        gl_FragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
+      }
+    `;
+
+    function compileShader(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) return null;
+      return s;
+    }
+
+    const vert = compileShader(gl.VERTEX_SHADER, VERTEX_SHADER);
+    const frag = compileShader(gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
+    if (!vert || !frag) return;
+
+    const prog = gl.createProgram();
+    gl.attachShader(prog, vert);
+    gl.attachShader(prog, frag);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+
+    const posLoc = gl.getAttribLocation(prog, 'aPosition');
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+    const locs = {
+      resolution: gl.getUniformLocation(prog, 'uResolution'),
+      pointer: gl.getUniformLocation(prog, 'uPointer'),
+      background: gl.getUniformLocation(prog, 'uBackground'),
+      textColor: gl.getUniformLocation(prog, 'uTextColor'),
+      radius: gl.getUniformLocation(prog, 'uRadius'),
+      depth: gl.getUniformLocation(prog, 'uDepth'),
+      softness: gl.getUniformLocation(prog, 'uSoftness'),
+      strength: gl.getUniformLocation(prog, 'uStrength'),
+      texture: gl.getUniformLocation(prog, 'uTexture')
+    };
+
+    const texture = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+
+    const textCanvas = document.createElement('canvas');
+    const textCtx = textCanvas.getContext('2d');
+
+    let width = 1, height = 1, ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+    const pointer = { x: 0.5, y: 0.5, targetX: 0.5, targetY: 0.5, strength: 0.0, targetStrength: 0.0 };
+
+    const bgRgb = [0.929, 0.925, 0.902]; // #edece6
+    const textRgb = [0.067, 0.067, 0.075]; // #111113
+
+    const uploadTextTexture = () => {
+      if (!textCtx) return;
+      textCanvas.width = Math.max(1, Math.round(width * ratio));
+      textCanvas.height = Math.max(1, Math.round(height * ratio));
+      textCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      textCtx.clearRect(0, 0, width, height);
+
+      const vw = window.innerWidth;
+      const fontSize = Math.min(Math.max(72, vw * 0.095), 184);
+
+      const fontSerif = `italic 400 ${fontSize}px "Nymph Font", "Nymph", "Nymphe", "Playfair Display", "Bodoni Moda", serif`;
+      const fontSans = `700 ${fontSize}px "Space Grotesk", "Inter", sans-serif`;
+
+      textCtx.font = fontSerif;
+      const wSerif = textCtx.measureText(serifText + " ").width;
+      textCtx.font = fontSans;
+      const wSans = textCtx.measureText(sansText).width;
+      const totalW = wSerif + wSans;
+
+      const startX = (width - totalW) / 2;
+      const startY = height / 2 + fontSize * 0.32;
+
+      textCtx.fillStyle = "#FFFFFF";
+
+      textCtx.font = fontSerif;
+      textCtx.fillText(serifText + " ", startX, startY);
+
+      textCtx.font = fontSans;
+      textCtx.fillText(sansText, startX + wSerif, startY);
+
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textCanvas);
+    };
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.max(rect.width, 1);
+      const h = Math.max(rect.height, 1);
+      const r = Math.min(window.devicePixelRatio || 1, 1.5);
+      width = w; height = h; ratio = r;
+      canvas.width = Math.round(w * r);
+      canvas.height = Math.round(h * r);
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      uploadTextTexture();
+    };
+
+    const draw = () => {
+      gl.useProgram(prog);
+      gl.uniform2f(locs.resolution, width, height);
+      gl.uniform2f(locs.pointer, pointer.x * width, pointer.y * height);
+      gl.uniform3f(locs.background, bgRgb[0], bgRgb[1], bgRgb[2]);
+      gl.uniform3f(locs.textColor, textRgb[0], textRgb[1], textRgb[2]);
+      gl.uniform1f(locs.radius, Math.min(260, Math.max(width, height) * 0.7));
+      gl.uniform1f(locs.depth, 0.95);
+      gl.uniform1f(locs.softness, 0.42);
+      gl.uniform1f(locs.strength, pointer.strength);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+    };
+
+    let animFrame = 0;
+    let isMoving = false;
+
+    const animate = () => {
+      const dx = pointer.targetX - pointer.x;
+      const dy = pointer.targetY - pointer.y;
+      const ds = pointer.targetStrength - pointer.strength;
+
+      if (Math.abs(dx) > 0.0005 || Math.abs(dy) > 0.0005 || Math.abs(ds) > 0.0005) {
+        pointer.x += dx * 0.14;
+        pointer.y += dy * 0.14;
+        pointer.strength += ds * 0.14;
+        draw();
+        animFrame = requestAnimationFrame(animate);
+      } else {
+        pointer.x = pointer.targetX;
+        pointer.y = pointer.targetY;
+        pointer.strength = pointer.targetStrength;
+        draw();
+        isMoving = false;
+        animFrame = 0;
+      }
+    };
+
+    const requestTick = () => {
+      if (!isMoving) {
+        isMoving = true;
+        animFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    const onPointerMove = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      pointer.targetX = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
+      pointer.targetY = Math.min(Math.max((e.clientY - rect.top) / rect.height, 0), 1);
+      pointer.targetStrength = 1.0;
+      requestTick();
+    };
+
+    const onPointerLeave = () => {
+      pointer.targetStrength = 0.0;
+      requestTick();
+    };
+
+    window.addEventListener('resize', () => {
+      resize();
+      draw();
+    }, { passive: true });
+    
+    // Strict scoping: animation triggers ONLY when mouse hovers over text canvas
+    canvas.addEventListener('mousemove', onPointerMove, { passive: true });
+    canvas.addEventListener('mouseleave', onPointerLeave, { passive: true });
+    canvas.addEventListener('touchmove', (e) => {
+      if (e.touches[0]) onPointerMove(e.touches[0]);
+    }, { passive: true });
+
+    resize();
+    draw();
+
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        uploadTextTexture();
+        draw();
+      });
+    }
+  }
+
+  // Initialize Interactive Text Surface for both section headings
+  initInteractiveTextSurface('workCenterTitle', 'Meine', 'WORK');
+  initInteractiveTextSurface('skillsCenterTitle', 'Meine', 'SKILLS');
 
 });
 

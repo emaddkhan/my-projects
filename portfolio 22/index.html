@@ -90,9 +90,9 @@
       <div class="card" id="c0" data-num="01" data-title="MINI HRMS" data-cat="FULL-STACK WEB APPLICATION"
         data-stack="Node.js / Express / MongoDB / EJS"
         data-desc="A complete Human Resource Management System featuring employee records, payroll management, attendance tracking, leave management and an interactive analytics dashboard."
-        data-img="images/mini_hrms.png" data-link="#">
+        data-img="images/mini_hrms_exact.png" data-link="#">
         <div class="card-inner">
-          <img src="images/mini_hrms.png" alt="Mini HRMS Dashboard" loading="eager">
+          <img src="images/mini_hrms_exact.png" alt="Mini HRMS Dashboard" loading="eager">
         </div>
         <div class="card-label" id="cl0">
           <span class="cl-n">01</span>
@@ -106,9 +106,9 @@
       <div class="card" id="c1" data-num="03" data-title="MIRANDA" data-cat="INTERACTIVE FRONTEND EXPERIENCE"
         data-stack="HTML / CSS / JavaScript / GSAP / LocomotiveScroll"
         data-desc="A high-end editorial fashion website with dark moody aesthetics, smooth scroll, cinematic transitions and immersive typography animations."
-        data-img="images/miranda_experience.png" data-link="#">
+        data-img="images/miranda_exact.png" data-link="#">
         <div class="card-inner">
-          <img src="images/miranda_experience.png" alt="Miranda" loading="eager">
+          <img src="images/miranda_exact.png" alt="Miranda" loading="eager">
         </div>
         <div class="card-label" id="cl1">
           <span class="cl-n">03</span>
@@ -122,9 +122,9 @@
       <div class="card" id="c2" data-num="02" data-title="OBYS AGENCY" data-cat="INTERACTIVE WEB EXPERIENCE"
         data-stack="HTML / CSS / JavaScript / GSAP"
         data-desc="Recreation of the award-winning Obys Agency portfolio featuring WebGL backgrounds, smooth scroll and immersive cursor interactions."
-        data-img="images/Gemini_Generated_Image_whko9mwhko9mwhko.jpg" data-link="#">
+        data-img="images/obys_exact.png" data-link="#">
         <div class="card-inner">
-          <img src="images/Gemini_Generated_Image_whko9mwhko9mwhko.jpg" alt="Obys Agency" loading="eager">
+          <img src="images/obys_exact.png" alt="Obys Agency" loading="eager">
         </div>
         <div class="card-label" id="cl2">
           <span class="cl-n">02</span>
@@ -138,9 +138,9 @@
       <div class="card" id="c3" data-num="06" data-title="RAY-BAN" data-cat="INTERACTIVE PRODUCT EXPERIENCE"
         data-stack="HTML / CSS / JavaScript / GSAP"
         data-desc="Immersive brand landing page for Ray-Ban featuring a 3D product configurator and scroll-driven parallax animations."
-        data-img="images/Gemini_Generated_Image_489isa489isa489i.jpg" data-link="#">
+        data-img="images/rayban_exact.png" data-link="#">
         <div class="card-inner">
-          <img src="images/Gemini_Generated_Image_489isa489isa489i.jpg" alt="Ray-Ban" loading="eager">
+          <img src="images/rayban_exact.png" alt="Ray-Ban" loading="eager">
         </div>
         <div class="card-label" id="cl3">
           <span class="cl-n">06</span>
@@ -154,9 +154,9 @@
       <div class="card" id="c4" data-num="04" data-title="REFOKUS" data-cat="INTERACTIVE WEB EXPERIENCE"
         data-stack="React / JavaScript / GSAP"
         data-desc="Pixel-perfect clone of the Refokus agency website with sleek Swiss typography, magnetic cursor and scroll-triggered reveals."
-        data-img="images/Gemini_Generated_Image_d5ffc7d5ffc7d5ff.jpg" data-link="#">
+        data-img="images/refokus_exact.png" data-link="#">
         <div class="card-inner">
-          <img src="images/Gemini_Generated_Image_d5ffc7d5ffc7d5ff.jpg" alt="Refokus" loading="eager">
+          <img src="images/refokus_exact.png" alt="Refokus" loading="eager">
         </div>
         <div class="card-label" id="cl4">
           <span class="cl-n">04</span>
@@ -170,9 +170,9 @@
       <div class="card" id="c5" data-num="05" data-title="CUBERTO" data-cat="CREATIVE FRONTEND EXPERIENCE"
         data-stack="React / JavaScript / GSAP"
         data-desc="Bold UI concept inspired by Cuberto design studio featuring dynamic grid layouts, kinetic typography and smooth page transitions."
-        data-img="images/Gemini_Generated_Image_ie0mdfie0mdfie0m.jpg" data-link="#">
+        data-img="images/cuberto_exact.png" data-link="#">
         <div class="card-inner">
-          <img src="images/Gemini_Generated_Image_ie0mdfie0mdfie0m.jpg" alt="Cuberto" loading="eager">
+          <img src="images/cuberto_exact.png" alt="Cuberto" loading="eager">
         </div>
         <div class="card-label" id="cl5">
           <span class="cl-n">05</span>
@@ -189,7 +189,9 @@
   <section class="editorial-intro" id="editorialIntro" aria-label="About">
     <div class="ei-inner">
       <span class="ei-meta">ABOUT / 01</span>
-      <p class="ei-para">I'm Emad, a frontend-focused software developer who enjoys turning ideas into thoughtful digital experiences. I care about clean interfaces, smooth interactions, and the small details that make a product feel effortless.</p>
+      <p class="ei-para">I'm Emad, a frontend-focused software developer who enjoys turning ideas into thoughtful
+        digital experiences. I care about clean interfaces, smooth interactions, and the small details that make a
+        product feel effortless.</p>
     </div>
   </section>
 
@@ -202,7 +204,7 @@
       </div>
 
       <!-- CENTER TITLE BETWEEN WAVES -->
-      <div class="wavy-center-title">
+      <div class="wavy-center-title" id="skillsCenterTitle">
         <h2 class="wavy-heading">
           <span class="wavy-serif">Meine</span> <span class="wavy-sans">SKILLS</span>
         </h2>
@@ -211,6 +213,167 @@
       <div class="wavy-ticker-container" id="wavyTickerContainerRow2" data-direction="right">
         <!-- Populated dynamically by JS with Framer Wavy Ticker sine wave animation -->
       </div>
+    </div>
+  </section>
+
+  <!-- ── MEINE WORK / DEPTH BLUR CAROUSEL ── -->
+  <section class="work-velocity-section" id="workSection" aria-label="Meine Work Showcase">
+    <!-- CENTER TITLE -->
+    <div class="work-center-title" id="workCenterTitle">
+      <h2 class="wavy-heading">
+        <span class="wavy-serif">Meine</span> <span class="wavy-sans">WORK</span>
+      </h2>
+    </div>
+
+    <!-- FRAMER DEPTH BLUR CAROUSEL CONTAINER -->
+    <div class="depth-carousel-wrapper" id="depthWrapper">
+      <!-- Backdrop Edge Blur Overlays -->
+      <div class="depth-edge-blur left"></div>
+      <div class="depth-edge-blur right"></div>
+
+      <!-- Arrow Buttons -->
+      <button class="depth-nav-btn prev" id="depthPrev" aria-label="Previous Project">‹</button>
+      <button class="depth-nav-btn next" id="depthNext" aria-label="Next Project">›</button>
+
+      <!-- Carousel 3D Track -->
+      <div class="depth-carousel-track" id="depthTrack">
+
+        <!-- CARD 0 — Mini HRMS -->
+        <div class="depth-card" data-num="01" data-title="MINI HRMS" data-cat="FULL-STACK WEB APPLICATION"
+          data-stack="Node.js / Express / MongoDB / EJS"
+          data-desc="A complete Human Resource Management System featuring employee records, payroll management, attendance tracking, leave management and an interactive analytics dashboard."
+          data-img="images/mini_hrms_exact.png" data-link="#">
+          <div class="depth-card-bg">
+            <img src="images/mini_hrms_exact.png" alt="Mini HRMS">
+          </div>
+          <div class="depth-card-overlay"></div>
+          <div class="depth-card-info">
+            <div class="depth-card-top">
+              <span class="depth-num">01 / 06</span>
+              <span class="depth-arrow">↗</span>
+            </div>
+            <div class="depth-card-bottom">
+              <span class="depth-cat">FULL-STACK WEB APP</span>
+              <h3 class="depth-title">MINI HRMS</h3>
+              <div class="depth-stack">Node.js / Express / MongoDB</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 1 — Miranda -->
+        <div class="depth-card" data-num="02" data-title="MIRANDA" data-cat="INTERACTIVE EDITORIAL EXPERIENCE"
+          data-stack="HTML / CSS / JavaScript / GSAP / LocomotiveScroll"
+          data-desc="A high-end editorial fashion website with dark moody aesthetics, smooth scroll, cinematic transitions and immersive typography animations."
+          data-img="images/miranda_exact.png" data-link="#">
+          <div class="depth-card-bg">
+            <img src="images/miranda_exact.png" alt="Miranda">
+          </div>
+          <div class="depth-card-overlay"></div>
+          <div class="depth-card-info">
+            <div class="depth-card-top">
+              <span class="depth-num">02 / 06</span>
+              <span class="depth-arrow">↗</span>
+            </div>
+            <div class="depth-card-bottom">
+              <span class="depth-cat">EDITORIAL WEBSITE</span>
+              <h3 class="depth-title">MIRANDA</h3>
+              <div class="depth-stack">HTML / GSAP / Locomotive</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2 — Obys Agency -->
+        <div class="depth-card" data-num="03" data-title="OBYS AGENCY" data-cat="INTERACTIVE WEB EXPERIENCE"
+          data-stack="HTML / CSS / JavaScript / GSAP"
+          data-desc="Recreation of the award-winning Obys Agency portfolio featuring WebGL backgrounds, smooth scroll and immersive cursor interactions."
+          data-img="images/obys_exact.png" data-link="#">
+          <div class="depth-card-bg">
+            <img src="images/obys_exact.png" alt="Obys Agency">
+          </div>
+          <div class="depth-card-overlay"></div>
+          <div class="depth-card-info">
+            <div class="depth-card-top">
+              <span class="depth-num">03 / 06</span>
+              <span class="depth-arrow">↗</span>
+            </div>
+            <div class="depth-card-bottom">
+              <span class="depth-cat">AGENCY RECREATION</span>
+              <h3 class="depth-title">OBYS AGENCY</h3>
+              <div class="depth-stack">HTML / CSS / GSAP</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3 — Refokus -->
+        <div class="depth-card" data-num="04" data-title="REFOKUS" data-cat="SWISS DESIGN & INTERACTIVE MOTION"
+          data-stack="React / JavaScript / GSAP"
+          data-desc="Pixel-perfect clone of the Refokus agency website with sleek Swiss typography, magnetic cursor and scroll-triggered reveals."
+          data-img="images/refokus_exact.png" data-link="#">
+          <div class="depth-card-bg">
+            <img src="images/refokus_exact.png" alt="Refokus">
+          </div>
+          <div class="depth-card-overlay"></div>
+          <div class="depth-card-info">
+            <div class="depth-card-top">
+              <span class="depth-num">04 / 06</span>
+              <span class="depth-arrow">↗</span>
+            </div>
+            <div class="depth-card-bottom">
+              <span class="depth-cat">SWISS INTERACTIVE</span>
+              <h3 class="depth-title">REFOKUS</h3>
+              <div class="depth-stack">React / GSAP / Motion</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4 — Cuberto -->
+        <div class="depth-card" data-num="05" data-title="CUBERTO" data-cat="CREATIVE FRONTEND CONCEPT"
+          data-stack="React / JavaScript / GSAP"
+          data-desc="Bold UI concept inspired by Cuberto design studio featuring dynamic grid layouts, kinetic typography and smooth page transitions."
+          data-img="images/cuberto_exact.png" data-link="#">
+          <div class="depth-card-bg">
+            <img src="images/cuberto_exact.png" alt="Cuberto">
+          </div>
+          <div class="depth-card-overlay"></div>
+          <div class="depth-card-info">
+            <div class="depth-card-top">
+              <span class="depth-num">05 / 06</span>
+              <span class="depth-arrow">↗</span>
+            </div>
+            <div class="depth-card-bottom">
+              <span class="depth-cat">UI CONCEPT</span>
+              <h3 class="depth-title">CUBERTO</h3>
+              <div class="depth-stack">React / Framer Motion</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 5 — Ray-Ban -->
+        <div class="depth-card" data-num="06" data-title="RAY-BAN" data-cat="INTERACTIVE BRAND EXPERIENCE"
+          data-stack="Next.js / Three.js / GSAP"
+          data-desc="Immersive brand landing page for Ray-Ban featuring a 3D product configurator and scroll-driven parallax animations."
+          data-img="images/rayban_exact.png" data-link="#">
+          <div class="depth-card-bg">
+            <img src="images/rayban_exact.png" alt="Ray-Ban">
+          </div>
+          <div class="depth-card-overlay"></div>
+          <div class="depth-card-info">
+            <div class="depth-card-top">
+              <span class="depth-num">06 / 06</span>
+              <span class="depth-arrow">↗</span>
+            </div>
+            <div class="depth-card-bottom">
+              <span class="depth-cat">BRAND EXPERIENCE</span>
+              <h3 class="depth-title">RAY-BAN</h3>
+              <div class="depth-stack">Next.js / Three.js</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /depthTrack -->
+
+      <!-- Pagination Dots -->
+      <div class="depth-dots" id="depthDots"></div>
     </div>
   </section>
 

@@ -51,73 +51,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
-  cursor: none;
+  cursor: auto;
 }
-
-/* ══════════════════════════════════════════
-   CURSOR — Clean 20px black dot
-══════════════════════════════════════════ */
 
 #cursor-wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  will-change: left, top;
-}
-
-#cursor-dot {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: var(--dark);
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  transition:
-    width .38s var(--ease-out),
-    height .38s var(--ease-out),
-    border-radius .3s ease;
-}
-
-/* "VIEW" text revealed inside dot on hover */
-#cursor-dot::after {
-  content: 'VIEW';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--mono);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--bg);
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity .22s ease;
-}
-
-/* ── HOVER STATE ── */
-#cursor-wrap.h #cursor-dot {
-  width: 62px;
-  height: 62px;
-}
-
-#cursor-wrap.h #cursor-dot::after {
-  opacity: 1;
-}
-
-/* ── CLICK BURST ── */
-#cursor-wrap.click #cursor-dot {
-  width: 42px;
-  height: 42px;
-  transition:
-    width .1s var(--ease-out),
-    height .1s var(--ease-out);
+  display: none !important;
 }
 
 
@@ -132,7 +70,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 400;
+  z-index: 800;
   /* Subtle frosted glass feel */
   background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%);
 }
@@ -155,7 +93,7 @@ header {
 .hm {
   background: none;
   border: none;
-  cursor: none;
+  cursor: pointer;
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 700;
@@ -188,7 +126,7 @@ header {
 .hc {
   background: none;
   border: none;
-  cursor: none;
+  cursor: pointer;
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 700;
@@ -836,7 +774,7 @@ header {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  z-index: 200;
+  z-index: 800;
 }
 
 .dot {
@@ -844,7 +782,7 @@ header {
   height: 4px;
   border-radius: 50%;
   background: rgba(0, 0, 0, .15);
-  cursor: none;
+  cursor: pointer;
   border: none;
   transition: background .35s ease, height .35s ease, border-radius .35s ease;
   padding: 0;
@@ -896,7 +834,7 @@ header {
 .nov-close {
   background: none;
   border: none;
-  cursor: none;
+  cursor: pointer;
   font-family: var(--mono);
   font-size: 9px;
   font-weight: 700;
@@ -1007,7 +945,7 @@ header {
   background: var(--dark);
   color: var(--bg);
   border: none;
-  cursor: none;
+  cursor: pointer;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -1199,8 +1137,9 @@ header {
   align-items: center;
   padding: 130px clamp(44px, 8vw, 120px) 150px;
   background: var(--bg);
-  position: relative;
-  z-index: 300;
+  position: sticky;
+  top: 0;
+  z-index: 200;
   box-shadow: 0 -35px 100px rgba(0, 0, 0, .18);
 }
 
@@ -1299,24 +1238,305 @@ header {
   height: 100vh;
   min-height: 100vh;
   background: var(--bg);
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 300;
   overflow: hidden;
+  box-shadow: 0 -35px 100px rgba(0, 0, 0, .18);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+}
+
+.skills-section .wavy-ticker-section {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
 }
 
-.skills-section.sk-revealed {
+.skills-section.sk-revealed .wavy-ticker-section {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ══════════════════════════════════════════
+   MEINE WORK — FRAMER DEPTH BLUR CAROUSEL SHOWCASE
+══════════════════════════════════════════ */
+.work-velocity-section,
+.work-arc-section {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+  z-index: 400;
+  overflow: hidden;
+  box-shadow: 0 -35px 100px rgba(0, 0, 0, .18);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+  perspective: 1200px;
+}
+
+.work-center-title {
+  width: 100%;
+  max-width: 1100px;
+  text-align: center;
+  z-index: 20;
+  pointer-events: auto;
+  margin-bottom: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.interactive-text-surface-canvas {
+  width: 100%;
+  height: clamp(100px, 14vw, 220px);
+  display: block;
+  position: relative;
+  z-index: 10;
+}
+
+.depth-carousel-wrapper,
+.arc-carousel-wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Cinematic Edge Backdrop Blur Overlays ── */
+.depth-edge-blur {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(80px, 12vw, 220px);
+  z-index: 40;
+  pointer-events: none;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.depth-edge-blur.left {
+  left: 0;
+  background: linear-gradient(to right, var(--bg) 0%, rgba(237, 236, 230, 0.8) 40%, transparent 100%);
+}
+
+.depth-edge-blur.right {
+  right: 0;
+  background: linear-gradient(to left, var(--bg) 0%, rgba(237, 236, 230, 0.8) 40%, transparent 100%);
+}
+
+.depth-carousel-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: clamp(300px, 42vh, 460px);
+  transform-style: preserve-3d;
+  user-select: none;
+}
+
+/* ── Depth Card ── */
+.depth-card {
+  position: absolute;
+  width: clamp(280px, 26vw, 440px);
+  height: clamp(300px, 42vh, 450px);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--dark);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  will-change: transform, filter, opacity;
+  transition: transform 0.45s cubic-bezier(.16, 1, .3, 1), filter 0.45s ease, opacity 0.45s ease, box-shadow 0.45s ease;
+  transform-origin: center center;
+}
+
+.depth-card.active {
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.depth-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.depth-card-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+}
+
+.depth-card:hover .depth-card-bg img {
+  transform: scale(1.08);
+}
+
+.depth-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 10, 13, 0.92) 0%, rgba(10, 10, 13, 0.4) 55%, rgba(10, 10, 13, 0.1) 100%);
+  transition: opacity 0.4s ease;
+}
+
+.depth-card-info {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.depth-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.depth-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.depth-arrow {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.depth-card:hover .depth-arrow {
+  transform: translate(4px, -4px);
+}
+
+.depth-cat {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 6px;
+}
+
+.depth-title {
+  font-family: var(--grotesk);
+  font-size: clamp(1.8rem, 2.8vw, 3.2rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.depth-stack {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ── Frosted Glass Arrow Navigation Buttons ── */
+.depth-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--dark);
+  font-size: 24px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s var(--ease-out), background 0.3s ease, border-color 0.3s ease;
+}
+
+.depth-nav-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.depth-nav-btn.prev {
+  left: clamp(16px, 4vw, 60px);
+}
+
+.depth-nav-btn.next {
+  right: clamp(16px, 4vw, 60px);
+}
+
+/* ── Depth Dots Navigation ── */
+.depth-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  z-index: 30;
+}
+
+.depth-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: width 0.35s var(--ease-out), background 0.35s ease, border-radius 0.35s ease;
+}
+
+.depth-dot.active {
+  width: 28px;
+  border-radius: 6px;
+  background: var(--dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .depth-card {
+    width: 270px;
+    height: 380px;
+    border-radius: 18px;
+  }
+
+  .depth-nav-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+}
+
 
 /* ── HEADER ── */
 .sk-head {
@@ -1671,6 +1891,7 @@ header {
   align-items: center;
   padding: 40px 0;
   user-select: none;
+  position: relative;
 }
 
 .wavy-heading {
