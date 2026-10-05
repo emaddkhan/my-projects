@@ -1066,7 +1066,7 @@ document.addEventListener('DOMContentLoaded', () => {
       resize();
       draw();
     }, { passive: true });
-    
+
     // Strict scoping: animation triggers ONLY when mouse hovers over text canvas
     canvas.addEventListener('mousemove', onPointerMove, { passive: true });
     canvas.addEventListener('mouseleave', onPointerLeave, { passive: true });
