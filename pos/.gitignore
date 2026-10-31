@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+release/
+
+# Local databases must never be committed (runtime DB lives in %APPDATA%)
+*.db
+*.sqlite
+*.sqlite3
+*-wal
+*-shm
+
+# Logs & OS / editor files
+*.log
+npm-debug.log*
+*.tmp
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/

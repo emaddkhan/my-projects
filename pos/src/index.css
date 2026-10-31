@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Fonts use the native Windows stack so the app renders
+ * identically offline with no font downloads.
+ */
+@theme {
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Cascadia Mono", "Cascadia Code", Consolas, ui-monospace, monospace;
+
+  --color-ink-950: oklch(0.15 0.025 255);
+  --color-ink-900: oklch(0.19 0.03 255);
+  --color-ink-800: oklch(0.25 0.03 255);
+  --color-ink-700: oklch(0.33 0.03 255);
+
+  --color-brand-300: oklch(0.86 0.15 160);
+  --color-brand-400: oklch(0.78 0.17 160);
+  --color-brand-500: oklch(0.7 0.17 162);
+  --color-brand-600: oklch(0.6 0.15 163);
+
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-ping-slow: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes ping-slow {
+    75%,
+    100% {
+      transform: scale(2.2);
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-ink-950 font-sans text-slate-200 antialiased;
+    user-select: none;
+  }
+
+  ::selection {
+    @apply bg-brand-500/30 text-white;
+  }
+
+  /* Allow copying diagnostic values such as file paths. */
+  .selectable {
+    user-select: text;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-400;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full border-2 border-solid border-transparent bg-ink-700 bg-clip-padding;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "name": "grocery-pos",
+  "productName": "Grocery POS",
+  "version": "0.1.0",
+  "description": "Offline-first Windows desktop Grocery POS",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.js",
+  "author": "Grocery POS",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "dev:renderer": "vite",
+    "dev:electron": "node scripts/dev.js --electron-only",
+    "build": "vite build",
+    "start": "npm run build && electron .",
+    "test:m1": "node scripts/test-milestone1.js",
+    "verify:native": "node scripts/verify-native.js",
+    "test:smoke": "npm run build && node scripts/run-smoke.js",
+    "test:smoke:dev": "node scripts/run-smoke.js --dev",
+    "dist": "npm run build && electron-builder --win nsis --x64",
+    "dist:dir": "npm run build && electron-builder --win dir --x64"
+  },
+  "build": {
+    "appId": "com.grocerypos.desktop",
+    "productName": "Grocery POS",
+    "copyright": "Copyright © 2026 Grocery POS",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json",
+      "!node_modules/better-sqlite3/{deps,src,build}/**",
+      "!node_modules/better-sqlite3/prebuilds/{darwin,linux,linuxmusl}-*.node",
+      "!node_modules/better-sqlite3/prebuilds/win32-arm64.node",
+      "!node_modules/better-sqlite3/binding.gyp"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/better-sqlite3/prebuilds/*.node"
+    ],
+    "npmRebuild": false,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Grocery POS",
+      "deleteAppDataOnUninstall": false
+    }
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.2",
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.5"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3"
+  }
+}
