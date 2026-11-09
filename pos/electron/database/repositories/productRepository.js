@@ -127,6 +127,14 @@ export function createProductRepository(db) {
     ORDER BY p.current_stock ASC
   `);
 
+  const insertOpeningMovement = db.prepare(`
+    INSERT INTO stock_movements (
+      product_id, movement_type, quantity, previous_stock, new_stock, reason, created_at
+    ) VALUES (
+      ?, 'opening_balance', ?, 0, ?, 'Initial opening stock balance', strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
+    )
+  `);
+
   return {
     getById(id) {
       return selectById.get(id) ?? null;
@@ -138,19 +146,28 @@ export function createProductRepository(db) {
       return selectBySku.get(sku) ?? null;
     },
     create(data) {
-      const info = insert.run({
-        categoryId: data.categoryId ?? null,
-        name: data.name,
-        barcode: data.barcode ?? null,
-        sku: data.sku ?? null,
-        unit: data.unit,
-        costPricePaisa: data.costPricePaisa,
-        salePricePaisa: data.salePricePaisa,
-        currentStock: data.currentStock ?? 0,
-        minStockLevel: data.minStockLevel ?? 0,
-        isActive: data.isActive !== undefined ? (data.isActive ? 1 : 0) : 1,
-      });
-      return selectById.get(info.lastInsertRowid);
+      const initialStock = Number(data.currentStock) || 0;
+      const fn = () => {
+        const info = insert.run({
+          categoryId: data.categoryId ?? null,
+          name: data.name,
+          barcode: data.barcode ?? null,
+          sku: data.sku ?? null,
+          unit: data.unit,
+          costPricePaisa: data.costPricePaisa,
+          salePricePaisa: data.salePricePaisa,
+          currentStock: initialStock,
+          minStockLevel: data.minStockLevel ?? 0,
+          isActive: data.isActive !== undefined ? (data.isActive ? 1 : 0) : 1,
+        });
+        const newId = Number(info.lastInsertRowid);
+        if (initialStock > 0) {
+          insertOpeningMovement.run(newId, initialStock, initialStock);
+        }
+        return selectById.get(newId);
+      };
+      if (db.inTransaction) return fn();
+      return db.transaction(fn)();
     },
     update(id, data) {
       update.run({

@@ -57,4 +57,32 @@ export const api = {
     delete: (id) => unwrap(bridge().products.delete(id)),
     getLowStock: () => unwrap(bridge().products.getLowStock()),
   },
+  sales: {
+    checkout: (data) => unwrap(bridge().sales.checkout(data)),
+    list: (options) => unwrap(bridge().sales.list(options)),
+    get: (id) => unwrap(bridge().sales.get(id)),
+    getSummary: () => unwrap(bridge().sales.getSummary()),
+  },
+  inventory: {
+    stockIn: (data) => unwrap(bridge().inventory.stockIn(data)),
+    stockOut: (data) => unwrap(bridge().inventory.stockOut(data)),
+    adjust: (data) => unwrap(bridge().inventory.adjust(data)),
+    markDamaged: (data) => unwrap(bridge().inventory.markDamaged(data)),
+    listMovements: (options) => unwrap(bridge().inventory.listMovements(options)),
+    getOverview: () => unwrap(bridge().inventory.getOverview()),
+  },
+  suppliers: {
+    list: (options) => unwrap(bridge().suppliers.list(options)),
+    get: (id) => unwrap(bridge().suppliers.get(id)),
+    create: (data) => unwrap(bridge().suppliers.create(data)),
+    update: (id, data) => unwrap(bridge().suppliers.update(id, data)),
+    getLedger: (id) => unwrap(bridge().suppliers.getLedger(id)),
+    recordPayment: (data) => unwrap(bridge().suppliers.recordPayment(data)),
+  },
+  purchases: {
+    list: (options) => unwrap(bridge().purchases.list(options)),
+    get: (id) => unwrap(bridge().purchases.get(id)),
+    create: (data) => unwrap(bridge().purchases.create(data)),
+    getOverview: () => unwrap(bridge().purchases.getOverview()),
+  },
 };

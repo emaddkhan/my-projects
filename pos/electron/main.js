@@ -33,7 +33,12 @@ function isAllowedRendererUrl(rawUrl) {
   try {
     const url = new URL(rawUrl);
     if (DEV_SERVER_URL) {
-      return url.origin === new URL(DEV_SERVER_URL).origin;
+      const dev = new URL(DEV_SERVER_URL);
+      const isLoopback = (h) => h === 'localhost' || h === '127.0.0.1' || h === '::1';
+      if (isLoopback(url.hostname) && isLoopback(dev.hostname) && url.port === dev.port) {
+        return true;
+      }
+      return url.origin === dev.origin;
     }
     return (
       url.protocol === 'file:' &&
@@ -80,7 +85,7 @@ function createMainWindow() {
     minWidth: 1024,
     minHeight: 680,
     show: false,
-    backgroundColor: '#0b1120',
+    backgroundColor: '#F7F8FA',
     icon: resolveWindowIcon(),
     webPreferences: {
       preload: PRELOAD_PATH,
@@ -94,15 +99,46 @@ function createMainWindow() {
     },
   });
 
-  mainWindow.once('ready-to-show', () => mainWindow?.show());
+  let isShown = false;
+  const showWindow = () => {
+    if (!isShown && mainWindow && !mainWindow.isDestroyed()) {
+      isShown = true;
+      mainWindow.show();
+      mainWindow.focus();
+    }
+  };
+
+  mainWindow.once('ready-to-show', () => showWindow());
+  mainWindow.webContents.once('did-finish-load', () => showWindow());
+  setTimeout(() => showWindow(), 1500);
+
+  mainWindow.webContents.on('did-fail-load', (_event, errorCode, errorDescription, validatedURL) => {
+    console.error(`[electron] Failed to load ${validatedURL}: ${errorDescription} (${errorCode})`);
+    showWindow();
+  });
+
+  if (!app.isPackaged) {
+    mainWindow.webContents.on('console-message', (_event, level, message, line, sourceId) => {
+      if (level === 3 /* error */) {
+        console.error(`[renderer error] ${message} (${sourceId}:${line})`);
+      }
+    });
+  }
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
 
   if (DEV_SERVER_URL) {
-    mainWindow.loadURL(DEV_SERVER_URL);
+    mainWindow.loadURL(DEV_SERVER_URL).catch((err) => {
+      console.error('[electron] loadURL failed:', err);
+      showWindow();
+    });
   } else {
-    mainWindow.loadFile(RENDERER_INDEX);
+    mainWindow.loadFile(RENDERER_INDEX).catch((err) => {
+      console.error('[electron] loadFile failed:', err);
+      showWindow();
+    });
   }
 }
 

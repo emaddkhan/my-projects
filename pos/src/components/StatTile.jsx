@@ -1,23 +1,19 @@
 /**
- * Compact metric tile.
- * @param {{ label: string, value: React.ReactNode, hint?: React.ReactNode, icon?: React.ReactNode, accent?: string, id?: string, delay?: number }} props
+ * Compact premium metric tile in light theme.
+ * @param {{ label: string, value: React.ReactNode, hint?: React.ReactNode, icon?: React.ReactNode, id?: string }} props
  */
-export default function StatTile({ label, value, hint, icon, accent = 'from-brand-400/20', delay = 0, ...rest }) {
+export default function StatTile({ label, value, hint, icon, ...rest }) {
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-ink-900/70 p-5 backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/15 hover:bg-ink-900/90 animate-fade-up"
-      style={{ animationDelay: `${delay}ms` }}
+      className="rounded-xl border border-[#E8EAED] bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
       {...rest}
     >
-      <div
-        className={`pointer-events-none absolute -right-10 -top-10 size-32 rounded-full bg-gradient-to-br ${accent} to-transparent blur-2xl opacity-70 transition-opacity duration-300 group-hover:opacity-100`}
-      />
-      <div className="relative flex items-start justify-between gap-3">
-        <p className="text-xs font-medium uppercase tracking-wider text-slate-400">{label}</p>
-        {icon && <span className="text-slate-500 transition-colors group-hover:text-slate-300">{icon}</span>}
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-xs font-medium text-[#737780]">{label}</p>
+        {icon && <span className="text-[#9CA3AF]">{icon}</span>}
       </div>
-      <div className="relative mt-3 font-display text-2xl font-semibold tracking-tight text-white">{value}</div>
-      {hint && <div className="relative mt-1.5 text-sm text-slate-400">{hint}</div>}
+      <div className="mt-2 text-xl font-bold tracking-tight text-[#17191C] tabular-nums">{value}</div>
+      {hint && <div className="mt-1 text-xs text-[#737780]">{hint}</div>}
     </div>
   );
 }

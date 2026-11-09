@@ -21,4 +21,32 @@ export const IPC_CHANNELS = Object.freeze({
   PRODUCTS_UPDATE: 'products:update',
   PRODUCTS_DELETE: 'products:delete',
   PRODUCTS_LOW_STOCK: 'products:low-stock',
+
+  // Sales & POS Checkout
+  SALES_CHECKOUT: 'sales:checkout',
+  SALES_LIST: 'sales:list',
+  SALES_GET: 'sales:get',
+  SALES_SUMMARY: 'sales:summary',
+
+  // Inventory Management & Stock Movements
+  INVENTORY_STOCK_IN: 'inventory:stock-in',
+  INVENTORY_STOCK_OUT: 'inventory:stock-out',
+  INVENTORY_ADJUST: 'inventory:adjust',
+  INVENTORY_DAMAGED: 'inventory:damaged',
+  INVENTORY_MOVEMENTS: 'inventory:movements',
+  INVENTORY_OVERVIEW: 'inventory:overview',
+
+  // Suppliers & Vendor Management
+  SUPPLIERS_LIST: 'suppliers:list',
+  SUPPLIERS_GET: 'suppliers:get',
+  SUPPLIERS_CREATE: 'suppliers:create',
+  SUPPLIERS_UPDATE: 'suppliers:update',
+  SUPPLIERS_LEDGER: 'suppliers:ledger',
+  SUPPLIERS_PAYMENT: 'suppliers:payment',
+
+  // Purchases & Purchase Invoices
+  PURCHASES_LIST: 'purchases:list',
+  PURCHASES_GET: 'purchases:get',
+  PURCHASES_CREATE: 'purchases:create',
+  PURCHASES_OVERVIEW: 'purchases:overview',
 });

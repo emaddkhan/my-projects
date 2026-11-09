@@ -5,6 +5,7 @@ import {
 } from '../../components/icons.jsx';
 import { formatPaisa } from '../../lib/format.js';
 import { useProducts } from './useProducts.js';
+import StatTile from '../../components/StatTile.jsx';
 import ProductFormModal from './ProductFormModal.jsx';
 import CategoryManagerModal from './CategoryManagerModal.jsx';
 
@@ -54,94 +55,75 @@ export default function ProductsView() {
     }
   };
 
-  // Inventory value calculations
   const totalStockItems = products.reduce((sum, p) => sum + (Number(p.currentStock) || 0), 0);
   const totalInventoryRetailPaisa = products.reduce((sum, p) => sum + ((Number(p.currentStock) || 0) * (p.salePricePaisa || 0)), 0);
 
   return (
-    <div className="space-y-6">
-      {/* Top Banner Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="rounded-2xl border border-slate-800/80 bg-slate-900/60 p-4 shadow-sm backdrop-blur">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-400">Total Products</span>
-            <div className="flex size-7 items-center justify-center rounded-lg bg-brand-500/10 text-brand-400">
-              <PackageIcon className="size-4" />
-            </div>
-          </div>
-          <p className="mt-2 text-2xl font-bold tracking-tight text-white">{total}</p>
-          <p className="text-[11px] text-slate-400 mt-0.5">{totalStockItems.toFixed(0)} units in catalog</p>
-        </div>
+    <div className="space-y-4">
+      {/* Metrics Row */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <StatTile
+          label="Catalog Items"
+          icon={<PackageIcon className="size-4" />}
+          value={total}
+          hint={`${totalStockItems.toFixed(0)} units on hand`}
+        />
 
-        <div className="rounded-2xl border border-slate-800/80 bg-slate-900/60 p-4 shadow-sm backdrop-blur">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-400">Categories</span>
-            <div className="flex size-7 items-center justify-center rounded-lg bg-sky-500/10 text-sky-400">
-              <FolderIcon className="size-4" />
-            </div>
-          </div>
-          <p className="mt-2 text-2xl font-bold tracking-tight text-white">{categories.length}</p>
-          <button
-            onClick={() => setIsCategoryModalOpen(true)}
-            className="text-[11px] text-sky-400 hover:text-sky-300 mt-0.5 underline text-left"
-          >
-            Manage Departments →
-          </button>
-        </div>
+        <StatTile
+          label="Departments"
+          icon={<FolderIcon className="size-4" />}
+          value={categories.length}
+          hint={
+            <button
+              onClick={() => setIsCategoryModalOpen(true)}
+              className="text-emerald-800 font-medium hover:underline"
+            >
+              Manage Categories →
+            </button>
+          }
+        />
 
-        <div className={`rounded-2xl border p-4 shadow-sm backdrop-blur transition-colors ${
-          lowStock.length > 0 
-            ? 'border-amber-500/30 bg-amber-500/10' 
-            : 'border-slate-800/80 bg-slate-900/60'
-        }`}>
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-400">Low Stock Alerts</span>
-            <div className={`flex size-7 items-center justify-center rounded-lg ${
-              lowStock.length > 0 ? 'bg-amber-500/20 text-amber-400' : 'bg-slate-800 text-slate-400'
-            }`}>
-              <AlertTriangleIcon className="size-4" />
-            </div>
-          </div>
-          <p className={`mt-2 text-2xl font-bold tracking-tight ${lowStock.length > 0 ? 'text-amber-300' : 'text-white'}`}>
-            {lowStock.length}
-          </p>
-          <button
-            onClick={() => setShowOnlyLowStock(!showOnlyLowStock)}
-            className="text-[11px] text-amber-400 hover:text-amber-300 mt-0.5 underline text-left"
-          >
-            {showOnlyLowStock ? 'Showing low stock (Click to clear)' : 'Filter low stock items'}
-          </button>
-        </div>
+        <StatTile
+          label="Low Stock Alert"
+          icon={<AlertTriangleIcon className="size-4" />}
+          value={
+            <span className={lowStock.length > 0 ? 'text-amber-700' : 'text-[#17191C]'}>
+              {lowStock.length}
+            </span>
+          }
+          hint={
+            <button
+              onClick={() => setShowOnlyLowStock(!showOnlyLowStock)}
+              className="text-xs text-[#737780] hover:text-[#17191C] underline"
+            >
+              {showOnlyLowStock ? 'Showing low stock (Reset)' : 'Filter low stock items'}
+            </button>
+          }
+        />
 
-        <div className="rounded-2xl border border-slate-800/80 bg-slate-900/60 p-4 shadow-sm backdrop-blur">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-400">Retail Value</span>
-            <div className="flex size-7 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
-              <CheckCircleIcon className="size-4" />
-            </div>
-          </div>
-          <p className="mt-2 text-xl font-bold tracking-tight text-emerald-300 font-mono">
-            {formatPaisa(totalInventoryRetailPaisa)}
-          </p>
-          <p className="text-[11px] text-slate-400 mt-0.5">Estimated on-hand stock</p>
-        </div>
+        <StatTile
+          label="Estimated Retail Value"
+          icon={<CheckCircleIcon className="size-4" />}
+          value={<span className="text-emerald-800">{formatPaisa(totalInventoryRetailPaisa)}</span>}
+          hint="Gross retail value"
+        />
       </div>
 
-      {/* Control Bar: Search & Actions */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-        <div className="relative flex-1 max-w-lg">
-          <SearchIcon className="absolute left-3.5 top-2.5 size-4 text-slate-500" />
+      {/* Control Bar: Search & Action Buttons */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div className="relative flex-1 max-w-md">
+          <SearchIcon className="absolute left-3 top-2.5 size-4 text-[#9CA3AF]" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search by product name, barcode, or SKU… (Press /)"
-            className="w-full rounded-xl border border-slate-800 bg-slate-900/80 pl-10 pr-4 py-2 text-sm text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 backdrop-blur"
+            placeholder="Search products by name, barcode, SKU…"
+            className="w-full rounded-lg border border-[#D1D5DB] bg-white pl-9 pr-8 py-1.5 text-xs text-[#17191C] placeholder-[#9CA3AF] focus:border-emerald-700 focus:outline-none focus:ring-1 focus:ring-emerald-700 shadow-2xs"
           />
           {search && (
             <button
               onClick={() => setSearch('')}
-              className="absolute right-3 top-2.5 text-xs text-slate-500 hover:text-white"
+              className="absolute right-2.5 top-2 text-xs text-[#9CA3AF] hover:text-[#17191C]"
             >
               ✕
             </button>
@@ -152,49 +134,49 @@ export default function ProductsView() {
           <button
             onClick={() => refresh()}
             title="Refresh List"
-            className="rounded-xl border border-slate-800 bg-slate-900/80 p-2.5 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className="rounded-lg border border-[#D1D5DB] bg-white p-1.5 text-[#737780] hover:bg-[#F3F4F6] transition-colors"
           >
-            <RefreshIcon className={`size-4 ${loading ? 'animate-spin' : ''}`} />
+            <RefreshIcon className={`size-3.5 ${loading ? 'animate-spin' : ''}`} />
           </button>
 
           <button
             onClick={() => setIsCategoryModalOpen(true)}
-            className="flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900/80 px-3.5 py-2 text-xs font-medium text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 rounded-lg border border-[#D1D5DB] bg-white px-3 py-1.5 text-xs font-medium text-[#17191C] hover:bg-[#F3F4F6] transition-colors shadow-2xs"
           >
-            <FolderIcon className="size-3.5 text-sky-400" />
+            <FolderIcon className="size-3.5 text-[#737780]" />
             Categories
           </button>
 
           <button
             onClick={handleAddProduct}
-            className="flex items-center gap-1.5 rounded-xl bg-brand-500 px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-brand-500/20 hover:bg-brand-400 transition-colors"
+            className="flex items-center gap-1.5 rounded-lg bg-emerald-800 px-3.5 py-1.5 text-xs font-semibold text-white shadow-2xs hover:bg-emerald-700 transition-colors"
           >
-            <PlusIcon className="size-4" />
+            <PlusIcon className="size-3.5" />
             Add Product
           </button>
         </div>
       </div>
 
       {/* Category Filter Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 scrollbar-thin">
         <button
           onClick={() => setSelectedCategory('')}
-          className={`rounded-lg px-3 py-1 text-xs font-medium whitespace-nowrap transition-colors ${
+          className={`rounded-lg px-2.5 py-1 text-xs font-medium whitespace-nowrap transition-colors ${
             selectedCategory === ''
-              ? 'bg-brand-500 text-white'
-              : 'bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white'
+              ? 'bg-emerald-800 text-white'
+              : 'bg-white border border-[#E8EAED] text-[#737780] hover:text-[#17191C] hover:bg-[#F3F4F6]'
           }`}
         >
-          All Categories ({total})
+          All Items ({total})
         </button>
         {categories.map((c) => (
           <button
             key={c.id}
             onClick={() => setSelectedCategory(selectedCategory === String(c.id) ? '' : String(c.id))}
-            className={`rounded-lg px-3 py-1 text-xs font-medium whitespace-nowrap transition-colors ${
+            className={`rounded-lg px-2.5 py-1 text-xs font-medium whitespace-nowrap transition-colors ${
               selectedCategory === String(c.id)
-                ? 'bg-brand-500 text-white'
-                : 'bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white'
+                ? 'bg-emerald-800 text-white'
+                : 'bg-white border border-[#E8EAED] text-[#737780] hover:text-[#17191C] hover:bg-[#F3F4F6]'
             }`}
           >
             {c.name} ({c.productCount ?? 0})
@@ -203,118 +185,109 @@ export default function ProductsView() {
       </div>
 
       {/* Products Table Card */}
-      <div className="rounded-2xl border border-slate-800/80 bg-slate-900/60 shadow-xl backdrop-blur overflow-hidden">
+      <div className="rounded-xl border border-[#E8EAED] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.03)] overflow-hidden">
         {loading && products.length === 0 ? (
-          <div className="p-12 text-center text-sm text-slate-400">Loading products catalog…</div>
+          <div className="p-8 text-center text-xs text-[#737780]">Loading products catalog…</div>
         ) : error ? (
-          <div className="p-12 text-center text-sm text-rose-400">Error loading products: {error}</div>
+          <div className="p-8 text-center text-xs text-red-700">Error loading products: {error}</div>
         ) : products.length === 0 ? (
-          <div className="p-16 text-center">
-            <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-400 mb-3">
-              <PackageIcon className="size-6" />
-            </div>
-            <h3 className="text-base font-semibold text-white">No products found</h3>
-            <p className="mt-1 text-xs text-slate-400 max-w-sm mx-auto">
+          <div className="p-12 text-center text-[#737780]">
+            <PackageIcon className="size-8 stroke-1 mx-auto text-[#D1D5DB] mb-2" />
+            <h3 className="text-xs font-semibold text-[#17191C]">No products found</h3>
+            <p className="text-xs text-[#9CA3AF] mt-0.5 max-w-sm mx-auto">
               {search || selectedCategory || showOnlyLowStock
-                ? 'Try adjusting your search query or filters.'
-                : 'Get started by adding grocery items with barcodes, prices, and stock.'}
+                ? 'Try adjusting your search query or department filter.'
+                : 'Click "Add Product" to add grocery items with barcodes, prices, and stock.'}
             </p>
-            <button
-              onClick={handleAddProduct}
-              className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-brand-500 px-4 py-2 text-xs font-semibold text-white hover:bg-brand-400 transition-colors"
-            >
-              <PlusIcon className="size-3.5" />
-              Add First Product
-            </button>
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm border-collapse">
+            <table className="w-full text-left text-xs border-collapse">
               <thead>
-                <tr className="border-b border-slate-800 bg-slate-950/50 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                  <th className="px-5 py-3.5">Product Name</th>
-                  <th className="px-4 py-3.5">Category</th>
-                  <th className="px-4 py-3.5">Barcode / SKU</th>
-                  <th className="px-4 py-3.5">Unit</th>
-                  <th className="px-4 py-3.5 text-right">Cost Price</th>
-                  <th className="px-4 py-3.5 text-right">Sale Price</th>
-                  <th className="px-4 py-3.5 text-right">Stock</th>
-                  <th className="px-4 py-3.5 text-center">Status</th>
-                  <th className="px-5 py-3.5 text-right">Actions</th>
+                <tr className="border-b border-[#E8EAED] bg-[#F7F8FA] text-[11px] font-semibold uppercase tracking-wider text-[#737780]">
+                  <th className="px-4 py-2.5">Product Name</th>
+                  <th className="px-3 py-2.5">Category</th>
+                  <th className="px-3 py-2.5">Barcode / SKU</th>
+                  <th className="px-3 py-2.5">Unit</th>
+                  <th className="px-3 py-2.5 text-right">Cost</th>
+                  <th className="px-3 py-2.5 text-right">Sale Price</th>
+                  <th className="px-3 py-2.5 text-right">Stock</th>
+                  <th className="px-3 py-2.5 text-center">Status</th>
+                  <th className="px-4 py-2.5 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-[#F0F2F5]">
                 {products.map((prod) => {
                   const isLow = prod.currentStock <= prod.minStockLevel;
                   return (
-                    <tr key={prod.id} className="hover:bg-slate-800/30 transition-colors group">
-                      <td className="px-5 py-3.5 font-medium text-white">
-                        <div className="flex items-center gap-2">
+                    <tr key={prod.id} className="hover:bg-[#F9FAFB] transition-colors">
+                      <td className="px-4 py-2.5 font-medium text-[#17191C]">
+                        <div className="flex items-center gap-1.5">
                           <span>{prod.name}</span>
                           {isLow && (
-                            <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
-                              Low Stock
+                            <span className="rounded bg-amber-50 border border-amber-200 px-1.5 py-0.2 text-[10px] font-semibold text-amber-800">
+                              Low
                             </span>
                           )}
                         </div>
                       </td>
 
-                      <td className="px-4 py-3.5 text-slate-300 text-xs">
-                        {prod.categoryName || <span className="text-slate-500 italic">Uncategorized</span>}
+                      <td className="px-3 py-2.5 text-[#737780]">
+                        {prod.categoryName || <span className="text-[#9CA3AF] italic">Uncategorized</span>}
                       </td>
 
-                      <td className="px-4 py-3.5 text-xs font-mono text-slate-400">
+                      <td className="px-3 py-2.5 font-mono text-[#737780]">
                         {prod.barcode ? (
-                          <span className="text-slate-300">{prod.barcode}</span>
+                          <span className="text-[#17191C]">{prod.barcode}</span>
                         ) : prod.sku ? (
-                          <span className="text-slate-400">{prod.sku}</span>
+                          <span>{prod.sku}</span>
                         ) : (
-                          <span className="text-slate-600">—</span>
+                          <span className="text-[#D1D5DB]">—</span>
                         )}
                       </td>
 
-                      <td className="px-4 py-3.5 text-xs text-slate-300 capitalize">
+                      <td className="px-3 py-2.5 text-[#737780] capitalize">
                         {prod.unit}
                       </td>
 
-                      <td className="px-4 py-3.5 text-right text-xs font-mono text-slate-400">
+                      <td className="px-3 py-2.5 text-right font-mono text-[#737780] tabular-nums">
                         {formatPaisa(prod.costPricePaisa)}
                       </td>
 
-                      <td className="px-4 py-3.5 text-right text-xs font-mono font-semibold text-emerald-300">
+                      <td className="px-3 py-2.5 text-right font-mono font-bold text-emerald-800 tabular-nums">
                         {formatPaisa(prod.salePricePaisa)}
                       </td>
 
-                      <td className="px-4 py-3.5 text-right text-xs font-mono">
-                        <span className={`font-semibold ${isLow ? 'text-amber-400' : 'text-slate-200'}`}>
+                      <td className="px-3 py-2.5 text-right font-mono tabular-nums">
+                        <span className={`font-semibold ${isLow ? 'text-amber-700' : 'text-[#17191C]'}`}>
                           {prod.currentStock}
                         </span>
-                        <span className="text-[11px] text-slate-500 ml-1">/ min {prod.minStockLevel}</span>
+                        <span className="text-[10px] text-[#9CA3AF] ml-1">/ min {prod.minStockLevel}</span>
                       </td>
 
-                      <td className="px-4 py-3.5 text-center">
-                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium ${
-                          prod.isActive ? 'bg-emerald-500/10 text-emerald-400' : 'bg-slate-800 text-slate-500'
+                      <td className="px-3 py-2.5 text-center">
+                        <span className={`inline-block rounded-md px-1.5 py-0.5 text-[10px] font-medium ${
+                          prod.isActive ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-gray-100 text-gray-500'
                         }`}>
                           {prod.isActive ? 'Active' : 'Inactive'}
                         </span>
                       </td>
 
-                      <td className="px-5 py-3.5 text-right">
-                        <div className="flex items-center justify-end gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
+                      <td className="px-4 py-2.5 text-right">
+                        <div className="flex items-center justify-end gap-1">
                           <button
                             onClick={() => handleEditProduct(prod)}
                             title="Edit Product"
-                            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-sky-400 transition-colors"
+                            className="rounded p-1 text-[#737780] hover:bg-[#F3F4F6] hover:text-[#17191C] transition-colors"
                           >
-                            <EditIcon className="size-4" />
+                            <EditIcon className="size-3.5" />
                           </button>
                           <button
                             onClick={() => handleDeleteProduct(prod)}
                             title="Delete Product"
-                            className="rounded-lg p-1.5 text-slate-400 hover:bg-rose-500/20 hover:text-rose-400 transition-colors"
+                            className="rounded p-1 text-[#737780] hover:bg-red-50 hover:text-red-700 transition-colors"
                           >
-                            <TrashIcon className="size-4" />
+                            <TrashIcon className="size-3.5" />
                           </button>
                         </div>
                       </td>

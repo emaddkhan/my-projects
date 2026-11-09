@@ -52,10 +52,10 @@ function buildChecks({ bridgeAvailable, appInfo, database }) {
 function DetailRow({ label, children, mono = false, id }) {
   return (
     <div className="min-w-0">
-      <dt className="text-xs font-medium uppercase tracking-wider text-slate-500">{label}</dt>
+      <dt className="text-[11px] font-medium uppercase tracking-wider text-[#737780]">{label}</dt>
       <dd
         id={id}
-        className={`selectable mt-1 truncate text-sm text-slate-200 ${mono ? 'font-mono text-[13px]' : ''}`}
+        className={`selectable mt-0.5 truncate text-xs text-[#17191C] ${mono ? 'font-mono text-[11px]' : ''}`}
         title={typeof children === 'string' ? children : undefined}
       >
         {children}
@@ -73,9 +73,8 @@ export default function SystemHealthPanel({ health, appInfo, bridgeAvailable, re
   return (
     <Panel
       id="system-health"
-      title="System health"
-      description={health ? `Last checked ${formatTime(health.checkedAt)}` : 'Running checks…'}
-      className="animate-fade-up [animation-delay:240ms]"
+      title="Desktop System Diagnostics"
+      description={health ? `Last checked ${formatTime(health.checkedAt)}` : 'Running diagnostics…'}
       actions={
         <>
           <StatusBadge id="health-summary" tone={allPassed ? 'success' : passed > 0 ? 'warning' : 'danger'}>
@@ -86,57 +85,67 @@ export default function SystemHealthPanel({ health, appInfo, bridgeAvailable, re
             type="button"
             onClick={onRefresh}
             disabled={refreshing}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-slate-200 transition hover:border-white/20 hover:bg-white/[0.08] active:scale-[0.97] disabled:cursor-wait disabled:opacity-60"
+            className="inline-flex items-center gap-1 rounded-md border border-[#D1D5DB] bg-white px-2.5 py-1 text-xs font-medium text-[#17191C] hover:bg-[#F3F4F6] disabled:opacity-50"
           >
-            <RefreshIcon className={`size-3.5 ${refreshing ? 'animate-spin' : ''}`} />
+            <RefreshIcon className={`size-3 text-[#737780] ${refreshing ? 'animate-spin' : ''}`} />
             {refreshing ? 'Checking' : 'Re-check'}
           </button>
         </>
       }
     >
-      {error && (
-        <div className="mx-6 mt-4 rounded-lg border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-200">
+      {!bridgeAvailable && (
+        <div className="mx-5 mt-3 rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs text-amber-900 leading-relaxed">
+          <p className="font-bold">Notice: Running in Web Browser</p>
+          <p className="mt-0.5 text-amber-800">
+            This offline-first POS application connects to its local SQLite database through Electron.
+            Please switch to the <strong>Grocery POS</strong> desktop application window running on your Windows taskbar.
+          </p>
+        </div>
+      )}
+
+      {error && bridgeAvailable && (
+        <div className="mx-5 mt-3 rounded-lg border border-red-200 bg-red-50 p-3 text-xs text-red-800">
           {error}
         </div>
       )}
 
-      <ul className="divide-y divide-white/[0.05] px-6">
+      <ul className="divide-y divide-[#F0F2F5] px-5 py-1">
         {checks.map((check) => (
-          <li key={check.id} id={`check-${check.id}`} data-pass={check.pass} className="flex items-center gap-3 py-3">
+          <li key={check.id} id={`check-${check.id}`} data-pass={check.pass} className="flex items-center gap-3 py-2.5">
             {check.pass ? (
-              <CheckCircleIcon className="size-5 shrink-0 text-emerald-400" />
+              <CheckCircleIcon className="size-4 shrink-0 text-emerald-700" />
             ) : (
-              <XCircleIcon className="size-5 shrink-0 text-rose-400" />
+              <XCircleIcon className="size-4 shrink-0 text-red-600" />
             )}
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-medium text-slate-100">{check.label}</p>
-              <p className="truncate text-xs text-slate-400">{check.detail}</p>
+              <p className="text-xs font-semibold text-[#17191C]">{check.label}</p>
+              <p className="truncate text-[11px] text-[#737780]">{check.detail}</p>
             </div>
-            <span className={`text-xs font-medium ${check.pass ? 'text-emerald-300/80' : 'text-rose-300/80'}`}>
+            <span className={`text-[11px] font-semibold ${check.pass ? 'text-emerald-800' : 'text-red-700'}`}>
               {check.pass ? 'Pass' : 'Fail'}
             </span>
           </li>
         ))}
       </ul>
 
-      <dl className="grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/[0.06] px-6 py-5 lg:grid-cols-3">
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[#E8EAED] bg-[#FAFAFB] px-5 py-3.5 lg:grid-cols-3">
         <div className="col-span-2 lg:col-span-3">
           <DetailRow label="Database file" mono id="db-path">
             {database?.filePath ?? '—'}
           </DetailRow>
         </div>
-        <DetailRow label="Size on disk">{formatBytes(database?.sizeBytes)}</DetailRow>
-        <DetailRow label="SQLite engine">{database?.sqliteVersion ?? '—'}</DetailRow>
-        <DetailRow label="Response time">
+        <DetailRow label="Database Size">{formatBytes(database?.sizeBytes)}</DetailRow>
+        <DetailRow label="SQLite Version">{database?.sqliteVersion ?? '—'}</DetailRow>
+        <DetailRow label="Response Time">
           {database?.responseMs != null ? `${database.responseMs} ms` : '—'}
         </DetailRow>
-        <DetailRow label="Database created" id="db-created-at">
+        <DetailRow label="Created At" id="db-created-at">
           {formatDateTime(database?.createdAt)}
         </DetailRow>
-        <DetailRow label="Launches recorded" id="db-launch-count">
+        <DetailRow label="Launch Count" id="db-launch-count">
           {database?.launchCount ?? '—'}
         </DetailRow>
-        <DetailRow label="Last started">{formatDateTime(database?.lastStartedAt)}</DetailRow>
+        <DetailRow label="Last Launch">{formatDateTime(database?.lastStartedAt)}</DetailRow>
       </dl>
     </Panel>
   );

@@ -47,6 +47,7 @@ if (electronOnly) {
   await viteServer.listen();
   viteServer.printUrls();
   devUrl = viteServer.resolvedUrls.local[0];
+  await waitForUrl(devUrl, 10_000);
 }
 
 let child = null;

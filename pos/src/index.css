@@ -1,45 +1,49 @@
 @import "tailwindcss";
 
 /*
- * Design tokens. Fonts use the native Windows stack so the app renders
- * identically offline with no font downloads.
+ * Design Tokens — Premium Light Desktop Grocery POS
+ * Strict Apple-inspired retail design with editorial clarity and restraint.
  */
 @theme {
-  --font-sans: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-display: "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
-  --font-mono: "Cascadia Mono", "Cascadia Code", Consolas, ui-monospace, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", Consolas, "Courier New", monospace;
 
-  --color-ink-950: oklch(0.15 0.025 255);
-  --color-ink-900: oklch(0.19 0.03 255);
-  --color-ink-800: oklch(0.25 0.03 255);
-  --color-ink-700: oklch(0.33 0.03 255);
+  /* Neutrals */
+  --color-page: #F7F8FA;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F9FAFB;
+  --color-surface-muted: #F3F4F6;
+  --color-border: #E8EAED;
+  --color-border-subtle: #F0F2F5;
 
-  --color-brand-300: oklch(0.86 0.15 160);
-  --color-brand-400: oklch(0.78 0.17 160);
-  --color-brand-500: oklch(0.7 0.17 162);
-  --color-brand-600: oklch(0.6 0.15 163);
+  /* Typography */
+  --color-text-main: #17191C;
+  --color-text-muted: #737780;
+  --color-text-dim: #9CA3AF;
 
-  --animate-fade-up: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-  --animate-ping-slow: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  /* Refined Retail Green Accent */
+  --color-accent-50: #F0FDF4;
+  --color-accent-100: #DCFCE7;
+  --color-accent-200: #BBF7D0;
+  --color-accent-500: #22C55E;
+  --color-accent-600: #16A34A;
+  --color-accent-700: #15803D;
+  --color-accent-800: #166534;
+  --color-accent-900: #14532D;
 
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  /* Restrained Feedback Tones */
+  --color-danger-soft: #FEF2F2;
+  --color-danger-border: #FEE2E2;
+  --color-danger-text: #DC2626;
 
-  @keyframes ping-slow {
-    75%,
-    100% {
-      transform: scale(2.2);
-      opacity: 0;
-    }
-  }
+  --color-warning-soft: #FFFBEB;
+  --color-warning-border: #FEF3C7;
+  --color-warning-text: #D97706;
+
+  --color-info-soft: #F0F9FF;
+  --color-info-border: #E0F2FE;
+  --color-info-text: #0284C7;
 }
 
 @layer base {
@@ -47,41 +51,47 @@
   body,
   #root {
     height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
   }
 
   body {
-    @apply bg-ink-950 font-sans text-slate-200 antialiased;
+    background-color: var(--color-page);
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     user-select: none;
   }
 
   ::selection {
-    @apply bg-brand-500/30 text-white;
+    background-color: var(--color-accent-100);
+    color: var(--color-accent-900);
   }
 
-  /* Allow copying diagnostic values such as file paths. */
   .selectable {
     user-select: text;
   }
 
-  :focus-visible {
-    @apply outline-2 outline-offset-2 outline-brand-400;
-  }
-
+  /* Refined, unobtrusive native desktop scrollbar */
   ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    @apply rounded-full border-2 border-solid border-transparent bg-ink-700 bg-clip-padding;
+    background: #D1D5DB;
+    border-radius: 9999px;
   }
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF;
+  }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  /* Tabular numbers for clean financial alignment */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 }
